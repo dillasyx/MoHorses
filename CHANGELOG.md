@@ -1,3 +1,10 @@
+## 1.0.1
+
+- Hearts now only drop when a player makes the kill; Looting raises the chance
+- New heart sources: Warden (Heart of Darkness), Camel Husk and Zombie Nautilus (Heart of Undead)
+- Blazes drop Hearts of Fire more often (3% instead of 1%)
+- New mod icon
+
 ## 1.0.0 – Initial release
 
 The horse breeding of Mo' Creatures, rebuilt for Minecraft 26.3 on Fabric, NeoForge and Forge.
