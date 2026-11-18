@@ -1,5 +1,6 @@
 package one.syx.mohorses;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
@@ -7,6 +8,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import one.syx.mohorses.platform.PlatformHelper;
 
 import java.util.function.Supplier;
@@ -44,7 +46,12 @@ public final class ForgePlatform implements PlatformHelper {
     }
 
     @Override
-    public void addEntityDrop(Identifier lootTableId, Supplier<? extends Item> item, float chance) {
-        ModMain.EXTRA_DROPS.add(new ModMain.ExtraDrop(lootTableId, item, chance));
+    public <T extends MapCodec<? extends LootItemCondition>> Supplier<T> registerLootCondition(String id, Supplier<T> codec) {
+        return ModMain.LOOT_CONDITION_REGISTRY.register(id, codec);
+    }
+
+    @Override
+    public void addEntityDrop(Identifier lootTableId, Supplier<? extends Item> item, LootItemCondition condition) {
+        ModMain.EXTRA_DROPS.add(new ModMain.ExtraDrop(lootTableId, item, condition));
     }
 }

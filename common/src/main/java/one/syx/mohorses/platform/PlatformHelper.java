@@ -1,5 +1,6 @@
 package one.syx.mohorses.platform;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
@@ -7,6 +8,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 
 import java.util.function.Supplier;
 
@@ -27,8 +29,11 @@ public interface PlatformHelper {
     /// Register a new creative tab
     <T extends CreativeModeTab> Supplier<T> registerCreativeModeTab(String id, Supplier<T> tab);
 
+    /// Register a new loot condition type
+    <T extends MapCodec<? extends LootItemCondition>> Supplier<T> registerLootCondition(String id, Supplier<T> codec);
+
     CreativeModeTab.Builder newCreativeTabBuilder();
 
-    /// Add an extra single-item drop with the given chance to an existing (vanilla) loot table
-    void addEntityDrop(Identifier lootTableId, Supplier<? extends Item> item, float chance);
+    /// Add an extra single-item drop, guarded by the given condition, to an existing (vanilla) loot table
+    void addEntityDrop(Identifier lootTableId, Supplier<? extends Item> item, LootItemCondition condition);
 }

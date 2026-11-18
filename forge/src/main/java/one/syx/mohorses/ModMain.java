@@ -1,5 +1,6 @@
 package one.syx.mohorses;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.core.particles.ParticleType;
@@ -10,7 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -39,12 +40,13 @@ public final class ModMain {
     public static final DeferredRegister<ParticleType<?>> PARTICLE_REGISTRY = DeferredRegister.create(Registries.PARTICLE_TYPE, ModConstants.MODID);
     public static final DeferredRegister<EntityType<?>> ENTITY_REGISTRY = DeferredRegister.create(Registries.ENTITY_TYPE, ModConstants.MODID);
     public static final DeferredRegister<CreativeModeTab> CREATIVE_TAB_REGISTRY = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ModConstants.MODID);
+    public static final DeferredRegister<MapCodec<? extends LootItemCondition>> LOOT_CONDITION_REGISTRY = DeferredRegister.create(Registries.LOOT_CONDITION_TYPE, ModConstants.MODID);
     public static final DeferredRegister<Item> ITEM_REGISTRY = DeferredRegister.create(Registries.ITEM, ModConstants.MODID);
 
     /// Extra drops for vanilla loot tables, collected from the common code and applied when the tables load
     static final List<ExtraDrop> EXTRA_DROPS = new ArrayList<>();
 
-    record ExtraDrop(Identifier lootTableId, Supplier<? extends Item> item, float chance) {}
+    record ExtraDrop(Identifier lootTableId, Supplier<? extends Item> item, LootItemCondition condition) {}
 
     public ModMain(FMLJavaModLoadingContext context) {
         final BusGroup busGroup = context.getModBusGroup();
@@ -53,6 +55,7 @@ public final class ModMain {
         PARTICLE_REGISTRY.register(busGroup);
         ENTITY_REGISTRY.register(busGroup);
         CREATIVE_TAB_REGISTRY.register(busGroup);
+        LOOT_CONDITION_REGISTRY.register(busGroup);
         ITEM_REGISTRY.register(busGroup);
 
         EntityAttributeCreationEvent.BUS.addListener(event -> EntityRegistry.registerEntityAttributes(event::put));
@@ -80,7 +83,7 @@ public final class ModMain {
             if (event.getName().equals(drop.lootTableId())) {
                 table.addPool(LootPool.lootPool()
                         .add(LootItem.lootTableItem(drop.item().get())
-                                .when(LootItemRandomChanceCondition.randomChance(drop.chance())))
+                                .when(drop::condition))
                         .build());
             }
         }

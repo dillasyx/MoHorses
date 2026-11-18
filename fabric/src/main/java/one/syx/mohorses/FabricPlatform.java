@@ -1,5 +1,6 @@
 package one.syx.mohorses;
 
+import com.mojang.serialization.MapCodec;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.impl.creativetab.FabricCreativeModeTabBuilderImpl;
 import net.minecraft.core.Registry;
@@ -16,7 +17,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import one.syx.mohorses.platform.PlatformHelper;
 
 import java.util.function.Supplier;
@@ -54,14 +55,19 @@ public final class FabricPlatform implements PlatformHelper {
     }
 
     @Override
-    public void addEntityDrop(Identifier lootTableId, Supplier<? extends Item> item, float chance) {
+    public <T extends MapCodec<? extends LootItemCondition>> Supplier<T> registerLootCondition(String id, Supplier<T> codec) {
+        return register(BuiltInRegistries.LOOT_CONDITION_TYPE, id, codec);
+    }
+
+    @Override
+    public void addEntityDrop(Identifier lootTableId, Supplier<? extends Item> item, LootItemCondition condition) {
         final ResourceKey<LootTable> lootTableKey = ResourceKey.create(Registries.LOOT_TABLE, lootTableId);
 
         LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
             if (source.isBuiltin() && lootTableKey.equals(key)) {
                 tableBuilder.withPool(LootPool.lootPool()
                         .add(LootItem.lootTableItem(item.get())
-                                .when(LootItemRandomChanceCondition.randomChance(chance))));
+                                .when(() -> condition)));
             }
         });
     }
