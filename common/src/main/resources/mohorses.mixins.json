@@ -1,0 +1,25 @@
+{
+  "required": true,
+  "package": "one.syx.mohorses.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+    "AbstractHorseMixin",
+    "EntityMixin",
+    "HorseMixin",
+    "LivingEntityMixin",
+    "MobMixin",
+    "ZombieHorseMixin"
+  ],
+  "client": [
+    "client.AbstractHorseRendererMixin",
+    "client.DonkeyRendererMixin",
+    "client.EquineRenderStateMixin",
+    "client.HorseMarkingLayerMixin",
+    "client.HorseRendererMixin",
+    "client.UndeadHorseRendererMixin"
+  ]
+}

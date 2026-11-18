@@ -1,0 +1,7 @@
+classTweaker v1 official
+
+# Creative tab contents
+accessible class net/minecraft/world/item/CreativeModeTab$Output
+
+# Spawn rules for naturally spawning horses
+accessible method net/minecraft/world/entity/SpawnPlacements register (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/entity/SpawnPlacementType;Lnet/minecraft/world/level/levelgen/Heightmap$Types;Lnet/minecraft/world/entity/SpawnPlacements$SpawnPredicate;)V

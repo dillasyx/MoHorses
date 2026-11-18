@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "E": "minecraft:ender_pearl",
+    "G": "minecraft:glass_bottle",
+    "H": "mohorses:heart_of_darkness"
+  },
+  "pattern": [
+    "E",
+    "H",
+    "G"
+  ],
+  "result": {
+    "id": "mohorses:essence_of_darkness"
+  }
+}

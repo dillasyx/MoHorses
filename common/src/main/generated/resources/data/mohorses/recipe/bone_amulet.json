@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": "minecraft:bone",
+    "E": "minecraft:ender_pearl",
+    "G": "minecraft:gold_nugget"
+  },
+  "pattern": [
+    "BGB",
+    "GEG",
+    "BGB"
+  ],
+  "result": {
+    "id": "mohorses:bone_amulet"
+  }
+}

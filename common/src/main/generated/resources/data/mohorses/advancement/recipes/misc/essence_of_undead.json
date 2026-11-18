@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_heart_of_undead": {
+      "conditions": {
+        "items": [
+          {
+            "items": "mohorses:heart_of_undead"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipes": "mohorses:essence_of_undead"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_heart_of_undead"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "mohorses:essence_of_undead"
+    ]
+  }
+}

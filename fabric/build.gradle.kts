@@ -1,0 +1,127 @@
+import net.darkhax.curseforgegradle.Constants
+import net.darkhax.curseforgegradle.TaskPublishCurseForge
+import org.gradle.internal.extensions.stdlib.capitalized
+
+plugins {
+    id("project-setup")
+
+    alias(libs.plugins.minotaur)
+    alias(libs.plugins.curseforgegradle)
+    alias(libs.plugins.loom)
+}
+
+val modId           = project.property("modId") as String
+val modDisplayName  = project.property("modDisplayName") as String
+
+dependencies {
+    minecraft(libs.minecraft)
+    implementation(libs.fabric)
+    implementation(libs.fabric.api)
+    compileOnly(project(":common"))
+
+    // Mod Dependencies below
+    implementation(libs.geckolib.fabric)
+}
+
+// Data generation (recipes, item models, tags) into the common resources, shared by all loaders: ./gradlew :fabric:runDatagen
+fabricApi {
+    configureDataGeneration {
+        client = true
+        modId = project.property("modId") as String
+        outputDirectory = project(":common").file("src/main/generated/resources")
+        addToResources = false
+    }
+}
+
+loom {
+    file("src/main/resources/$modId.classtweaker").takeIf { it.exists() }?.let(accessWidenerPath::set)
+
+    runs {
+        configureEach {
+            runDirectory.set(project.file("runs/$name"))
+            generateRunConfig.set(true)
+            displayName.set("Fabric ${name.capitalized()}")
+        }
+
+        named("client") {
+            client()
+            programArguments.add("--username=Dev")
+
+            // ./gradlew :fabric:runClient -PjoinLocal joins the local test server (runServer) right away
+            if (project.hasProperty("joinLocal"))
+                programArguments.addAll(listOf("--quickPlayMultiplayer", "localhost:25565"))
+        }
+
+        named("server") {
+            server()
+        }
+    }
+}
+
+tasks.withType<ProcessResources>().configureEach {
+    exclude("**/accesstransformer.cfg")
+}
+
+//<editor-fold defaultstate="collapsed" desc="<Publishing>">
+// Must have your Modrinth API Key as an environment variable under 'MODRINTH_TOKEN'
+modrinth {
+    token = System.getenv("MODRINTH_TOKEN") ?: "Invalid/No API Token Found"
+    uploadFile.set(tasks.jar)
+    projectId.set(project.property("modrinthProjectId") as String)
+    versionName = "Fabric ${libs.versions.minecraft.asProvider().get()}"
+    versionType = "release"
+    loaders.set(listOf("fabric"))
+    versionNumber.set(project.version.toString())
+    gameVersions.set(listOf(libs.versions.minecraft.asProvider().get()))
+    dependencies {
+        required.project("fabric-api")
+    }
+
+    if (rootProject.file("CHANGELOG.md").exists())
+        changelog.set(rootProject.file("CHANGELOG.md").readText(Charsets.UTF_8))
+
+    // Comment out below to enable publishing properly
+    debugMode = true
+    // See below for other properties and info
+    // https://github.com/modrinth/minotaur#available-properties
+}
+
+// Must have your CurseForge API Key as an environment variable under 'CURSEFORGE_TOKEN'
+tasks.register<TaskPublishCurseForge>("publishToCurseForge") {
+    group = "publishing"
+    apiToken = System.getenv("CURSEFORGE_TOKEN") ?: "Invalid/No API Token Found"
+
+    val mainFile = upload(project.property("curseforgeProjectId") as String, tasks.jar)
+    mainFile.displayName = "$modDisplayName Fabric ${libs.versions.minecraft.asProvider().get()} ${project.version}"
+    mainFile.releaseType = "release"
+    mainFile.addModLoader("Fabric")
+    mainFile.addGameVersion(libs.versions.minecraft.asProvider().get())
+    mainFile.addJavaVersion("Java ${libs.versions.java}")
+    mainFile.addRelation("fabric-api", Constants.RELATION_REQUIRED)
+    mainFile.addEnvironment("Client", "Server")
+
+    if (rootProject.file("CHANGELOG.md").exists()) {
+        mainFile.changelog = rootProject.file("CHANGELOG.md").readText(Charsets.UTF_8)
+        mainFile.changelogType = "markdown"
+    }
+
+    // Comment out below to enable publishing properly
+    debugMode = true
+    // See below for other properties and info
+    // https://github.com/Darkhax/CurseForgeGradle#available-properties
+}
+
+publishing {
+    publications {
+        create<MavenPublication>(modId) {
+            from(components["java"])
+            artifactId = base.archivesName.get()
+        }
+    }
+}
+
+tasks.named<DefaultTask>("publish").configure {
+    finalizedBy("modrinth")
+    finalizedBy("publishToCurseForge")
+}
+//</editor-fold>

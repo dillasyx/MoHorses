@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_essence_of_darkness": {
+      "conditions": {
+        "items": [
+          {
+            "items": "mohorses:essence_of_darkness"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_essence_of_fire": {
+      "conditions": {
+        "items": [
+          {
+            "items": "mohorses:essence_of_fire"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_essence_of_undead": {
+      "conditions": {
+        "items": [
+          {
+            "items": "mohorses:essence_of_undead"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipes": "mohorses:essence_of_light"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_essence_of_undead",
+      "has_essence_of_fire",
+      "has_essence_of_darkness"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "mohorses:essence_of_light"
+    ]
+  }
+}

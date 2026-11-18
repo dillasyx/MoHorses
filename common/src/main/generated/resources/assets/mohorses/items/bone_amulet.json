@@ -1,0 +1,15 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "component": "minecraft:entity_data",
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "mohorses:item/bone_amulet"
+    },
+    "on_true": {
+      "type": "minecraft:model",
+      "model": "mohorses:item/bone_amulet_full"
+    },
+    "property": "minecraft:has_component"
+  }
+}

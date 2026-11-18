@@ -1,0 +1,174 @@
+{
+  "feeding_sugar_lump": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/horse/eat1",
+        "pitch": 1.35
+      },
+      {
+        "name": "minecraft:mob/horse/eat2",
+        "pitch": 1.35
+      },
+      {
+        "name": "minecraft:mob/horse/eat3",
+        "pitch": 1.35
+      },
+      {
+        "name": "minecraft:mob/horse/eat4",
+        "pitch": 1.35
+      },
+      {
+        "name": "minecraft:mob/horse/eat5",
+        "pitch": 1.35
+      }
+    ]
+  },
+  "shuffling": {
+    "sounds": [
+      {
+        "name": "mohorses:shuffling",
+        "stream": true
+      }
+    ]
+  },
+  "entity.ghost_horse.ambient": {
+    "subtitle": "subtitles.mohorses.entity.ghost_horse.ambient",
+    "sounds": [
+      {
+        "name": "minecraft:mob/horse/skeleton/idle1",
+        "pitch": 0.7,
+        "volume": 0.8
+      },
+      {
+        "name": "minecraft:mob/horse/skeleton/idle2",
+        "pitch": 0.7,
+        "volume": 0.8
+      },
+      {
+        "name": "minecraft:mob/horse/skeleton/idle3",
+        "pitch": 0.7,
+        "volume": 0.8
+      },
+      {
+        "name": "minecraft:mob/horse/idle1",
+        "pitch": 0.55,
+        "volume": 0.6
+      },
+      {
+        "name": "minecraft:mob/horse/idle2",
+        "pitch": 0.55,
+        "volume": 0.6
+      }
+    ]
+  },
+  "entity.ghost_horse.hurt": {
+    "subtitle": "subtitles.mohorses.entity.ghost_horse.hurt",
+    "sounds": [
+      {
+        "name": "minecraft:mob/horse/skeleton/hit1",
+        "pitch": 0.75
+      },
+      {
+        "name": "minecraft:mob/horse/skeleton/hit2",
+        "pitch": 0.75
+      },
+      {
+        "name": "minecraft:mob/horse/skeleton/hit3",
+        "pitch": 0.75
+      },
+      {
+        "name": "minecraft:mob/horse/skeleton/hit4",
+        "pitch": 0.75
+      }
+    ]
+  },
+  "entity.ghost_horse.death": {
+    "subtitle": "subtitles.mohorses.entity.ghost_horse.death",
+    "sounds": [
+      {
+        "name": "minecraft:mob/horse/skeleton/death",
+        "pitch": 0.6
+      }
+    ]
+  },
+  "entity.ghost_horse.angry": {
+    "subtitle": "subtitles.mohorses.entity.ghost_horse.angry",
+    "sounds": [
+      {
+        "name": "minecraft:mob/horse/angry1",
+        "pitch": 0.6,
+        "volume": 0.8
+      }
+    ]
+  },
+  "item.whip.crack": {
+    "subtitle": "subtitles.mohorses.item.whip.crack",
+    "sounds": [
+      {
+        "name": "minecraft:entity/leashknot/break",
+        "pitch": 1.7
+      },
+      {
+        "name": "minecraft:random/bow",
+        "pitch": 1.9,
+        "volume": 0.6
+      }
+    ]
+  },
+  "entity.zebra.ambient": {
+    "subtitle": "subtitles.mohorses.entity.zebra.ambient",
+    "sounds": [
+      {
+        "name": "minecraft:mob/horse/donkey/idle1",
+        "pitch": 1.2
+      },
+      {
+        "name": "minecraft:mob/horse/donkey/idle2",
+        "pitch": 1.2
+      },
+      {
+        "name": "minecraft:mob/horse/donkey/idle3",
+        "pitch": 1.2
+      }
+    ]
+  },
+  "entity.zebra.hurt": {
+    "subtitle": "subtitles.mohorses.entity.zebra.hurt",
+    "sounds": [
+      {
+        "name": "minecraft:mob/horse/donkey/hit1",
+        "pitch": 1.2
+      },
+      {
+        "name": "minecraft:mob/horse/donkey/hit2",
+        "pitch": 1.2
+      },
+      {
+        "name": "minecraft:mob/horse/donkey/hit3",
+        "pitch": 1.2
+      }
+    ]
+  },
+  "entity.zebra.death": {
+    "subtitle": "subtitles.mohorses.entity.zebra.death",
+    "sounds": [
+      {
+        "name": "minecraft:mob/horse/donkey/death",
+        "pitch": 1.15
+      }
+    ]
+  },
+  "entity.zebra.angry": {
+    "subtitle": "subtitles.mohorses.entity.zebra.angry",
+    "sounds": [
+      {
+        "name": "minecraft:mob/horse/donkey/angry1",
+        "pitch": 1.2
+      },
+      {
+        "name": "minecraft:mob/horse/donkey/angry2",
+        "pitch": 1.2
+      }
+    ]
+  }
+}

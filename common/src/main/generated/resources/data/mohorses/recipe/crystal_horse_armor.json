@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": "minecraft:netherite_horse_armor",
+    "D": "minecraft:diamond",
+    "G": "minecraft:glass"
+  },
+  "pattern": [
+    "  D",
+    "GAG",
+    "DGD"
+  ],
+  "result": {
+    "id": "mohorses:crystal_horse_armor"
+  }
+}

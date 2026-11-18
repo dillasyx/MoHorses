@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "D": "minecraft:diamond",
+    "G": "minecraft:gold_nugget"
+  },
+  "pattern": [
+    "G G",
+    " D ",
+    "G G"
+  ],
+  "result": {
+    "id": "mohorses:pet_amulet"
+  }
+}

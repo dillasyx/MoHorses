@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": "minecraft:bone",
+    "G": "minecraft:gold_nugget",
+    "T": "minecraft:ghast_tear"
+  },
+  "pattern": [
+    "BGB",
+    "GTG",
+    "BGB"
+  ],
+  "result": {
+    "id": "mohorses:ghost_amulet"
+  }
+}

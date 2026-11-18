@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": "minecraft:blaze_powder",
+    "D": "minecraft:diamond",
+    "G": "minecraft:gold_nugget"
+  },
+  "pattern": [
+    "BGB",
+    "GDG",
+    "BGB"
+  ],
+  "result": {
+    "id": "mohorses:pegasus_amulet"
+  }
+}

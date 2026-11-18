@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": "minecraft:blaze_powder",
+    "G": "minecraft:glass_bottle",
+    "H": "mohorses:heart_of_fire"
+  },
+  "pattern": [
+    "B",
+    "H",
+    "G"
+  ],
+  "result": {
+    "id": "mohorses:essence_of_fire"
+  }
+}

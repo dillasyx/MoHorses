@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": "minecraft:blaze_powder",
+    "G": "minecraft:gold_nugget",
+    "U": "mohorses:unicorn_horn"
+  },
+  "pattern": [
+    "BGB",
+    "GUG",
+    "BGB"
+  ],
+  "result": {
+    "id": "mohorses:fairy_amulet"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "mohorses:item/fairy_horse_spawn_egg",
+    "layer1": "mohorses:item/fairy_horse_spawn_egg_overlay"
+  }
+}

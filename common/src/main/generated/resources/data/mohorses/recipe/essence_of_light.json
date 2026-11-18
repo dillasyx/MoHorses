@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "D": "mohorses:essence_of_darkness",
+    "F": "mohorses:essence_of_fire",
+    "U": "mohorses:essence_of_undead"
+  },
+  "pattern": [
+    "U",
+    "F",
+    "D"
+  ],
+  "result": {
+    "id": "mohorses:essence_of_light"
+  }
+}

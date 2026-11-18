@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "${mod_id}",
+	"version": "${version}",
+	"name": "${mod_display_name}",
+	"description": "${mod_description}",
+	"authors": [
+		"${mod_authors}"
+	],
+	"contact": {
+		"homepage": "${mod_homepage}",
+		"issues": "${mod_issues_tracker}",
+		"sources": "${mod_git_repo}"
+	},
+	"license": "${mod_license}",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"one.syx.mohorses.ModMain"
+		],
+		"client": [
+			"one.syx.mohorses.client.FabricClient"
+		],
+		"fabric-datagen": [
+			"one.syx.mohorses.datagen.MoHorsesDataGenerator"
+		]
+	},
+	"mixins": [
+		"${mod_id}.mixins.json"
+	],
+	"accessWidener": "${mod_id}.classtweaker",
+	"depends": {
+   		"fabricloader": ">=${fabric_loader_version_range}",
+		"fabric-api": ">=${fabric_api_version_range}",
+		"java": ">=${java_version}",
+		"minecraft": ">=${minecraft_version}"
+	}
+}
