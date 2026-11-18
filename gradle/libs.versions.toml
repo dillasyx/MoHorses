@@ -1,6 +1,6 @@
 [versions]
 # Mod
-    mod                             = "1.0.1"
+    mod                             = "1.0.2"
 
 # Dependencies
     geckolib                        = "5.5.7"

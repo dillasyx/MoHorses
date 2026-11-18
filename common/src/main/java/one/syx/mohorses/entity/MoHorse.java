@@ -1233,7 +1233,26 @@ public class MoHorse extends AbstractChestedHorse {
                 for (int i = 0; i < 2; i++)
                     level().addParticle(ParticleRegistry.UNICORN_STAR.get(), getRandomX(0.8), getY() + this.random.nextDouble() * getBbHeight() * 0.7, getRandomZ(0.8), 0.0, 0.0, 0.0);
             }
+
+            if (kind() == HorseKind.UNICORN && isCharging())
+                spawnChargeTrail();
         }
+    }
+
+    /// Client-side only: a dashing unicorn leaves stars behind it and kicks up dust at its hooves
+    private void spawnChargeTrail() {
+        Vec3 back = Vec3.directionFromRotation(0.0F, this.yBodyRot).scale(-0.9);
+
+        for (int i = 0; i < 3; i++) {
+            level().addParticle(ParticleRegistry.UNICORN_STAR.get(),
+                    getX() + back.x + (this.random.nextDouble() - 0.5) * 0.6,
+                    getY() + 0.4 + this.random.nextDouble() * getBbHeight() * 0.6,
+                    getZ() + back.z + (this.random.nextDouble() - 0.5) * 0.6,
+                    back.x * 0.05, 0.02, back.z * 0.05);
+        }
+
+        if (onGround() && this.random.nextInt(2) == 0)
+            level().addParticle(ParticleTypes.POOF, getRandomX(0.6), getY() + 0.1, getRandomZ(0.6), back.x * 0.04, 0.02, back.z * 0.04);
     }
 
     /// Client-side only: eases the wings open and shut and the wingbeat stronger and weaker, instead of snapping

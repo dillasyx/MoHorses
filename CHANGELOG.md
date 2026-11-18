@@ -1,3 +1,7 @@
+## 1.0.2
+
+- Dashing unicorns leave a trail of stars and kick up dust
+
 ## 1.0.1
 
 - Hearts now only drop when a player makes the kill; Looting raises the chance
