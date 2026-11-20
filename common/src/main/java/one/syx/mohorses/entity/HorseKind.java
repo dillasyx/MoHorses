@@ -148,17 +148,14 @@ public enum HorseKind {
     // Breeding
     // ------------------------------------------------------------------------------------------------
 
-    /// What a horse of this kind produces with the given partner, or null if the two can't breed.
+    /// What a horse of this kind produces with the given partner, or null if the two can't breed. As in Mo' Creatures:
     ///
     /// - Zebra + Zebra = Zebra, Zebra + Horse = Zorse, Zebra + Donkey = Zonkey (Zorse and Zonkey are sterile)
-    /// - Nightmare + Nightmare = Nightmare, Nightmare + Pegasus = Dark Pegasus
-    /// - Bat Horse + Bat Horse = Bat Horse, Unicorn + Unicorn = Unicorn
-    /// - Unicorn + Pegasus fed Essence of Light = Fairy Horse (the parents are used up, the Pegasus comes back in a Pegasus Amulet)
-    /// - Unicorn + Pegasus fed a pumpkin = Nightmare
+    /// - Nightmare + Nightmare = Nightmare, Bat Horse + Bat Horse = Bat Horse, Unicorn + Unicorn = Unicorn
+    /// - Unicorn + Pegasus = white Fairy Horse, Unicorn + Dark Pegasus = black Fairy Horse (the Unicorn is used up,
+    ///   the Pegasus comes back in a Sky Amulet)
     /// - Fairy Horse + Fairy Horse = Fairy Horse (the parents vanish)
-    ///
-    /// @param pumpkinFed whether either parent was put in love mode with a pumpkin
-    public @Nullable HorseKind offspringWith(Animal partner, boolean pumpkinFed) {
+    public @Nullable HorseKind offspringWith(Animal partner) {
         if (partner instanceof MoHorse other) {
             HorseKind otherKind = other.kind();
 
@@ -169,11 +166,8 @@ public enum HorseKind {
                 };
             }
 
-            if (isPair(otherKind, UNICORN, PEGASUS))
-                return pumpkinFed ? NIGHTMARE : FAIRY_HORSE;
-
-            if (isPair(otherKind, NIGHTMARE, PEGASUS))
-                return DARK_PEGASUS;
+            if (isPair(otherKind, UNICORN, PEGASUS) || isPair(otherKind, UNICORN, DARK_PEGASUS))
+                return FAIRY_HORSE;
 
             return null;
         }
@@ -197,11 +191,6 @@ public enum HorseKind {
     /// Whether the parents disappear when this kind is born
     public boolean consumesParents() {
         return this == FAIRY_HORSE;
-    }
-
-    /// Whether a pumpkin puts this kind in love mode (for breeding Nightmares from a Unicorn and a Pegasus)
-    public boolean lovesPumpkin() {
-        return this == UNICORN || this == PEGASUS;
     }
 
     // ------------------------------------------------------------------------------------------------
@@ -330,7 +319,7 @@ public enum HorseKind {
     /// Whether the essence puts this kind in love mode
     public boolean lovesEssence(ItemStack essence) {
         return switch (this) {
-            case BAT_HORSE -> essence.is(darkness());
+            case BAT_HORSE, DARK_PEGASUS -> essence.is(darkness());
             case UNICORN, PEGASUS, FAIRY_HORSE -> essence.is(light());
             default -> false;
         };

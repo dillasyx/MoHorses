@@ -42,14 +42,15 @@ public class MoHorsesRecipeProvider extends FabricRecipeProvider {
                         .unlockedBy("has_netherite_horse_armor", has(Items.NETHERITE_HORSE_ARMOR))
                         .save(this.output);
 
-                // Tools: the whip of Mo' Creatures, with unicorn horns instead of big cat claws
+                // Tools: the whip of Mo' Creatures, a lash of leads on a unicorn horn handle, with an iron-capped leather grip
                 shaped(RecipeCategory.COMBAT, ItemRegistry.WHIP.get())
-                        .pattern("ULU")
-                        .pattern("L L")
-                        .pattern("U I")
-                        .define('U', ItemRegistry.UNICORN_HORN.get())
+                        .pattern("NAA")
+                        .pattern("L A")
+                        .pattern("N U")
+                        .define('N', Items.IRON_NUGGET)
                         .define('L', Items.LEATHER)
-                        .define('I', Items.IRON_INGOT)
+                        .define('A', Items.LEAD)
+                        .define('U', ItemRegistry.UNICORN_HORN.get())
                         .unlockedBy("has_unicorn_horn", has(ItemRegistry.UNICORN_HORN.get()))
                         .save(this.output);
 

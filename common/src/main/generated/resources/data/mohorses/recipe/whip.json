@@ -2,14 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "I": "minecraft:iron_ingot",
+    "A": "minecraft:lead",
     "L": "minecraft:leather",
+    "N": "minecraft:iron_nugget",
     "U": "mohorses:unicorn_horn"
   },
   "pattern": [
-    "ULU",
-    "L L",
-    "U I"
+    "NAA",
+    "L A",
+    "N U"
   ],
   "result": {
     "id": "mohorses:whip"

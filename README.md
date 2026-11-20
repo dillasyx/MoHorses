@@ -15,12 +15,12 @@ on top of the vanilla horse look. Heavily inspired by Mo' Creatures, licensed un
 | Zorse | Zebra + Horse | Sterile |
 | Zonkey | Zebra + Donkey | Sterile, no armor |
 | Bat Horse | Essence of Darkness on a Zorse standing on the ground above the clouds | Flies. Breeds and heals with Essence of Darkness |
-| Nightmare | Essence of Fire on a Zorse; Unicorn + Pegasus fed a pumpkin | Fire immune, no armor. Breeds like a horse, heals with Essence of Fire. Feed it redstone: for a minute it is faster and leaves a trail of fire when ridden (only particles without mob griefing) |
+| Nightmare | Essence of Fire on a Zorse | Fire immune, no armor. Breeds like a horse, heals with Essence of Fire. Feed it redstone: for a minute it is faster and leaves a trail of fire when ridden (only particles without mob griefing) |
 | Wild Nightmare | Spawns in the Nether (biome tag `mohorses:spawns_wild_nightmares`) | Hostile, can't be tamed |
 | Unicorn | Essence of Light on a Nightmare | Crack the whip while riding and it charges, head down: only then does its horn hurt. Glides down slowly, leaving a trail of stars when it jumps or glides, no fall damage. Drops its horn when it dies. Breeds and heals with Essence of Light |
 | Pegasus | Essence of Light on a Bat Horse standing on the ground above the clouds | Flies. Breeds and heals with Essence of Light |
-| Dark Pegasus | Essence of Darkness on a Pegasus standing on the ground above the clouds; Nightmare + Pegasus | Flies, fire immune. Heals with Essence of Darkness |
-| Fairy Horse | Unicorn + Pegasus, both fed Essence of Light; or two Fairy Horses | Flies. The parents are used up: the Unicorn is gone (its gear drops), the Pegasus comes back in a Pegasus Amulet. Born white; can be dyed once, in any colour |
+| Dark Pegasus | Essence of Darkness on a Pegasus standing on the ground above the clouds | Flies, fire immune. Breeds and heals with Essence of Darkness |
+| Fairy Horse | Unicorn + Pegasus (white) or Unicorn + Dark Pegasus (black), each fed its essence; or two Fairy Horses | Flies. The parents are used up: the Unicorn is gone (its gear drops), the Pegasus comes back in a Sky Amulet. Each one can be dyed once, in any colour (white dye makes it white) |
 | Undead Unicorn | Essence of Undead on a Unicorn or Fairy Horse | Rots away into a Skeleton Unicorn |
 | Undead Pegasus | Essence of Undead on a Pegasus, Dark Pegasus or Bat Horse | Flies. Rots away into a Skeleton Pegasus |
 | Skeleton Unicorn / Pegasus | An Undead Unicorn / Pegasus that has rotted away | The Pegasus still flies. Essence of Light gives them their flesh back: a Unicorn / Pegasus again |
@@ -58,7 +58,7 @@ Zombie horses, Undead Unicorns and Undead Pegasi rot away like the undead horses
 off and a maggot crawls out (bits of flesh drop to the ground all the time), and after 5 stages only a skeleton is left, keeping its owner
 and saddle.
 
-The whip (unicorn horns, leather and an iron ingot) cracks when used. Crack it while riding a Unicorn and the unicorn
+The whip (leads, leather, iron nuggets and a unicorn horn) cracks when used. Crack it while riding a Unicorn and the unicorn
 lowers its head and charges for two seconds: everything its horn meets meanwhile takes 10 damage. Crack it at a
 creature and the unicorn charges at that one.
 

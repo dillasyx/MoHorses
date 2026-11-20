@@ -124,8 +124,8 @@ public class MoHorse extends AbstractChestedHorse {
     private float ghostOpacityO = 0.5F;
     private float ghostOpacityTarget = 0.5F;
     private boolean lovedBySpecialFood;
-    /// Put in love mode with a pumpkin (a Unicorn and a Pegasus then breed a Nightmare instead of a Fairy Horse)
-    private boolean pumpkinFed;
+    /// Whether this Fairy Horse has used up its one recolouring with a dye
+    private boolean fairyDyed;
     private Vec3 lastTickPosition = Vec3.ZERO;
 
     public MoHorse(EntityType<? extends MoHorse> entityType, Level level, HorseKind kind) {
@@ -268,31 +268,19 @@ public class MoHorse extends AbstractChestedHorse {
                 return InteractionResult.SUCCESS;
             }
 
-            if (kind().lovesPumpkin() && stack.is(Items.PUMPKIN) && isTamed() && !isBaby()) {
-                if (level() instanceof ServerLevel serverLevel) {
-                    if (getAge() == 0 && !isInLove()) {
-                        stack.consume(1, player);
-                        this.pumpkinFed = true;
-                        fallInLoveWithSpecialFood(player);
-                    }
-                    else {
-                        burst(serverLevel, ParticleTypes.SMOKE, 7);
-                    }
-                }
-
-                return InteractionResult.SUCCESS;
-            }
-
             DyeColor dye = stack.get(DataComponents.DYE);
 
             if (kind() == HorseKind.FAIRY_HORSE && dye != null && isTamed()) {
-                // Fairy Horses are born white and can be dyed once
-                if (getFairyColor() != null || dye == DyeColor.WHITE)
+                // Every Fairy Horse can be dyed once, whatever colour it was born with (white dye turns it white)
+                DyeColor newColor = dye == DyeColor.WHITE ? null : dye;
+
+                if (this.fairyDyed || newColor == getFairyColor())
                     return InteractionResult.PASS;
 
                 if (level() instanceof ServerLevel serverLevel) {
                     stack.consume(1, player);
-                    setFairyColor(dye);
+                    setFairyColor(newColor);
+                    this.fairyDyed = true;
                     burst(serverLevel, ParticleTypes.END_ROD, 20);
                     playSound(SoundEvents.DYE_USE, 1.0F, 1.0F);
                 }
@@ -372,7 +360,6 @@ public class MoHorse extends AbstractChestedHorse {
 
         if (loves && getAge() == 0 && !isInLove()) {
             stack.consume(1, player);
-            this.pumpkinFed = false;
             fallInLoveWithSpecialFood(player);
 
             return InteractionResult.SUCCESS;
@@ -603,7 +590,7 @@ public class MoHorse extends AbstractChestedHorse {
     // Breeding
     // ------------------------------------------------------------------------------------------------
 
-    /// Golden food only puts kinds in love mode that breed like vanilla horses. The others need their essence (or a pumpkin).
+    /// Golden food only puts kinds in love mode that breed like vanilla horses. The others need their essence.
     @Override
     public void setInLove(@Nullable Player player) {
         if (kind().breedsWithFood() || this.lovedBySpecialFood)
@@ -618,9 +605,7 @@ public class MoHorse extends AbstractChestedHorse {
 
     /// The kind of foal this horse has with the partner, or null
     private @Nullable HorseKind offspringKind(Animal partner) {
-        boolean pumpkin = this.pumpkinFed || (partner instanceof MoHorse other && other.pumpkinFed);
-
-        return kind().offspringWith(partner, pumpkin);
+        return kind().offspringWith(partner);
     }
 
     @Override
@@ -653,25 +638,23 @@ public class MoHorse extends AbstractChestedHorse {
         if (child != null) {
             setOffspringAttributes(partner, child);
 
-            // A Fairy foal of two Fairy Horses takes after one of its parents
+            // A Fairy foal of two Fairy Horses takes after one of its parents; one of a Dark Pegasus is born black
             if (childKind == HorseKind.FAIRY_HORSE && kind() == HorseKind.FAIRY_HORSE && partner instanceof MoHorse other)
                 child.setFairyColor(this.random.nextBoolean() ? getFairyColor() : other.getFairyColor());
+            else if (childKind == HorseKind.FAIRY_HORSE && (kind() == HorseKind.DARK_PEGASUS || partner instanceof MoHorse other && other.kind() == HorseKind.DARK_PEGASUS))
+                child.setFairyColor(DyeColor.BLACK);
         }
 
         return child;
     }
 
-    /// Fairy Horses cost their parents. Bred from a Unicorn and a Pegasus, the Unicorn is gone (its saddle, armor and
-    /// chest drop) and the Pegasus is left behind in a Pegasus Amulet. Two Fairy Horses both vanish.
+    /// Fairy Horses cost their parents. Bred from a Unicorn and a (Dark) Pegasus, the Unicorn is gone (its saddle, armor
+    /// and chest drop) and the Pegasus is left behind in a Sky Amulet. Two Fairy Horses both vanish.
     @Override
     public void spawnChildFromBreeding(ServerLevel level, Animal partner) {
         HorseKind childKind = offspringKind(partner);
 
         super.spawnChildFromBreeding(level, partner);
-        this.pumpkinFed = false;
-
-        if (partner instanceof MoHorse other)
-            other.pumpkinFed = false;
 
         if (childKind == null || !childKind.consumesParents())
             return;
@@ -683,7 +666,7 @@ public class MoHorse extends AbstractChestedHorse {
     }
 
     private void consumeAsParent(ServerLevel level) {
-        if (kind() == HorseKind.PEGASUS) {
+        if (kind() == HorseKind.PEGASUS || kind() == HorseKind.DARK_PEGASUS) {
             ItemStack amulet = HorseAmuletItem.capture(this, level);
 
             if (!amulet.isEmpty()) {
@@ -820,7 +803,7 @@ public class MoHorse extends AbstractChestedHorse {
     // Fairy Horse colours
     // ------------------------------------------------------------------------------------------------
 
-    /// The colour a Fairy Horse was dyed, or null while it still has its natural white
+    /// The colour of a Fairy Horse (dyed or born with), or null for its natural white
     public @Nullable DyeColor getFairyColor() {
         int id = this.entityData.get(DATA_FAIRY_COLOR);
 
@@ -1005,6 +988,9 @@ public class MoHorse extends AbstractChestedHorse {
         if (fairyColor != null)
             output.putString("FairyColor", fairyColor.getSerializedName());
 
+        if (kind() == HorseKind.FAIRY_HORSE)
+            output.putBoolean("FairyDyed", this.fairyDyed);
+
         HorseKind target = getTransformTarget();
 
         if (isTransforming()) {
@@ -1027,6 +1013,9 @@ public class MoHorse extends AbstractChestedHorse {
             if (color.getSerializedName().equals(fairyColor))
                 setFairyColor(color);
         }
+
+        // Saves from before this flag existed: a coloured Fairy Horse was a dyed one back then
+        this.fairyDyed = input.getBooleanOr("FairyDyed", !fairyColor.isEmpty());
 
         String target = input.getStringOr("TransformTarget", "");
 

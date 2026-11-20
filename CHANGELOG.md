@@ -1,3 +1,12 @@
+## 1.0.4
+
+- Breeding follows Mo' Creatures more closely: Unicorn + Dark Pegasus now gives a black Fairy Horse (the Dark Pegasus comes back in a Sky Amulet)
+- Removed two crosses that Mo' Creatures doesn't have: Unicorn + Pegasus fed a pumpkin no longer gives a Nightmare, and Nightmare + Pegasus no longer gives a Dark Pegasus
+- Dark Pegasi fall in love with Essence of Darkness
+- Every Fairy Horse can now be dyed once, whatever colour it was born with (black ones and coloured foals too); white dye turns it white
+- New whip recipe: leads, leather and iron nuggets, with a single unicorn horn as the handle (no iron ingot, one horn instead of three)
+- The amulet preview no longer cuts off the ears of vanilla horses and other animals that hold their heads high
+
 ## 1.0.3
 
 - Hold Alt over a full amulet to see the animal inside, with its saddle, armor and chest

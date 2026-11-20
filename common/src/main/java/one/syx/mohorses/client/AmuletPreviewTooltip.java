@@ -185,12 +185,12 @@ public final class AmuletPreviewTooltip implements ClientTooltipComponent {
         boolean winged = animal instanceof MoHorse horse && horse.kind().canFly();
         float size = winged
                 ? Math.max(state.boundingBoxHeight * 2.3F, state.boundingBoxWidth * 2.0F)
-                : Math.max(state.boundingBoxHeight * 1.6F, state.boundingBoxWidth * 1.8F);
+                : Math.max(state.boundingBoxHeight * 1.8F, state.boundingBoxWidth * 1.9F);
         float scale = Math.min((y1 - y0) / size, (x1 - x0) / size);
 
         Quaternionf tilt = new Quaternionf().rotateX((float)Math.toRadians(-12.0));
         Quaternionf rotation = new Quaternionf().rotateZ((float)Math.PI).mul(tilt);
-        Vector3f translation = new Vector3f(0.0F, state.boundingBoxHeight * (winged ? 0.85F : 0.62F), 0.0F);
+        Vector3f translation = new Vector3f(0.0F, state.boundingBoxHeight * (winged ? 0.85F : 0.72F), 0.0F);
 
         graphics.entity(state, scale, translation, rotation, tilt, x0, y0, x1, y1);
     }
