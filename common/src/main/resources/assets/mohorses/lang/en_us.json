@@ -42,6 +42,8 @@
   "item.mohorses.wild_nightmare_spawn_egg": "Wild Nightmare Spawn Egg",
   "item.mohorses.amulet.holds": "Holds a %s",
   "item.mohorses.amulet.holds_named": "Holds %s (%s)",
+  "item.mohorses.amulet.owner": "Owner: %s",
+  "item.mohorses.amulet.preview_hint": "Hold Alt to see it",
   "entity.mohorses.undead_unicorn": "Undead Unicorn",
   "item.mohorses.undead_unicorn_spawn_egg": "Undead Unicorn Spawn Egg",
   "entity.mohorses.undead_pegasus": "Undead Pegasus",

@@ -42,6 +42,8 @@
   "item.mohorses.wild_nightmare_spawn_egg": "Huevo generador de pesadilla salvaje",
   "item.mohorses.amulet.holds": "Contiene: %s",
   "item.mohorses.amulet.holds_named": "Contiene: %s (%s)",
+  "item.mohorses.amulet.owner": "Dueño: %s",
+  "item.mohorses.amulet.preview_hint": "Mantén Alt para verlo",
   "entity.mohorses.undead_unicorn": "Unicornio no muerto",
   "item.mohorses.undead_unicorn_spawn_egg": "Huevo generador de unicornio no muerto",
   "entity.mohorses.undead_pegasus": "Pegaso no muerto",

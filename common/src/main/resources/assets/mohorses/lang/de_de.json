@@ -42,6 +42,8 @@
   "item.mohorses.wild_nightmare_spawn_egg": "Wilder-Nachtmahr-Spawn-Ei",
   "item.mohorses.amulet.holds": "Enthält: %s",
   "item.mohorses.amulet.holds_named": "Enthält: %s (%s)",
+  "item.mohorses.amulet.owner": "Besitzer: %s",
+  "item.mohorses.amulet.preview_hint": "Alt halten für die Vorschau",
   "entity.mohorses.undead_unicorn": "Untotes Einhorn",
   "item.mohorses.undead_unicorn_spawn_egg": "Untotes Einhorn-Spawn-Ei",
   "entity.mohorses.undead_pegasus": "Untoter Pegasus",

@@ -4,12 +4,13 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.TagKey;
 import one.syx.mohorses.ModConstants;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -20,15 +21,15 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EntityReference;
 import net.minecraft.world.entity.Leashable;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.OwnableEntity;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.animal.equine.AbstractHorse;
-import net.minecraft.world.entity.animal.equine.SkeletonHorse;
-import net.minecraft.world.entity.animal.equine.ZombieHorse;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemLore;
@@ -43,14 +44,15 @@ import one.syx.mohorses.registry.ItemRegistry;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
-import java.util.List;
+import java.util.Optional;
 
 /// An amulet that holds a horse, like in Mo' Creatures.
 ///
 /// Use an empty amulet on your own tamed horse of the right kind to put it in, saddle, armor and chest contents
 /// included. Use the full amulet on a block to let the horse out again. Which amulet fits which horse is decided by
-/// [HorseKind#amulet()]; vanilla zombie and skeleton horses go in the Bone Amulet. The Pet Amulet also holds any
-/// other tamed animal of yours (wolves, cats, parrots, vanilla horses, ...).
+/// [HorseKind#amulet()]; undead tamed animals (zombie and skeleton horses, zombie nautiluses) go in the
+/// Bone Amulet. The Pet Amulet also holds any other tamed animal of yours (wolves, cats, parrots, vanilla horses, ...).
+/// Animals without a registered owner (vanilla camels and camel husks never get one) fit in none.
 public class HorseAmuletItem extends Item {
     private static final Logger LOGGER = LogUtils.getLogger();
 
@@ -70,12 +72,33 @@ public class HorseAmuletItem extends Item {
         return stack.has(DataComponents.ENTITY_DATA);
     }
 
+    /// Amulets filled by 1.0.2 and older carry a "Holds a ..." lore line; the tooltip shows that line itself now
+    @Override
+    public void inventoryTick(ItemStack stack, ServerLevel level, Entity owner, @Nullable EquipmentSlot slot) {
+        removeOldHoldsLine(stack);
+    }
+
+    private static void removeOldHoldsLine(ItemStack stack) {
+        ItemLore lore = stack.get(DataComponents.LORE);
+
+        if (lore != null && lore.lines().size() == 1 && lore.lines().getFirst().getContents() instanceof TranslatableContents line
+                && line.getKey().startsWith("item.mohorses.amulet.holds"))
+            stack.set(DataComponents.LORE, ItemLore.EMPTY);
+    }
+
+    /// A full amulet shows what it holds, and the animal itself (see AmuletPreviewTooltip)
+    @Override
+    public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
+        return Optional.ofNullable(stack.get(DataComponents.ENTITY_DATA)).map(AmuletTooltip::new);
+    }
+
     @Override
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity target, InteractionHand hand) {
         if (isFull(stack) || amuletFor(target) != this.type || !belongsTo(target, player))
             return InteractionResult.PASS;
 
-        if (target instanceof MoHorse horse && (horse.isBaby() || horse.isTransforming()))
+        // Only grown animals go in, vanilla ones too
+        if (target.isBaby() || target instanceof MoHorse horse && horse.isTransforming())
             return InteractionResult.PASS;
 
         if (!(player.level() instanceof ServerLevel level))
@@ -105,14 +128,16 @@ public class HorseAmuletItem extends Item {
         if (entity instanceof MoHorse horse)
             return horse.kind().amulet();
 
-        if (entity instanceof ZombieHorse || entity instanceof SkeletonHorse)
+        // Undead tamed animals go in the Bone Amulet: zombie and skeleton horses, zombie nautiluses
+        // (and those of other mods in the vanilla undead tag)
+        if (entity.is(EntityTypeTags.UNDEAD) && entity instanceof OwnableEntity)
             return HorseKind.Amulet.BONE;
 
         return entity instanceof OwnableEntity ? HorseKind.Amulet.PET : null;
     }
 
-    /// Whether the entity is tamed and the player is its owner. Horses tamed before they had an owner (old saves) count
-    /// as the player's as well.
+    /// Whether the entity is tamed and the player is its registered owner. An animal without an owner goes in nobody's
+    /// amulet, so on a server nobody can pack up another player's (or a wandering trader's) animal.
     private static boolean belongsTo(LivingEntity entity, Player player) {
         if (entity instanceof AbstractHorse horse && !horse.isTamed())
             return false;
@@ -125,11 +150,12 @@ public class HorseAmuletItem extends Item {
 
         EntityReference<LivingEntity> owner = ownable.getOwnerReference();
 
-        if (owner == null)
-            return entity instanceof AbstractHorse;
-
-        return owner.getUUID().equals(player.getUUID());
+        return owner != null && owner.getUUID().equals(player.getUUID());
     }
+
+    /// The owner's name as it was when the animal went in, for the tooltip (the client only knows the names of
+    /// players who are online)
+    public static final String OWNER_NAME_KEY = "MoHorsesOwnerName";
 
     /// Puts the animal into a fitting amulet and removes it from the world. Returns the full amulet,
     /// or an empty stack if it fits in no amulet.
@@ -165,15 +191,11 @@ public class HorseAmuletItem extends Item {
             data.remove("Pos");
             data.remove("Motion");
 
+            if (horse instanceof OwnableEntity ownable && ownable.getOwner() instanceof Player owner)
+                data.putString(OWNER_NAME_KEY, owner.getGameProfile().name());
+
             stack.set(DataComponents.ENTITY_DATA, TypedEntityData.of(horse.getType(), data));
         }
-
-        Component kindName = horse.getType().getDescription();
-        Component line = horse.hasCustomName()
-                ? Component.translatable("item.mohorses.amulet.holds_named", horse.getCustomName(), kindName)
-                : Component.translatable("item.mohorses.amulet.holds", kindName);
-
-        stack.set(DataComponents.LORE, new ItemLore(List.of(line)));
 
         sparkle(level, horse, type);
         level.playSound(null, horse.getX(), horse.getY(), horse.getZ(), SoundEvents.ENDER_EYE_DEATH, SoundSource.NEUTRAL, 1.0F, 1.2F);
@@ -237,7 +259,7 @@ public class HorseAmuletItem extends Item {
             moHorse.tameWithName(player);
 
         stack.remove(DataComponents.ENTITY_DATA);
-        stack.remove(DataComponents.LORE);
+        removeOldHoldsLine(stack);
 
         sparkle(serverLevel, horse, this.type);
         level.playSound(null, horse.getX(), horse.getY(), horse.getZ(), SoundEvents.ENDER_EYE_DEATH, SoundSource.NEUTRAL, 1.0F, 0.8F);

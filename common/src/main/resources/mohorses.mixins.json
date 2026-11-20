@@ -16,6 +16,7 @@
   ],
   "client": [
     "client.AbstractHorseRendererMixin",
+    "client.DefaultTooltipPositionerMixin",
     "client.DonkeyRendererMixin",
     "client.EquineRenderStateMixin",
     "client.HorseMarkingLayerMixin",

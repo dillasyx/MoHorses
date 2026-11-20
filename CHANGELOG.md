@@ -1,3 +1,13 @@
+## 1.0.3
+
+- Hold Alt over a full amulet to see the animal inside, with its saddle, armor and chest
+- Amulets show what they hold and who owns it
+- Only the registered owner can put an animal into an amulet, and only a grown one (vanilla camels never get an owner, so they fit in none)
+- Tamed Zombie Nautiluses go in the Bone Amulet, like the other undead mounts
+- New client setting `amuletPreview` in `config/mohorses-client.properties`: `alt` (default), `always` or `never`
+- Tall tooltips at the bottom of the screen no longer lose the bottom line of their frame
+- New mod icon
+
 ## 1.0.2
 
 - Dashing unicorns leave a trail of stars and kick up dust

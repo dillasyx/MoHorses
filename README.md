@@ -64,8 +64,9 @@ creature and the unicorn charges at that one.
 
 Amulets hold a tamed horse with its saddle, armor and chest: use an empty amulet on the horse, and the full one on a
 block to let it out. Pegasi and Dark Pegasi go in the Pegasus Amulet, Fairy Horses in the Fairy Amulet, the undead in
-the Bone Amulet (vanilla zombie and skeleton horses too), ghosts in the Ghost Amulet, every other kind in the Pet
-Amulet. The Pet Amulet also holds any other tamed animal of yours: wolves, cats, parrots, vanilla horses and so on. Modpacks can keep
+the Bone Amulet (vanilla zombie and skeleton horses and zombie nautiluses too), ghosts in the Ghost Amulet, every other kind in the Pet
+Amulet. The Pet Amulet also holds any other tamed animal of yours: wolves, cats, parrots, vanilla horses and so on. Only
+the registered owner can put an animal in (so not vanilla camels, which never get one), and only a grown one. Hold Alt over a full amulet to see the animal. Modpacks can keep
 other mods' animals out of all amulets with the entity type tag `mohorses:amulet_excluded`.
 
 ## Building

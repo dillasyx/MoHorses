@@ -42,6 +42,8 @@
   "item.mohorses.wild_nightmare_spawn_egg": "Œuf d'apparition de cauchemar sauvage",
   "item.mohorses.amulet.holds": "Contient : %s",
   "item.mohorses.amulet.holds_named": "Contient : %s (%s)",
+  "item.mohorses.amulet.owner": "Propriétaire : %s",
+  "item.mohorses.amulet.preview_hint": "Maintenez Alt pour le voir",
   "entity.mohorses.undead_unicorn": "Licorne mort-vivante",
   "item.mohorses.undead_unicorn_spawn_egg": "Œuf d'apparition de licorne mort-vivante",
   "entity.mohorses.undead_pegasus": "Pégase mort-vivant",
