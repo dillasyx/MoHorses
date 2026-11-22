@@ -298,6 +298,13 @@ public class MoHorse extends AbstractChestedHorse {
             if (essenceResult != null)
                 return essenceResult;
 
+            // The donkey code would strap a chest onto any kind; the kinds without saddlebags just let you ride
+            if (stack.is(Items.CHEST) && !kind().carriesChest() && isTamed() && !isBaby()) {
+                doPlayerRide(player);
+
+                return InteractionResult.SUCCESS;
+            }
+
             if (hasChest() && stack.is(Items.SHEARS)) {
                 if (level() instanceof ServerLevel serverLevel) {
                     removeChest(serverLevel);
@@ -539,6 +546,10 @@ public class MoHorse extends AbstractChestedHorse {
 
     /// Replaces this horse with one of another kind, keeping owner, stats, name, saddle and chest contents
     private void transformTo(HorseKind target, ServerLevel level) {
+        // A kind without saddlebags drops the chest and what is in it
+        if (hasChest() && !target.carriesChest())
+            removeChest(level);
+
         boolean chested = hasChest();
         ItemStack[] chestItems = new ItemStack[this.inventory.getContainerSize()];
 
@@ -1221,6 +1232,10 @@ public class MoHorse extends AbstractChestedHorse {
     @Override
     public void tick() {
         super.tick();
+
+        // Horses that got a chest before only some kinds could carry one (or came out of an amulet) drop it
+        if (hasChest() && !kind().carriesChest() && level() instanceof ServerLevel serverLevel)
+            removeChest(serverLevel);
 
         if (level().isClientSide()) {
             tickWings();

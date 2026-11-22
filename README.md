@@ -11,7 +11,7 @@ on top of the vanilla horse look. Heavily inspired by Mo' Creatures, licensed un
 
 | Kind | How to get it | Notes |
 |---|---|---|
-| Zebra | Spawns in savannas, badlands and the desert (biome tag `mohorses:spawns_zebras`) | Drops leather like a horse. Breeds like a horse, carries a chest. Wears no armor. Can not be broken in by riding: tame it with sugar lumps (one in three tames it), only while you ride a black and white horse (black with white spots or patches, or white with black spots). Once tamed it can be saddled and ridden. Turns any music disc into the Shuffling disc, and dances (shuffles, with music notes) while a jukebox within 16 blocks plays it |
+| Zebra | Spawns in savannas, badlands and the desert (biome tag `mohorses:spawns_zebras`) | Drops leather like a horse. Breeds like a horse. Wears no armor and carries no chest. Can not be broken in by riding: tame it with sugar lumps (one in three tames it), only while you ride a black and white horse (black with white spots or patches, or white with black spots). Once tamed it can be saddled and ridden. Turns any music disc into the Shuffling disc, and dances (shuffles, with music notes) while a jukebox within 16 blocks plays it |
 | Zorse | Zebra + Horse | Sterile |
 | Zonkey | Zebra + Donkey | Sterile, no armor |
 | Bat Horse | Essence of Darkness on a Zorse standing on the ground above the clouds | Flies. Breeds and heals with Essence of Darkness |
@@ -41,7 +41,9 @@ alone, unless you attack them first.
 Ghosts rise from the dead horse, fading in over three seconds, with the same owner, name and stats. They can't breed,
 wear only Crystal Horse Armor (saddle and armor are as see-through as the ghost), fit in the Ghost Amulet, and never leave another ghost.
 
-All of them can be saddled and carry a chest (shears take it off again). The Zorse wears the
+All of them can be saddled. Like in Mo' Creatures, only the Zonkey, the Pegasi (Pegasus, Dark Pegasus and their undead,
+skeleton and ghost forms) and the Fairy Horse carry a chest (shears take it off again); a horse that turns into a kind
+without one drops it. The Zorse wears the
 normal horse armor, the winged and horned kinds (undead and skeletons included) and the ghosts only Crystal Horse
 Armor (as strong as netherite; crafted from netherite horse armor, diamonds and glass). Zebras, Zonkeys and Nightmares wear none.
 

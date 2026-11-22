@@ -126,7 +126,7 @@
   "book.mohorses.guide.entry.welcome.description": "What this book is about",
   "book.mohorses.guide.taming_zebras.entity": "Zebras live in **savannas, badlands and deserts**.",
   "book.mohorses.guide.taming_zebras.title": "Taming",
-  "book.mohorses.guide.taming_zebras.text": "A wild Zebra can't be ridden. Ride a black-and-white horse up to it instead: **black with white dots**, **black with a white field** or **white with black dots**.\n\nFrom its back, feed the Zebra **Sugar Lumps**. Each one tames it with a 1 in 3 chance. A tamed Zebra takes a saddle and a chest, but no armor.",
+  "book.mohorses.guide.taming_zebras.text": "A wild Zebra can't be ridden. Ride a black-and-white horse up to it instead: **black with white dots**, **black with a white field** or **white with black dots**.\n\nFrom its back, feed the Zebra **Sugar Lumps**. Each one tames it with a 1 in 3 chance. A tamed Zebra takes a saddle, but no chest and no armor.",
   "book.mohorses.guide.entry.taming_zebras.name": "Taming Zebras",
   "book.mohorses.guide.entry.taming_zebras.description": "Sugar Lumps and the right horse",
   "book.mohorses.guide.above_the_clouds.title": "Sky Changes",

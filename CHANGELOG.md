@@ -6,6 +6,7 @@
 - Now and then a Wild Nightmare comes with a Piglin Brute riding it, golden spear in hand
 - Zebras drop leather, like horses
 - Wild Nightmares drop leather, and with a 15% chance a Heart of Fire when a player kills them (Looting raises the chance)
+- Chests as in Mo' Creatures: only the Zonkey, the Pegasi (Pegasus, Dark Pegasus and their undead, skeleton and ghost forms) and the Fairy Horse carry one. Other horses drop theirs, with everything in it
 
 ## 1.0.4
 

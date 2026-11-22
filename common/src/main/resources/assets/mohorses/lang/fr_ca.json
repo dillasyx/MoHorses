@@ -126,7 +126,7 @@
   "book.mohorses.guide.entry.welcome.description": "De quoi parle ce livre",
   "book.mohorses.guide.taming_zebras.entity": "Les zèbres vivent dans les **savanes, badlands et déserts**.",
   "book.mohorses.guide.taming_zebras.title": "Apprivoisement",
-  "book.mohorses.guide.taming_zebras.text": "Un zèbre sauvage ne se monte pas. Approchez-le sur un cheval noir et blanc : **noir à points blancs**, **noir à champ blanc** ou **blanc à points noirs**.\n\nDepuis son dos, donnez des **morceaux de sucre** au zèbre. Chacun l'apprivoise avec une chance sur 3. Un zèbre apprivoisé porte une selle et un coffre, mais pas d'armure.",
+  "book.mohorses.guide.taming_zebras.text": "Un zèbre sauvage ne se monte pas. Approchez-le sur un cheval noir et blanc : **noir à points blancs**, **noir à champ blanc** ou **blanc à points noirs**.\n\nDepuis son dos, donnez des **morceaux de sucre** au zèbre. Chacun l'apprivoise avec une chance sur 3. Un zèbre apprivoisé porte une selle, mais ni coffre ni armure.",
   "book.mohorses.guide.entry.taming_zebras.name": "Apprivoiser les zèbres",
   "book.mohorses.guide.entry.taming_zebras.description": "Morceaux de sucre et le bon cheval",
   "book.mohorses.guide.above_the_clouds.title": "Changements célestes",

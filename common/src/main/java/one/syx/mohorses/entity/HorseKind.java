@@ -193,6 +193,15 @@ public enum HorseKind {
         return this == FAIRY_HORSE;
     }
 
+    /// Kinds that carry a chest, like in Mo' Creatures: the Zonkey, the Pegasi (undead, skeleton and ghost ones too)
+    /// and the Fairy Horse. The others are riding horses without saddlebags.
+    public boolean carriesChest() {
+        return switch (this) {
+            case ZONKEY, PEGASUS, DARK_PEGASUS, FAIRY_HORSE, UNDEAD_PEGASUS, SKELETON_PEGASUS, GHOST_PEGASUS -> true;
+            default -> false;
+        };
+    }
+
     // ------------------------------------------------------------------------------------------------
     // Undead
     // ------------------------------------------------------------------------------------------------

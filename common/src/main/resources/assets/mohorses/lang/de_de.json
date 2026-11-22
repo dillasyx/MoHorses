@@ -126,7 +126,7 @@
   "book.mohorses.guide.entry.welcome.description": "Worum es in diesem Buch geht",
   "book.mohorses.guide.taming_zebras.entity": "Zebras leben in **Savannen, Tafelbergen und Wüsten**.",
   "book.mohorses.guide.taming_zebras.title": "Zähmen",
-  "book.mohorses.guide.taming_zebras.text": "Ein wildes Zebra lässt sich nicht reiten. Reite stattdessen mit einem schwarz-weißen Pferd zu ihm: **schwarz mit weißen Punkten**, **schwarz mit weißem Feld** oder **weiß mit schwarzen Punkten**.\n\nFüttere dem Zebra von dort aus **Zuckerwürfel**. Jeder zähmt es mit einer Chance von 1 zu 3. Ein gezähmtes Zebra trägt Sattel und Truhe, aber keine Rüstung.",
+  "book.mohorses.guide.taming_zebras.text": "Ein wildes Zebra lässt sich nicht reiten. Reite stattdessen mit einem schwarz-weißen Pferd zu ihm: **schwarz mit weißen Punkten**, **schwarz mit weißem Feld** oder **weiß mit schwarzen Punkten**.\n\nFüttere dem Zebra von dort aus **Zuckerwürfel**. Jeder zähmt es mit einer Chance von 1 zu 3. Ein gezähmtes Zebra trägt einen Sattel, aber weder Truhe noch Rüstung.",
   "book.mohorses.guide.entry.taming_zebras.name": "Zebras zähmen",
   "book.mohorses.guide.entry.taming_zebras.description": "Zuckerwürfel und das richtige Pferd",
   "book.mohorses.guide.above_the_clouds.title": "Himmels-Verwandlungen",

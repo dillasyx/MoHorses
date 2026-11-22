@@ -126,7 +126,7 @@
   "book.mohorses.guide.entry.welcome.description": "De qué trata este libro",
   "book.mohorses.guide.taming_zebras.entity": "Las cebras viven en **sabanas, badlands y desiertos**.",
   "book.mohorses.guide.taming_zebras.title": "Doma",
-  "book.mohorses.guide.taming_zebras.text": "Una cebra salvaje no se puede montar. Acércate a ella montando un caballo blanco y negro: **negro con puntos blancos**, **negro con un campo blanco** o **blanco con puntos negros**.\n\nDesde su lomo, dale **terrones de azúcar** a la cebra. Cada uno la doma con una probabilidad de 1 entre 3. Una cebra domada lleva silla y cofre, pero no armadura.",
+  "book.mohorses.guide.taming_zebras.text": "Una cebra salvaje no se puede montar. Acércate a ella montando un caballo blanco y negro: **negro con puntos blancos**, **negro con un campo blanco** o **blanco con puntos negros**.\n\nDesde su lomo, dale **terrones de azúcar** a la cebra. Cada uno la doma con una probabilidad de 1 entre 3. Una cebra domada lleva silla, pero ni cofre ni armadura.",
   "book.mohorses.guide.entry.taming_zebras.name": "Domar cebras",
   "book.mohorses.guide.entry.taming_zebras.description": "Terrones de azúcar y el caballo adecuado",
   "book.mohorses.guide.above_the_clouds.title": "Cambios del cielo",
