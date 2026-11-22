@@ -28,3 +28,10 @@ ${mod_description}
     versionRange="${minecraft_version_range}"
     ordering="NONE"
     side="BOTH"
+# The in-game guide book, only when Modonomicon is installed
+[[dependencies.${mod_id}]]
+    modId="modonomicon"
+    mandatory=false
+    versionRange="*"
+    ordering="NONE"
+    side="BOTH"

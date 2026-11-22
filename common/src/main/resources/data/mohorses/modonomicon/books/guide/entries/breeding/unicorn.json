@@ -1,0 +1,16 @@
+{
+  "id": "mohorses:breeding/unicorn",
+  "type": "modonomicon:content",
+  "category": "mohorses:breeding",
+  "name": "book.mohorses.guide.entry.unicorn.name",
+  "description": "book.mohorses.guide.entry.unicorn.description",
+  "icon": "mohorses:unicorn_spawn_egg",
+  "x": 1,
+  "y": -1,
+  "background": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+  "parents": [
+    {
+      "entry": "mohorses:breeding/nightmare"
+    }
+  ]
+}

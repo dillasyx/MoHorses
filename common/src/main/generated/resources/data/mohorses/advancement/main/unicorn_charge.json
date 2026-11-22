@@ -1,0 +1,28 @@
+{
+  "parent": "mohorses:main/unicorn",
+  "criteria": {
+    "charge": {
+      "conditions": {
+        "event": "unicorn_charge"
+      },
+      "trigger": "mohorses:horse_event"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.mohorses.unicorn_charge.description"
+    },
+    "icon": {
+      "id": "mohorses:whip"
+    },
+    "title": {
+      "translate": "advancements.mohorses.unicorn_charge.title"
+    }
+  },
+  "requirements": [
+    [
+      "charge"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

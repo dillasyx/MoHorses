@@ -1,0 +1,9 @@
+{
+  "id": "mohorses:breeding/dark_pegasus/page_1",
+  "sort_number": 1,
+  "type": "modonomicon:entity",
+  "entity_id": "mohorses:dark_pegasus",
+  "entity_name": "entity.mohorses.dark_pegasus",
+  "scale": 0.7,
+  "text": "book.mohorses.guide.dark_pegasus.entity"
+}

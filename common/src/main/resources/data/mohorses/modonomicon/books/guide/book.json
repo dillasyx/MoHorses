@@ -1,0 +1,8 @@
+{
+  "name": "book.mohorses.guide.name",
+  "tooltip": "book.mohorses.guide.tooltip",
+  "model": "modonomicon:modonomicon_green",
+  "generate_book_item": true,
+  "creative_tab": "mohorses:mohorses_items",
+  "default_allow_page_split": true
+}

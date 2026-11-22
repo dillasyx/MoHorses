@@ -1,0 +1,28 @@
+{
+  "parent": "mohorses:main/nightmare",
+  "criteria": {
+    "unicorn": {
+      "conditions": {
+        "event": "owned_unicorn"
+      },
+      "trigger": "mohorses:horse_event"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.mohorses.unicorn.description"
+    },
+    "icon": {
+      "id": "mohorses:unicorn_spawn_egg"
+    },
+    "title": {
+      "translate": "advancements.mohorses.unicorn.title"
+    }
+  },
+  "requirements": [
+    [
+      "unicorn"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

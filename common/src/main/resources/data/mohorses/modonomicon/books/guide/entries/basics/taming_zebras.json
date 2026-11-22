@@ -1,0 +1,16 @@
+{
+  "id": "mohorses:basics/taming_zebras",
+  "type": "modonomicon:content",
+  "category": "mohorses:basics",
+  "name": "book.mohorses.guide.entry.taming_zebras.name",
+  "description": "book.mohorses.guide.entry.taming_zebras.description",
+  "icon": "mohorses:zebra_spawn_egg",
+  "x": 0,
+  "y": 0,
+  "background": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+  "parents": [
+    {
+      "entry": "mohorses:basics/welcome"
+    }
+  ]
+}

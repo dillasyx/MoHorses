@@ -6,6 +6,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.TagKey;
+import one.syx.mohorses.advancement.HorseEvents;
 import one.syx.mohorses.ModConstants;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -108,6 +109,8 @@ public class HorseAmuletItem extends Item {
 
         if (full.isEmpty())
             return InteractionResult.PASS;
+
+        HorseEvents.award(player, HorseEvents.AMULET);
 
         if (stack.getCount() == 1) {
             player.setItemInHand(hand, full);

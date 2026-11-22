@@ -32,9 +32,10 @@ public final class ModMain implements ModInitializer {
         SpawnPlacements.register(zebra, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MoHorse::checkZebraSpawnRules);
         BiomeModifications.addSpawn(BiomeSelectors.tag(TagKey.create(Registries.BIOME, ModConstants.id("spawns_zebras"))), MobCategory.CREATURE, zebra, 6, 2, 5);
 
-        // Hostile Nightmares roam the biomes of the mohorses:spawns_wild_nightmares tag (the whole Nether by default)
+        // Hostile Nightmares roam the biomes of the mohorses:spawns_wild_nightmares tag (the open Nether biomes by default),
+        // rarely: the forests are left out, where so little else spawns that they would be most of the monsters
         SpawnPlacements.register(EntityRegistry.WILD_NIGHTMARE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, WildNightmare::checkSpawnRules);
-        BiomeModifications.addSpawn(BiomeSelectors.tag(TagKey.create(Registries.BIOME, ModConstants.id("spawns_wild_nightmares"))), MobCategory.MONSTER, EntityRegistry.WILD_NIGHTMARE.get(), 10, 1, 2);
+        BiomeModifications.addSpawn(BiomeSelectors.tag(TagKey.create(Registries.BIOME, ModConstants.id("spawns_wild_nightmares"))), MobCategory.MONSTER, EntityRegistry.WILD_NIGHTMARE.get(), 1, 1, 1);
 
         UseBlockCallback.EVENT.register((player, level, hand, hitResult) -> {
             ComposterListener.onBlockUsed(level, hitResult.getBlockPos(), player.getItemInHand(hand));

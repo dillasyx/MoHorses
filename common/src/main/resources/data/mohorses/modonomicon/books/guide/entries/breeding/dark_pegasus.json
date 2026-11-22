@@ -1,0 +1,16 @@
+{
+  "id": "mohorses:breeding/dark_pegasus",
+  "type": "modonomicon:content",
+  "category": "mohorses:breeding",
+  "name": "book.mohorses.guide.entry.dark_pegasus.name",
+  "description": "book.mohorses.guide.entry.dark_pegasus.description",
+  "icon": "mohorses:dark_pegasus_spawn_egg",
+  "x": 3,
+  "y": 1,
+  "background": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+  "parents": [
+    {
+      "entry": "mohorses:breeding/pegasus"
+    }
+  ]
+}

@@ -30,6 +30,9 @@
 		"${mod_id}.mixins.json"
 	],
 	"accessWidener": "${mod_id}.classtweaker",
+	"suggests": {
+		"modonomicon": "*"
+	},
 	"depends": {
    		"fabricloader": ">=${fabric_loader_version_range}",
 		"fabric-api": ">=${fabric_api_version_range}",

@@ -1,6 +1,7 @@
 package one.syx.mohorses;
 
 import com.mojang.serialization.MapCodec;
+import net.minecraft.advancements.triggers.CriterionTrigger;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.core.particles.ParticleType;
@@ -41,6 +42,7 @@ public final class ModMain {
     public static final DeferredRegister<EntityType<?>> ENTITY_REGISTRY = DeferredRegister.create(Registries.ENTITY_TYPE, ModConstants.MODID);
     public static final DeferredRegister<CreativeModeTab> CREATIVE_TAB_REGISTRY = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ModConstants.MODID);
     public static final DeferredRegister<MapCodec<? extends LootItemCondition>> LOOT_CONDITION_REGISTRY = DeferredRegister.create(Registries.LOOT_CONDITION_TYPE, ModConstants.MODID);
+    public static final DeferredRegister<CriterionTrigger<?>> TRIGGER_REGISTRY = DeferredRegister.create(Registries.TRIGGER_TYPE, ModConstants.MODID);
     public static final DeferredRegister<Item> ITEM_REGISTRY = DeferredRegister.create(Registries.ITEM, ModConstants.MODID);
 
     /// Extra drops for vanilla loot tables, collected from the common code and applied when the tables load
@@ -56,6 +58,7 @@ public final class ModMain {
         ENTITY_REGISTRY.register(busGroup);
         CREATIVE_TAB_REGISTRY.register(busGroup);
         LOOT_CONDITION_REGISTRY.register(busGroup);
+        TRIGGER_REGISTRY.register(busGroup);
         ITEM_REGISTRY.register(busGroup);
 
         EntityAttributeCreationEvent.BUS.addListener(event -> EntityRegistry.registerEntityAttributes(event::put));

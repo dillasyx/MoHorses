@@ -1,0 +1,36 @@
+{
+  "parent": "mohorses:main/fairy_horse",
+  "criteria": {
+    "black_fairy_horse": {
+      "conditions": {
+        "child": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_type": "mohorses:fairy_horse",
+            "minecraft:nbt": "{FairyColor:\"black\"}"
+          }
+        }
+      },
+      "trigger": "minecraft:bred_animals"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.mohorses.black_fairy_horse.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "id": "minecraft:black_dye"
+    },
+    "title": {
+      "translate": "advancements.mohorses.black_fairy_horse.title"
+    }
+  },
+  "requirements": [
+    [
+      "black_fairy_horse"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

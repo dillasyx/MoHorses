@@ -1,0 +1,42 @@
+{
+  "parent": "mohorses:main/undead",
+  "criteria": {
+    "skeleton_horse": {
+      "conditions": {
+        "event": "skeleton_horse"
+      },
+      "trigger": "mohorses:horse_event"
+    },
+    "skeleton_pegasus": {
+      "conditions": {
+        "event": "owned_skeleton_pegasus"
+      },
+      "trigger": "mohorses:horse_event"
+    },
+    "skeleton_unicorn": {
+      "conditions": {
+        "event": "owned_skeleton_unicorn"
+      },
+      "trigger": "mohorses:horse_event"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.mohorses.skeleton.description"
+    },
+    "icon": {
+      "id": "minecraft:bone"
+    },
+    "title": {
+      "translate": "advancements.mohorses.skeleton.title"
+    }
+  },
+  "requirements": [
+    [
+      "skeleton_horse",
+      "skeleton_unicorn",
+      "skeleton_pegasus"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

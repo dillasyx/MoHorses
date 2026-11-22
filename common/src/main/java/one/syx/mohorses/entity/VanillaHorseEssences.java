@@ -17,8 +17,10 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.util.Util;
 import net.minecraft.world.entity.animal.equine.Mule;
 import net.minecraft.world.entity.animal.equine.SkeletonHorse;
+import net.minecraft.world.entity.animal.equine.ZombieHorse;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import one.syx.mohorses.advancement.HorseEvents;
 import one.syx.mohorses.registry.ItemRegistry;
 import one.syx.mohorses.registry.ParticleRegistry;
 import org.jetbrains.annotations.Nullable;
@@ -165,15 +167,20 @@ public final class VanillaHorseEssences {
 
         if (undead) {
             state.mohorses$dropChest(level);
-            convert(horse, EntityTypes.ZOMBIE_HORSE);
+
+            if (convert(horse, EntityTypes.ZOMBIE_HORSE) instanceof ZombieHorse zombie)
+                HorseEvents.awardOwner(zombie, HorseEvents.ZOMBIE_HORSE);
+
             level.sendParticles(ParticleRegistry.UNDEAD_FLESH.get(), horse.getX(), horse.getY() + 1.0, horse.getZ(), 30, 0.6, 0.5, 0.6, 0.0);
             horse.playSound(SoundEvents.ZOMBIE_VILLAGER_CONVERTED, 1.0F, 0.8F);
         }
         else {
             Horse restored = convert(horse, EntityTypes.HORSE);
 
-            if (restored != null)
+            if (restored != null) {
                 ((HorseVariantAccess)restored).mohorses$setVariantAndMarkings(Variant.byId(state.mohorses$getEssenceVariant()), Markings.NONE);
+                HorseEvents.awardOwner(restored, HorseEvents.REVIVED);
+            }
 
             level.sendParticles(ParticleTypes.END_ROD, horse.getX(), horse.getY() + 1.0, horse.getZ(), 40, 0.6, 0.6, 0.6, 0.05);
             horse.playSound(SoundEvents.ZOMBIE_VILLAGER_CONVERTED, 1.0F, 1.3F);

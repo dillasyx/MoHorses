@@ -1,0 +1,16 @@
+{
+  "id": "mohorses:items/whip",
+  "type": "modonomicon:content",
+  "category": "mohorses:items",
+  "name": "book.mohorses.guide.entry.whip.name",
+  "description": "book.mohorses.guide.entry.whip.description",
+  "icon": "mohorses:whip",
+  "x": 1,
+  "y": -1,
+  "background": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+  "parents": [
+    {
+      "entry": "mohorses:items/amulets"
+    }
+  ]
+}

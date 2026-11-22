@@ -8,6 +8,7 @@ import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.equine.SkeletonHorse;
 import net.minecraft.world.entity.animal.equine.ZombieHorse;
+import one.syx.mohorses.advancement.HorseEvents;
 import one.syx.mohorses.registry.ParticleRegistry;
 
 /// Vanilla zombie horses slowly rot away, like the undead horses of Mo' Creatures: every few minutes another stage of
@@ -88,6 +89,7 @@ public final class ZombieHorseDecay {
         SkeletonHorse skeleton = horse.convertTo(EntityTypes.SKELETON_HORSE, ConversionParams.single(horse, true, false), next -> HorseTransfer.copy(horse, next, false));
 
         if (skeleton != null) {
+            HorseEvents.awardOwner(skeleton, HorseEvents.SKELETON_HORSE);
             level.sendParticles(ParticleRegistry.UNDEAD_FLESH.get(), skeleton.getX(), skeleton.getY() + skeleton.getBbHeight() * 0.6, skeleton.getZ(), 30, 0.6, 0.4, 0.6, 0.0);
             level.sendParticles(ParticleTypes.SMOKE, skeleton.getX(), skeleton.getY() + 1.0, skeleton.getZ(), 15, 0.5, 0.5, 0.5, 0.01);
             skeleton.playSound(SoundEvents.SKELETON_HORSE_AMBIENT, 1.0F, 0.8F);

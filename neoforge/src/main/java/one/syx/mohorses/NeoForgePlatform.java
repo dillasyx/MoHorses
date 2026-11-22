@@ -1,6 +1,7 @@
 package one.syx.mohorses;
 
 import com.mojang.serialization.MapCodec;
+import net.minecraft.advancements.triggers.CriterionTrigger;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
@@ -43,6 +44,11 @@ public final class NeoForgePlatform implements PlatformHelper {
     @Override
     public CreativeModeTab.Builder newCreativeTabBuilder() {
         return CreativeModeTab.builder();
+    }
+
+    @Override
+    public <T extends CriterionTrigger<?>> Supplier<T> registerTrigger(String id, Supplier<T> trigger) {
+        return ModMain.TRIGGER_REGISTRY.register(id, trigger);
     }
 
     @Override

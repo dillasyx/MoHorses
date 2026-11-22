@@ -18,5 +18,6 @@ public class MoHorsesDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(MoHorsesRecipeProvider::new);
         pack.addProvider(MoHorsesTagProviders.Items::new);
         pack.addProvider(MoHorsesTagProviders.EntityTypes::new);
+        pack.addProvider(MoHorsesAdvancementProvider::new);
     }
 }

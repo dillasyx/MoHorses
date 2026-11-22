@@ -1,0 +1,16 @@
+{
+  "id": "mohorses:essences/essences",
+  "type": "modonomicon:content",
+  "category": "mohorses:essences",
+  "name": "book.mohorses.guide.entry.essences.name",
+  "description": "book.mohorses.guide.entry.essences.description",
+  "icon": "mohorses:essence_of_light",
+  "x": 0,
+  "y": 0,
+  "background": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+  "parents": [
+    {
+      "entry": "mohorses:essences/hearts"
+    }
+  ]
+}

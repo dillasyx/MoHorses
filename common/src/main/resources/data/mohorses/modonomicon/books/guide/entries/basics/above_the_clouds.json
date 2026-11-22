@@ -1,0 +1,16 @@
+{
+  "id": "mohorses:basics/above_the_clouds",
+  "type": "modonomicon:content",
+  "category": "mohorses:basics",
+  "name": "book.mohorses.guide.entry.above_the_clouds.name",
+  "description": "book.mohorses.guide.entry.above_the_clouds.description",
+  "icon": "minecraft:feather",
+  "x": 2,
+  "y": 0,
+  "background": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+  "parents": [
+    {
+      "entry": "mohorses:basics/taming_zebras"
+    }
+  ]
+}

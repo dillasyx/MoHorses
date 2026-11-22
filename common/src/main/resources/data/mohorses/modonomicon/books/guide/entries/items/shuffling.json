@@ -1,0 +1,16 @@
+{
+  "id": "mohorses:items/shuffling",
+  "type": "modonomicon:content",
+  "category": "mohorses:items",
+  "name": "book.mohorses.guide.entry.shuffling.name",
+  "description": "book.mohorses.guide.entry.shuffling.description",
+  "icon": "mohorses:shuffling_music_disc",
+  "x": 1,
+  "y": 1,
+  "background": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+  "parents": [
+    {
+      "entry": "mohorses:items/amulets"
+    }
+  ]
+}

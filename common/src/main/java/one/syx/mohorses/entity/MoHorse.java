@@ -6,6 +6,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import one.syx.mohorses.advancement.HorseEvents;
 import one.syx.mohorses.ModConstants;
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleOptions;
@@ -234,6 +235,9 @@ public class MoHorse extends AbstractChestedHorse {
         boolean opensInventory = !isBaby() && isTamed() && player.isSecondaryUseActive();
 
         if (!isVehicle() && !opensInventory && !stack.isEmpty()) {
+            if (EggNuzzle.feed(this, player, stack))
+                return InteractionResult.SUCCESS;
+
             if (kind() == HorseKind.NIGHTMARE && stack.is(Items.REDSTONE) && isTamed() && !isBaby()) {
                 if (level() instanceof ServerLevel serverLevel) {
                     stack.consume(1, player);
@@ -280,6 +284,7 @@ public class MoHorse extends AbstractChestedHorse {
                 if (level() instanceof ServerLevel serverLevel) {
                     stack.consume(1, player);
                     setFairyColor(newColor);
+                    HorseEvents.award(player, HorseEvents.FAIRY_DYED);
                     this.fairyDyed = true;
                     burst(serverLevel, ParticleTypes.END_ROD, 20);
                     playSound(SoundEvents.DYE_USE, 1.0F, 1.0F);
@@ -568,6 +573,10 @@ public class MoHorse extends AbstractChestedHorse {
         if (transformed != null) {
             transformed.burst(level, target.isUndead() ? ParticleRegistry.UNDEAD_FLESH.get() : particleFor(target), 40);
             transformed.playSound(SoundEvents.ZOMBIE_VILLAGER_CONVERTED, 1.0F, 1.2F);
+
+            // A skeleton given its flesh back
+            if (kind().decaysInto() == null && kind().isUndead() && !target.isUndead())
+                HorseEvents.awardOwner(transformed, HorseEvents.REVIVED);
         }
     }
 
@@ -723,6 +732,7 @@ public class MoHorse extends AbstractChestedHorse {
         ZombieHorse zombie = convertTo(EntityTypes.ZOMBIE_HORSE, ConversionParams.single(this, true, false), next -> HorseTransfer.copy(this, next, false));
 
         if (zombie != null) {
+            HorseEvents.awardOwner(zombie, HorseEvents.ZOMBIE_HORSE);
             level.sendParticles(ParticleRegistry.UNDEAD_FLESH.get(), zombie.getX(), zombie.getY() + 1.0, zombie.getZ(), 30, 0.6, 0.5, 0.6, 0.0);
             zombie.playSound(SoundEvents.ZOMBIE_VILLAGER_CONVERTED, 1.0F, 0.8F);
         }
@@ -918,11 +928,21 @@ public class MoHorse extends AbstractChestedHorse {
         if (appearTicks > 0)
             this.entityData.set(DATA_APPEAR_TICKS, appearTicks - 1);
 
+        // For the advancements: which kinds the owner has (now and then, while the horse is around)
+        if (isTamed() && (this.tickCount + getId()) % 40 == 0)
+            HorseEvents.awardOwner(this, HorseEvents.owned(kind()));
+
         tickCharge();
 
         if (kind() == HorseKind.ZEBRA) {
-            if ((this.tickCount + getId()) % 20 == 0)
-                this.entityData.set(DATA_SHUFFLING, hearsShufflingSong(serverLevel));
+            if ((this.tickCount + getId()) % 20 == 0) {
+                boolean shuffling = hearsShufflingSong(serverLevel);
+
+                if (shuffling && !isShuffling())
+                    HorseEvents.awardNearby(this, SHUFFLE_RANGE, HorseEvents.SHUFFLE);
+
+                this.entityData.set(DATA_SHUFFLING, shuffling);
+            }
 
             // A dancing zebra stays where it is
             if (isShuffling() && !isVehicle())
@@ -1076,6 +1096,7 @@ public class MoHorse extends AbstractChestedHorse {
         this.ramCooldown = 0;
         // An angry neigh, but no rearing: it charges off at once
         clearStanding();
+        HorseEvents.award(getControllingPassenger(), HorseEvents.UNICORN_CHARGE);
         playSound(getAngrySound(), 1.0F, 1.0F);
 
         if (level() instanceof ServerLevel level)

@@ -1,0 +1,16 @@
+{
+  "id": "mohorses:breeding/nightmare",
+  "type": "modonomicon:content",
+  "category": "mohorses:breeding",
+  "name": "book.mohorses.guide.entry.nightmare.name",
+  "description": "book.mohorses.guide.entry.nightmare.description",
+  "icon": "mohorses:nightmare_spawn_egg",
+  "x": -1,
+  "y": -1,
+  "background": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+  "parents": [
+    {
+      "entry": "mohorses:breeding/zorse"
+    }
+  ]
+}

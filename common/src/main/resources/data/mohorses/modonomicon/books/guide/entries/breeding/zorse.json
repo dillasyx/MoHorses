@@ -1,0 +1,12 @@
+{
+  "id": "mohorses:breeding/zorse",
+  "type": "modonomicon:content",
+  "category": "mohorses:breeding",
+  "name": "book.mohorses.guide.entry.zorse.name",
+  "description": "book.mohorses.guide.entry.zorse.description",
+  "icon": "mohorses:zorse_spawn_egg",
+  "x": -3,
+  "y": -1,
+  "background": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/star_gold",
+  "parents": []
+}

@@ -1,0 +1,28 @@
+{
+  "parent": "mohorses:main/root",
+  "criteria": {
+    "amulet": {
+      "conditions": {
+        "event": "amulet"
+      },
+      "trigger": "mohorses:horse_event"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.mohorses.amulet.description"
+    },
+    "icon": {
+      "id": "mohorses:pet_amulet"
+    },
+    "title": {
+      "translate": "advancements.mohorses.amulet.title"
+    }
+  },
+  "requirements": [
+    [
+      "amulet"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

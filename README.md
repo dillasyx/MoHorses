@@ -11,12 +11,12 @@ on top of the vanilla horse look. Heavily inspired by Mo' Creatures, licensed un
 
 | Kind | How to get it | Notes |
 |---|---|---|
-| Zebra | Spawns in savannas, badlands and the desert (biome tag `mohorses:spawns_zebras`) | Breeds like a horse, carries a chest. Wears no armor. Can not be broken in by riding: tame it with sugar lumps (one in three tames it), only while you ride a black and white horse (black with white spots or patches, or white with black spots). Once tamed it can be saddled and ridden. Turns any music disc into the Shuffling disc, and dances (shuffles, with music notes) while a jukebox within 16 blocks plays it |
+| Zebra | Spawns in savannas, badlands and the desert (biome tag `mohorses:spawns_zebras`) | Drops leather like a horse. Breeds like a horse, carries a chest. Wears no armor. Can not be broken in by riding: tame it with sugar lumps (one in three tames it), only while you ride a black and white horse (black with white spots or patches, or white with black spots). Once tamed it can be saddled and ridden. Turns any music disc into the Shuffling disc, and dances (shuffles, with music notes) while a jukebox within 16 blocks plays it |
 | Zorse | Zebra + Horse | Sterile |
 | Zonkey | Zebra + Donkey | Sterile, no armor |
 | Bat Horse | Essence of Darkness on a Zorse standing on the ground above the clouds | Flies. Breeds and heals with Essence of Darkness |
 | Nightmare | Essence of Fire on a Zorse | Fire immune, no armor. Breeds like a horse, heals with Essence of Fire. Feed it redstone: for a minute it is faster and leaves a trail of fire when ridden (only particles without mob griefing) |
-| Wild Nightmare | Spawns in the Nether (biome tag `mohorses:spawns_wild_nightmares`) | Hostile, can't be tamed |
+| Wild Nightmare | Spawns rarely and alone in the Nether Wastes, Soul Sand Valleys and Basalt Deltas (biome tag `mohorses:spawns_wild_nightmares`) | Hostile, can't be tamed. One in twenty comes with a Piglin Brute riding it, golden spear in hand. Drops leather, and with a 15 % chance a Heart of Fire when a player kills it |
 | Unicorn | Essence of Light on a Nightmare | Crack the whip while riding and it charges, head down: only then does its horn hurt. Glides down slowly, leaving a trail of stars when it jumps or glides, no fall damage. Drops its horn when it dies. Breeds and heals with Essence of Light |
 | Pegasus | Essence of Light on a Bat Horse standing on the ground above the clouds | Flies. Breeds and heals with Essence of Light |
 | Dark Pegasus | Essence of Darkness on a Pegasus standing on the ground above the clouds | Flies, fire immune. Breeds and heals with Essence of Darkness |
@@ -58,6 +58,9 @@ Zombie horses, Undead Unicorns and Undead Pegasi rot away like the undead horses
 off and a maggot crawls out (bits of flesh drop to the ground all the time), and after 5 stages only a skeleton is left, keeping its owner
 and saddle.
 
+Maggots also crawl out of composters: every item put into a composter has a 1 in 64 chance to bring one out. They wiggle
+around harmlessly and drop slime balls when killed.
+
 The whip (leads, leather, iron nuggets and a unicorn horn) cracks when used. Crack it while riding a Unicorn and the unicorn
 lowers its head and charges for two seconds: everything its horn meets meanwhile takes 10 damage. Crack it at a
 creature and the unicorn charges at that one.
@@ -68,6 +71,14 @@ the Bone Amulet (vanilla zombie and skeleton horses and zombie nautiluses too), 
 Amulet. The Pet Amulet also holds any other tamed animal of yours: wolves, cats, parrots, vanilla horses and so on. Only
 the registered owner can put an animal in (so not vanilla camels, which never get one), and only a grown one. Hold Alt over a full amulet to see the animal. Modpacks can keep
 other mods' animals out of all amulets with the entity type tag `mohorses:amulet_excluded`.
+
+With [Modonomicon](https://modrinth.com/mod/modonomicon) installed (an optional dependency), the mod adds the in-game
+guide book "Mo' Horses Guide": craft it from a book and a sugar lump. Its five chapters (first steps, breeding,
+essences, the undead and the items) explain everything on this page, with the horses shown in 3D, in all seven languages
+of the mod.
+
+The advancement tab "Mo' Horses" follows the breeding line from the first tamed Zebra to the Fairy Horse, plus the
+undead, the ghosts and the items, up to the Stable Master challenge: own every kind of horse of the mod once.
 
 ## Building
 

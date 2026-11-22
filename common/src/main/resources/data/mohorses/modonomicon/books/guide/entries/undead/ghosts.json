@@ -1,0 +1,16 @@
+{
+  "id": "mohorses:undead/ghosts",
+  "type": "modonomicon:content",
+  "category": "mohorses:undead",
+  "name": "book.mohorses.guide.entry.ghosts.name",
+  "description": "book.mohorses.guide.entry.ghosts.description",
+  "icon": "mohorses:ghost_amulet",
+  "x": -2,
+  "y": 1,
+  "background": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+  "parents": [
+    {
+      "entry": "mohorses:undead/undead_horses"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "parent": "mohorses:main/fairy_horse",
+  "criteria": {
+    "dyed": {
+      "conditions": {
+        "event": "fairy_dyed"
+      },
+      "trigger": "mohorses:horse_event"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.mohorses.dye_fairy_horse.description"
+    },
+    "icon": {
+      "id": "minecraft:pink_dye"
+    },
+    "title": {
+      "translate": "advancements.mohorses.dye_fairy_horse.title"
+    }
+  },
+  "requirements": [
+    [
+      "dyed"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

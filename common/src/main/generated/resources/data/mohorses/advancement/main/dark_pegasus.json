@@ -1,0 +1,28 @@
+{
+  "parent": "mohorses:main/pegasus",
+  "criteria": {
+    "dark_pegasus": {
+      "conditions": {
+        "event": "owned_dark_pegasus"
+      },
+      "trigger": "mohorses:horse_event"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.mohorses.dark_pegasus.description"
+    },
+    "icon": {
+      "id": "mohorses:dark_pegasus_spawn_egg"
+    },
+    "title": {
+      "translate": "advancements.mohorses.dark_pegasus.title"
+    }
+  },
+  "requirements": [
+    [
+      "dark_pegasus"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

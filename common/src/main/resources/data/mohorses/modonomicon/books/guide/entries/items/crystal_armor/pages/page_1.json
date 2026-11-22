@@ -1,0 +1,7 @@
+{
+  "id": "mohorses:items/crystal_armor/page_1",
+  "sort_number": 1,
+  "type": "modonomicon:text",
+  "title": "book.mohorses.guide.crystal_armor.title",
+  "text": "book.mohorses.guide.crystal_armor.text"
+}

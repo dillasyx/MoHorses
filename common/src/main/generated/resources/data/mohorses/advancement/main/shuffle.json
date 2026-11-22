@@ -1,0 +1,28 @@
+{
+  "parent": "mohorses:main/tame_zebra",
+  "criteria": {
+    "shuffle": {
+      "conditions": {
+        "event": "shuffle"
+      },
+      "trigger": "mohorses:horse_event"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.mohorses.shuffle.description"
+    },
+    "icon": {
+      "id": "mohorses:shuffling_music_disc"
+    },
+    "title": {
+      "translate": "advancements.mohorses.shuffle.title"
+    }
+  },
+  "requirements": [
+    [
+      "shuffle"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

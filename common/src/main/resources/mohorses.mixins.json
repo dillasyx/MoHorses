@@ -12,9 +12,11 @@
     "HorseMixin",
     "LivingEntityMixin",
     "MobMixin",
+    "ThrownEggMixin",
     "ZombieHorseMixin"
   ],
   "client": [
+    "client.AbstractEquineModelMixin",
     "client.AbstractHorseRendererMixin",
     "client.DefaultTooltipPositionerMixin",
     "client.DonkeyRendererMixin",

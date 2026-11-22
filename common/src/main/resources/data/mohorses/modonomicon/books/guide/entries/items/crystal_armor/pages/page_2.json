@@ -1,0 +1,6 @@
+{
+  "id": "mohorses:items/crystal_armor/page_2",
+  "sort_number": 2,
+  "type": "modonomicon:crafting_recipe",
+  "recipe_id_1": "mohorses:crystal_horse_armor"
+}

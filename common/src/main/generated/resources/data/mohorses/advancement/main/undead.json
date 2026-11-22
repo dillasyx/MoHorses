@@ -1,0 +1,42 @@
+{
+  "parent": "mohorses:main/root",
+  "criteria": {
+    "undead_pegasus": {
+      "conditions": {
+        "event": "owned_undead_pegasus"
+      },
+      "trigger": "mohorses:horse_event"
+    },
+    "undead_unicorn": {
+      "conditions": {
+        "event": "owned_undead_unicorn"
+      },
+      "trigger": "mohorses:horse_event"
+    },
+    "zombie_horse": {
+      "conditions": {
+        "event": "zombie_horse"
+      },
+      "trigger": "mohorses:horse_event"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.mohorses.undead.description"
+    },
+    "icon": {
+      "id": "mohorses:essence_of_undead"
+    },
+    "title": {
+      "translate": "advancements.mohorses.undead.title"
+    }
+  },
+  "requirements": [
+    [
+      "zombie_horse",
+      "undead_unicorn",
+      "undead_pegasus"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

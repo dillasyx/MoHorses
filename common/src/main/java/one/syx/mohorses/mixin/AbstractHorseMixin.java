@@ -17,6 +17,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
+import one.syx.mohorses.entity.EggNuzzle;
 import one.syx.mohorses.entity.HorseTransfer;
 import one.syx.mohorses.entity.VanillaHorseEssences;
 import one.syx.mohorses.entity.ZombieHorseDecay;
@@ -36,7 +37,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 /// - zombie horses rot (see [ZombieHorseDecay], the state lives in ZombieHorseMixin)
 /// - the owner can be handed on to the horse that replaces this one (see [HorseTransfer])
 @Mixin(AbstractHorse.class)
-public abstract class AbstractHorseMixin extends Animal implements HorseTransfer.OwnerAccess, VanillaHorseEssences.State {
+public abstract class AbstractHorseMixin extends Animal implements HorseTransfer.OwnerAccess, VanillaHorseEssences.State, EggNuzzle.Nuzzling {
     @Shadow
     private @Nullable EntityReference<LivingEntity> owner;
 
@@ -55,6 +56,8 @@ public abstract class AbstractHorseMixin extends Animal implements HorseTransfer
     private int mohorses$lookTarget;
     @Unique
     private int mohorses$lookStart;
+    @Unique
+    private int mohorses$nuzzleStart = -1;
 
     protected AbstractHorseMixin(EntityType<? extends Animal> type, Level level) {
         super(type, level);
@@ -71,6 +74,12 @@ public abstract class AbstractHorseMixin extends Animal implements HorseTransfer
 
     @Inject(method = "mobInteract", at = @At("HEAD"), cancellable = true)
     private void mohorses$useEssence(Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
+        if (EggNuzzle.feed((AbstractHorse)(Object)this, player, player.getItemInHand(hand))) {
+            cir.setReturnValue(InteractionResult.SUCCESS);
+
+            return;
+        }
+
         InteractionResult result = VanillaHorseEssences.interact((AbstractHorse)(Object)this, player, hand);
 
         if (result != null)
@@ -100,6 +109,8 @@ public abstract class AbstractHorseMixin extends Animal implements HorseTransfer
         if (this instanceof ZombieHorseDecay.Decaying decaying && ZombieHorseDecay.handleEvent(decaying, event))
             ci.cancel();
         else if (VanillaHorseEssences.handleEvent((AbstractHorse)(Object)this, event))
+            ci.cancel();
+        else if (EggNuzzle.handleEvent((AbstractHorse)(Object)this, event))
             ci.cancel();
     }
 
@@ -171,6 +182,16 @@ public abstract class AbstractHorseMixin extends Animal implements HorseTransfer
     @Override
     public int mohorses$getLookStart() {
         return this.mohorses$lookStart;
+    }
+
+    @Override
+    public int mohorses$getNuzzleStart() {
+        return this.mohorses$nuzzleStart;
+    }
+
+    @Override
+    public void mohorses$setNuzzleStart(int start) {
+        this.mohorses$nuzzleStart = start;
     }
 
     @Override

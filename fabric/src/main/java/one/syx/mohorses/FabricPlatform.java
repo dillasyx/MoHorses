@@ -1,6 +1,7 @@
 package one.syx.mohorses;
 
 import com.mojang.serialization.MapCodec;
+import net.minecraft.advancements.triggers.CriterionTrigger;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.impl.creativetab.FabricCreativeModeTabBuilderImpl;
 import net.minecraft.core.Registry;
@@ -52,6 +53,11 @@ public final class FabricPlatform implements PlatformHelper {
     @Override
     public CreativeModeTab.Builder newCreativeTabBuilder() {
         return new FabricCreativeModeTabBuilderImpl();
+    }
+
+    @Override
+    public <T extends CriterionTrigger<?>> Supplier<T> registerTrigger(String id, Supplier<T> trigger) {
+        return register(BuiltInRegistries.TRIGGER_TYPES, id, trigger);
     }
 
     @Override

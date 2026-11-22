@@ -1,0 +1,16 @@
+{
+  "id": "mohorses:breeding/pegasus",
+  "type": "modonomicon:content",
+  "category": "mohorses:breeding",
+  "name": "book.mohorses.guide.entry.pegasus.name",
+  "description": "book.mohorses.guide.entry.pegasus.description",
+  "icon": "mohorses:pegasus_spawn_egg",
+  "x": 1,
+  "y": 1,
+  "background": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+  "parents": [
+    {
+      "entry": "mohorses:breeding/bat_horse"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "id": "mohorses:essences/essences/page_2",
+  "sort_number": 2,
+  "type": "modonomicon:crafting_recipe",
+  "recipe_id_1": "mohorses:essence_of_darkness",
+  "recipe_id_2": "mohorses:essence_of_fire"
+}

@@ -1,0 +1,28 @@
+{
+  "parent": "mohorses:main/breed_zorse",
+  "criteria": {
+    "nightmare": {
+      "conditions": {
+        "event": "owned_nightmare"
+      },
+      "trigger": "mohorses:horse_event"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.mohorses.nightmare.description"
+    },
+    "icon": {
+      "id": "mohorses:nightmare_spawn_egg"
+    },
+    "title": {
+      "translate": "advancements.mohorses.nightmare.title"
+    }
+  },
+  "requirements": [
+    [
+      "nightmare"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

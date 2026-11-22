@@ -1,0 +1,38 @@
+{
+  "parent": "mohorses:main/root",
+  "criteria": {
+    "brute": {
+      "conditions": {
+        "entity": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_type": "minecraft:piglin_brute",
+            "minecraft:vehicle": {
+              "minecraft:entity_type": "mohorses:wild_nightmare"
+            }
+          }
+        }
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.mohorses.brute_rider.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "id": "minecraft:golden_spear"
+    },
+    "title": {
+      "translate": "advancements.mohorses.brute_rider.title"
+    }
+  },
+  "requirements": [
+    [
+      "brute"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,9 @@
+{
+  "id": "mohorses:undead/undead_horses/page_1",
+  "sort_number": 1,
+  "type": "modonomicon:entity",
+  "entity_id": "mohorses:undead_unicorn",
+  "entity_name": "entity.mohorses.undead_unicorn",
+  "scale": 0.7,
+  "text": "book.mohorses.guide.undead_horses.entity"
+}

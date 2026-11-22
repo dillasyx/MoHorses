@@ -1,0 +1,12 @@
+{
+  "id": "mohorses:basics/welcome",
+  "type": "modonomicon:content",
+  "category": "mohorses:basics",
+  "name": "book.mohorses.guide.entry.welcome.name",
+  "description": "book.mohorses.guide.entry.welcome.description",
+  "icon": "mohorses:sugar_lump",
+  "x": -2,
+  "y": 0,
+  "background": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/star_gold",
+  "parents": []
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "mohorses:main/root",
+  "criteria": {
+    "zebra": {
+      "conditions": {
+        "entity": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_type": "mohorses:zebra"
+          }
+        }
+      },
+      "trigger": "minecraft:tame_animal"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.mohorses.tame_zebra.description"
+    },
+    "icon": {
+      "id": "mohorses:zebra_spawn_egg"
+    },
+    "title": {
+      "translate": "advancements.mohorses.tame_zebra.title"
+    }
+  },
+  "requirements": [
+    [
+      "zebra"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

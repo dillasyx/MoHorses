@@ -1,3 +1,12 @@
+## 1.0.5
+
+- With [Modonomicon](https://modrinth.com/mod/modonomicon) installed (optional), an in-game guide book explains taming, breeding, essences, the undead and the items in five chapters, with the horses shown in 3D. Craft it from a book and a sugar lump
+- New advancement tab "Mo' Horses" with 23 advancements along the breeding line, the undead, ghosts and the items, up to the Stable Master challenge
+- Wild Nightmares spawn much less often, alone, and only in the Nether Wastes, Soul Sand Valleys and Basalt Deltas (no longer in the forests, where they made up most of the monsters)
+- Now and then a Wild Nightmare comes with a Piglin Brute riding it, golden spear in hand
+- Zebras drop leather, like horses
+- Wild Nightmares drop leather, and with a 15% chance a Heart of Fire when a player kills them (Looting raises the chance)
+
 ## 1.0.4
 
 - Breeding follows Mo' Creatures more closely: Unicorn + Dark Pegasus now gives a black Fairy Horse (the Dark Pegasus comes back in a Sky Amulet)

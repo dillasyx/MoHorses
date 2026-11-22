@@ -1,6 +1,7 @@
 package one.syx.mohorses.platform;
 
 import com.mojang.serialization.MapCodec;
+import net.minecraft.advancements.triggers.CriterionTrigger;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
@@ -28,6 +29,9 @@ public interface PlatformHelper {
 
     /// Register a new creative tab
     <T extends CreativeModeTab> Supplier<T> registerCreativeModeTab(String id, Supplier<T> tab);
+
+    /// Register a new advancement trigger
+    <T extends CriterionTrigger<?>> Supplier<T> registerTrigger(String id, Supplier<T> trigger);
 
     /// Register a new loot condition type
     <T extends MapCodec<? extends LootItemCondition>> Supplier<T> registerLootCondition(String id, Supplier<T> codec);

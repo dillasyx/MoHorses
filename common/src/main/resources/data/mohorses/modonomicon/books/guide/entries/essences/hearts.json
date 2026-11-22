@@ -1,0 +1,12 @@
+{
+  "id": "mohorses:essences/hearts",
+  "type": "modonomicon:content",
+  "category": "mohorses:essences",
+  "name": "book.mohorses.guide.entry.hearts.name",
+  "description": "book.mohorses.guide.entry.hearts.description",
+  "icon": "mohorses:heart_of_fire",
+  "x": -2,
+  "y": 0,
+  "background": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/star_gold",
+  "parents": []
+}

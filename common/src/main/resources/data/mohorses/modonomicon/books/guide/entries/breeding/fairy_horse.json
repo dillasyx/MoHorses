@@ -1,0 +1,19 @@
+{
+  "id": "mohorses:breeding/fairy_horse",
+  "type": "modonomicon:content",
+  "category": "mohorses:breeding",
+  "name": "book.mohorses.guide.entry.fairy_horse.name",
+  "description": "book.mohorses.guide.entry.fairy_horse.description",
+  "icon": "mohorses:fairy_horse_spawn_egg",
+  "x": 3,
+  "y": -1,
+  "background": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+  "parents": [
+    {
+      "entry": "mohorses:breeding/unicorn"
+    },
+    {
+      "entry": "mohorses:breeding/pegasus"
+    }
+  ]
+}

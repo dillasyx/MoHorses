@@ -1,0 +1,9 @@
+{
+  "id": "mohorses:breeding/zorse/page_1",
+  "sort_number": 1,
+  "type": "modonomicon:entity",
+  "entity_id": "mohorses:zorse",
+  "entity_name": "entity.mohorses.zorse",
+  "scale": 0.7,
+  "text": "book.mohorses.guide.zorse.entity"
+}

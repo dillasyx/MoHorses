@@ -19,6 +19,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import one.syx.mohorses.ModConstants;
 import one.syx.mohorses.client.model.HorsePoses;
 import one.syx.mohorses.client.model.MoHorseModel;
+import one.syx.mohorses.entity.EggNuzzle;
 import one.syx.mohorses.entity.HorseKind;
 import one.syx.mohorses.entity.MoHorse;
 import one.syx.mohorses.entity.TransformFlicker;
@@ -161,6 +162,9 @@ public class MoHorseRenderer extends MobRenderer<MoHorse, MoHorseRenderState, En
         // (rearing holds the hind legs still, the charge gallops on all four)
         if (state.flying || state.charging)
             state.standAnimation = 0.0F;
+
+        // Last, as it puts the other head animations at rest while it plays
+        NuzzlePose.set(state, EggNuzzle.progress(horse, partialTicks));
     }
 
     /// During a transformation: the old or the new kind, switching back and forth faster and faster

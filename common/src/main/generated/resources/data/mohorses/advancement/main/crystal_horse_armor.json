@@ -1,0 +1,32 @@
+{
+  "parent": "mohorses:main/root",
+  "criteria": {
+    "crystal_horse_armor": {
+      "conditions": {
+        "items": [
+          {
+            "items": "mohorses:crystal_horse_armor"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.mohorses.crystal_horse_armor.description"
+    },
+    "icon": {
+      "id": "mohorses:crystal_horse_armor"
+    },
+    "title": {
+      "translate": "advancements.mohorses.crystal_horse_armor.title"
+    }
+  },
+  "requirements": [
+    [
+      "crystal_horse_armor"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

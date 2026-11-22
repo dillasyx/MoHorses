@@ -1,0 +1,58 @@
+{
+  "parent": "mohorses:main/root",
+  "criteria": {
+    "heart_of_darkness": {
+      "conditions": {
+        "items": [
+          {
+            "items": "mohorses:heart_of_darkness"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "heart_of_fire": {
+      "conditions": {
+        "items": [
+          {
+            "items": "mohorses:heart_of_fire"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "heart_of_undead": {
+      "conditions": {
+        "items": [
+          {
+            "items": "mohorses:heart_of_undead"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.mohorses.hearts.description"
+    },
+    "icon": {
+      "id": "mohorses:heart_of_fire"
+    },
+    "title": {
+      "translate": "advancements.mohorses.hearts.title"
+    }
+  },
+  "requirements": [
+    [
+      "heart_of_darkness"
+    ],
+    [
+      "heart_of_fire"
+    ],
+    [
+      "heart_of_undead"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

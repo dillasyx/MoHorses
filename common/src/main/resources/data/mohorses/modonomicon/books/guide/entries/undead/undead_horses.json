@@ -1,0 +1,12 @@
+{
+  "id": "mohorses:undead/undead_horses",
+  "type": "modonomicon:content",
+  "category": "mohorses:undead",
+  "name": "book.mohorses.guide.entry.undead_horses.name",
+  "description": "book.mohorses.guide.entry.undead_horses.description",
+  "icon": "mohorses:essence_of_undead",
+  "x": -2,
+  "y": -1,
+  "background": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/star_gold",
+  "parents": []
+}

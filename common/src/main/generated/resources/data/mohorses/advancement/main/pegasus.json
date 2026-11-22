@@ -1,0 +1,28 @@
+{
+  "parent": "mohorses:main/bat_horse",
+  "criteria": {
+    "pegasus": {
+      "conditions": {
+        "event": "owned_pegasus"
+      },
+      "trigger": "mohorses:horse_event"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.mohorses.pegasus.description"
+    },
+    "icon": {
+      "id": "mohorses:pegasus_spawn_egg"
+    },
+    "title": {
+      "translate": "advancements.mohorses.pegasus.title"
+    }
+  },
+  "requirements": [
+    [
+      "pegasus"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

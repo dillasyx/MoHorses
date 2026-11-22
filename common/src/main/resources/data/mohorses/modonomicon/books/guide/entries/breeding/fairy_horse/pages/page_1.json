@@ -1,0 +1,9 @@
+{
+  "id": "mohorses:breeding/fairy_horse/page_1",
+  "sort_number": 1,
+  "type": "modonomicon:entity",
+  "entity_id": "mohorses:fairy_horse",
+  "entity_name": "entity.mohorses.fairy_horse",
+  "scale": 0.7,
+  "text": "book.mohorses.guide.fairy_horse.entity"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "mohorses:items/amulets",
+  "type": "modonomicon:content",
+  "category": "mohorses:items",
+  "name": "book.mohorses.guide.entry.amulets.name",
+  "description": "book.mohorses.guide.entry.amulets.description",
+  "icon": "mohorses:pet_amulet",
+  "x": -1,
+  "y": -1,
+  "background": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/star_gold",
+  "parents": []
+}

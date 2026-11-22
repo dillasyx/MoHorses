@@ -1,5 +1,6 @@
 package one.syx.mohorses;
 
+import one.syx.mohorses.registry.AdvancementRegistry;
 import one.syx.mohorses.registry.ArmorMaterialRegistry;
 import one.syx.mohorses.registry.EntityRegistry;
 import one.syx.mohorses.registry.ItemRegistry;
@@ -17,5 +18,6 @@ public final class ModCommon {
         ArmorMaterialRegistry.init();
         ItemRegistry.init();
         LootTableRegistry.init();
+        AdvancementRegistry.init();
     }
 }

@@ -1,0 +1,7 @@
+{
+  "id": "mohorses:items/shuffling/page_1",
+  "sort_number": 1,
+  "type": "modonomicon:text",
+  "title": "book.mohorses.guide.shuffling.title",
+  "text": "book.mohorses.guide.shuffling.text"
+}

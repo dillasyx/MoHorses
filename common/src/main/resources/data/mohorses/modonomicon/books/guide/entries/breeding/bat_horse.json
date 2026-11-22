@@ -1,0 +1,16 @@
+{
+  "id": "mohorses:breeding/bat_horse",
+  "type": "modonomicon:content",
+  "category": "mohorses:breeding",
+  "name": "book.mohorses.guide.entry.bat_horse.name",
+  "description": "book.mohorses.guide.entry.bat_horse.description",
+  "icon": "mohorses:bat_horse_spawn_egg",
+  "x": -1,
+  "y": 1,
+  "background": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+  "parents": [
+    {
+      "entry": "mohorses:breeding/zorse"
+    }
+  ]
+}

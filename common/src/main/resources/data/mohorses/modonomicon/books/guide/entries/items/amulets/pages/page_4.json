@@ -1,0 +1,7 @@
+{
+  "id": "mohorses:items/amulets/page_4",
+  "sort_number": 4,
+  "type": "modonomicon:crafting_recipe",
+  "recipe_id_1": "mohorses:fairy_amulet",
+  "recipe_id_2": "mohorses:bone_amulet"
+}

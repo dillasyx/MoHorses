@@ -1,0 +1,9 @@
+{
+  "id": "mohorses:basics/taming_zebras/page_1",
+  "sort_number": 1,
+  "type": "modonomicon:entity",
+  "entity_id": "mohorses:zebra",
+  "entity_name": "entity.mohorses.zebra",
+  "scale": 0.7,
+  "text": "book.mohorses.guide.taming_zebras.entity"
+}

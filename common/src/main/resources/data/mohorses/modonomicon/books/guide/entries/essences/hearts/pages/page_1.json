@@ -1,0 +1,10 @@
+{
+  "id": "mohorses:essences/hearts/page_1",
+  "sort_number": 1,
+  "type": "modonomicon:spotlight",
+  "title": "item.mohorses.heart_of_darkness",
+  "item": {
+    "id": "mohorses:heart_of_darkness"
+  },
+  "text": "book.mohorses.guide.hearts.spotlight"
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "mohorses:main/tame_zebra",
+  "criteria": {
+    "zorse": {
+      "conditions": {
+        "child": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_type": "mohorses:zorse"
+          }
+        }
+      },
+      "trigger": "minecraft:bred_animals"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.mohorses.breed_zorse.description"
+    },
+    "icon": {
+      "id": "mohorses:zorse_spawn_egg"
+    },
+    "title": {
+      "translate": "advancements.mohorses.breed_zorse.title"
+    }
+  },
+  "requirements": [
+    [
+      "zorse"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

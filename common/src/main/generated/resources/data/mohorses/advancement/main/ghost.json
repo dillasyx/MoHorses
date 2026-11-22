@@ -1,0 +1,36 @@
+{
+  "parent": "mohorses:main/root",
+  "criteria": {
+    "ghost_horse": {
+      "conditions": {
+        "event": "owned_ghost_horse"
+      },
+      "trigger": "mohorses:horse_event"
+    },
+    "ghost_pegasus": {
+      "conditions": {
+        "event": "owned_ghost_pegasus"
+      },
+      "trigger": "mohorses:horse_event"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.mohorses.ghost.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "id": "mohorses:ghost_amulet"
+    },
+    "title": {
+      "translate": "advancements.mohorses.ghost.title"
+    }
+  },
+  "requirements": [
+    [
+      "ghost_horse",
+      "ghost_pegasus"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

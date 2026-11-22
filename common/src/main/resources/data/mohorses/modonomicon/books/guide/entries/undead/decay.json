@@ -1,0 +1,16 @@
+{
+  "id": "mohorses:undead/decay",
+  "type": "modonomicon:content",
+  "category": "mohorses:undead",
+  "name": "book.mohorses.guide.entry.decay.name",
+  "description": "book.mohorses.guide.entry.decay.description",
+  "icon": "minecraft:rotten_flesh",
+  "x": 0,
+  "y": -1,
+  "background": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+  "parents": [
+    {
+      "entry": "mohorses:undead/undead_horses"
+    }
+  ]
+}

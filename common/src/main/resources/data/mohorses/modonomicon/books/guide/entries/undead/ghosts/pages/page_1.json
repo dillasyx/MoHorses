@@ -1,0 +1,9 @@
+{
+  "id": "mohorses:undead/ghosts/page_1",
+  "sort_number": 1,
+  "type": "modonomicon:entity",
+  "entity_id": "mohorses:ghost_pegasus",
+  "entity_name": "entity.mohorses.ghost_pegasus",
+  "scale": 0.7,
+  "text": "book.mohorses.guide.ghosts.entity"
+}

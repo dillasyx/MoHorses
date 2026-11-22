@@ -1,0 +1,10 @@
+{
+  "id": "mohorses:items/amulets/page_1",
+  "sort_number": 1,
+  "type": "modonomicon:spotlight",
+  "title": "item.mohorses.pet_amulet",
+  "item": {
+    "id": "mohorses:pet_amulet"
+  },
+  "text": "book.mohorses.guide.amulets.spotlight"
+}

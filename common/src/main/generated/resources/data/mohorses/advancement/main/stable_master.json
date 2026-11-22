@@ -1,0 +1,158 @@
+{
+  "parent": "mohorses:main/fairy_horse",
+  "criteria": {
+    "bat_horse": {
+      "conditions": {
+        "event": "owned_bat_horse"
+      },
+      "trigger": "mohorses:horse_event"
+    },
+    "dark_pegasus": {
+      "conditions": {
+        "event": "owned_dark_pegasus"
+      },
+      "trigger": "mohorses:horse_event"
+    },
+    "fairy_horse": {
+      "conditions": {
+        "event": "owned_fairy_horse"
+      },
+      "trigger": "mohorses:horse_event"
+    },
+    "ghost_horse": {
+      "conditions": {
+        "event": "owned_ghost_horse"
+      },
+      "trigger": "mohorses:horse_event"
+    },
+    "ghost_pegasus": {
+      "conditions": {
+        "event": "owned_ghost_pegasus"
+      },
+      "trigger": "mohorses:horse_event"
+    },
+    "nightmare": {
+      "conditions": {
+        "event": "owned_nightmare"
+      },
+      "trigger": "mohorses:horse_event"
+    },
+    "pegasus": {
+      "conditions": {
+        "event": "owned_pegasus"
+      },
+      "trigger": "mohorses:horse_event"
+    },
+    "skeleton_pegasus": {
+      "conditions": {
+        "event": "owned_skeleton_pegasus"
+      },
+      "trigger": "mohorses:horse_event"
+    },
+    "skeleton_unicorn": {
+      "conditions": {
+        "event": "owned_skeleton_unicorn"
+      },
+      "trigger": "mohorses:horse_event"
+    },
+    "undead_pegasus": {
+      "conditions": {
+        "event": "owned_undead_pegasus"
+      },
+      "trigger": "mohorses:horse_event"
+    },
+    "undead_unicorn": {
+      "conditions": {
+        "event": "owned_undead_unicorn"
+      },
+      "trigger": "mohorses:horse_event"
+    },
+    "unicorn": {
+      "conditions": {
+        "event": "owned_unicorn"
+      },
+      "trigger": "mohorses:horse_event"
+    },
+    "zebra": {
+      "conditions": {
+        "event": "owned_zebra"
+      },
+      "trigger": "mohorses:horse_event"
+    },
+    "zonkey": {
+      "conditions": {
+        "event": "owned_zonkey"
+      },
+      "trigger": "mohorses:horse_event"
+    },
+    "zorse": {
+      "conditions": {
+        "event": "owned_zorse"
+      },
+      "trigger": "mohorses:horse_event"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.mohorses.stable_master.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "id": "minecraft:golden_carrot"
+    },
+    "title": {
+      "translate": "advancements.mohorses.stable_master.title"
+    }
+  },
+  "requirements": [
+    [
+      "zebra"
+    ],
+    [
+      "zorse"
+    ],
+    [
+      "zonkey"
+    ],
+    [
+      "nightmare"
+    ],
+    [
+      "bat_horse"
+    ],
+    [
+      "unicorn"
+    ],
+    [
+      "pegasus"
+    ],
+    [
+      "dark_pegasus"
+    ],
+    [
+      "fairy_horse"
+    ],
+    [
+      "undead_unicorn"
+    ],
+    [
+      "undead_pegasus"
+    ],
+    [
+      "skeleton_unicorn"
+    ],
+    [
+      "skeleton_pegasus"
+    ],
+    [
+      "ghost_horse"
+    ],
+    [
+      "ghost_pegasus"
+    ]
+  ],
+  "rewards": {
+    "experience": 200
+  },
+  "sends_telemetry_event": true
+}

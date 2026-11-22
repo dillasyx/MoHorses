@@ -1,0 +1,29 @@
+{
+  "parent": "mohorses:main/skeleton",
+  "criteria": {
+    "revived": {
+      "conditions": {
+        "event": "revived"
+      },
+      "trigger": "mohorses:horse_event"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.mohorses.revive.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "id": "mohorses:essence_of_light"
+    },
+    "title": {
+      "translate": "advancements.mohorses.revive.title"
+    }
+  },
+  "requirements": [
+    [
+      "revived"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

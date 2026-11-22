@@ -1,0 +1,35 @@
+{
+  "parent": "mohorses:main/unicorn",
+  "criteria": {
+    "fairy_horse": {
+      "conditions": {
+        "child": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_type": "mohorses:fairy_horse"
+          }
+        }
+      },
+      "trigger": "minecraft:bred_animals"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.mohorses.fairy_horse.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "id": "mohorses:fairy_horse_spawn_egg"
+    },
+    "title": {
+      "translate": "advancements.mohorses.fairy_horse.title"
+    }
+  },
+  "requirements": [
+    [
+      "fairy_horse"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

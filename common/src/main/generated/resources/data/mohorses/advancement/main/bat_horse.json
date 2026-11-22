@@ -1,0 +1,28 @@
+{
+  "parent": "mohorses:main/breed_zorse",
+  "criteria": {
+    "bat_horse": {
+      "conditions": {
+        "event": "owned_bat_horse"
+      },
+      "trigger": "mohorses:horse_event"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.mohorses.bat_horse.description"
+    },
+    "icon": {
+      "id": "mohorses:bat_horse_spawn_egg"
+    },
+    "title": {
+      "translate": "advancements.mohorses.bat_horse.title"
+    }
+  },
+  "requirements": [
+    [
+      "bat_horse"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

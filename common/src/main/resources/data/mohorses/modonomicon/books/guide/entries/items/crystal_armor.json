@@ -1,0 +1,16 @@
+{
+  "id": "mohorses:items/crystal_armor",
+  "type": "modonomicon:content",
+  "category": "mohorses:items",
+  "name": "book.mohorses.guide.entry.crystal_armor.name",
+  "description": "book.mohorses.guide.entry.crystal_armor.description",
+  "icon": "mohorses:crystal_horse_armor",
+  "x": -1,
+  "y": 1,
+  "background": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+  "parents": [
+    {
+      "entry": "mohorses:items/amulets"
+    }
+  ]
+}

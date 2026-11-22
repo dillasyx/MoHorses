@@ -1,0 +1,75 @@
+{
+  "criteria": {
+    "donkey": {
+      "conditions": {
+        "entity": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_type": "minecraft:donkey"
+          }
+        }
+      },
+      "trigger": "minecraft:tame_animal"
+    },
+    "horse": {
+      "conditions": {
+        "entity": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_type": "minecraft:horse"
+          }
+        }
+      },
+      "trigger": "minecraft:tame_animal"
+    },
+    "mule": {
+      "conditions": {
+        "entity": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_type": "minecraft:mule"
+          }
+        }
+      },
+      "trigger": "minecraft:tame_animal"
+    },
+    "zebra": {
+      "conditions": {
+        "entity": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_type": "mohorses:zebra"
+          }
+        }
+      },
+      "trigger": "minecraft:tame_animal"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "minecraft:gui/advancements/backgrounds/husbandry",
+    "description": {
+      "translate": "advancements.mohorses.root.description"
+    },
+    "icon": {
+      "id": "mohorses:sugar_lump"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.mohorses.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "horse",
+      "donkey",
+      "mule",
+      "zebra"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

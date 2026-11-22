@@ -1,0 +1,7 @@
+{
+  "id": "mohorses:items/whip/page_1",
+  "sort_number": 1,
+  "type": "modonomicon:text",
+  "title": "book.mohorses.guide.whip.title",
+  "text": "book.mohorses.guide.whip.text"
+}

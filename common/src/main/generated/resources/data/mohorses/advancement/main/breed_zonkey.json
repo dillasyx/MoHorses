@@ -1,0 +1,34 @@
+{
+  "parent": "mohorses:main/tame_zebra",
+  "criteria": {
+    "zonkey": {
+      "conditions": {
+        "child": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_type": "mohorses:zonkey"
+          }
+        }
+      },
+      "trigger": "minecraft:bred_animals"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.mohorses.breed_zonkey.description"
+    },
+    "icon": {
+      "id": "mohorses:zonkey_spawn_egg"
+    },
+    "title": {
+      "translate": "advancements.mohorses.breed_zonkey.title"
+    }
+  },
+  "requirements": [
+    [
+      "zonkey"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,7 @@
+{
+  "id": "mohorses:basics/welcome/page_1",
+  "sort_number": 1,
+  "type": "modonomicon:text",
+  "title": "book.mohorses.guide.welcome.title",
+  "text": "book.mohorses.guide.welcome.text"
+}

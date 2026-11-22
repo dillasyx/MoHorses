@@ -1,0 +1,16 @@
+{
+  "id": "mohorses:essences/paths",
+  "type": "modonomicon:content",
+  "category": "mohorses:essences",
+  "name": "book.mohorses.guide.entry.paths.name",
+  "description": "book.mohorses.guide.entry.paths.description",
+  "icon": "mohorses:essence_of_darkness",
+  "x": 2,
+  "y": 0,
+  "background": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+  "parents": [
+    {
+      "entry": "mohorses:essences/essences"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "id": "mohorses:items/amulets/page_3",
+  "sort_number": 3,
+  "type": "modonomicon:crafting_recipe",
+  "recipe_id_1": "mohorses:pet_amulet",
+  "recipe_id_2": "mohorses:pegasus_amulet"
+}
