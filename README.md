@@ -34,18 +34,20 @@ essences it takes four seconds of flickering, with rotten flesh falling off; two
 the other while it lasts, and so does every undead horse with flesh left on it that dies (zombie horses included, skeletons not). The undead are hurt by
 healing and healed by harming, and fit in the Bone Amulet. Essence of Undead heals the undead and the ghosts.
 
-Undead Unicorns and Undead Pegasi burn in daylight like zombies (horse armor protects them, and wears down doing it);
+Undead Unicorns and Undead Pegasi burn in daylight like zombies and wear no armor;
 the skeletons and ghosts don't. While you ride an undead horse (zombie or skeleton, vanilla or not), monsters leave you
 alone, unless you attack them first.
 
 Ghosts rise from the dead horse, fading in over three seconds, with the same owner, name and stats. They can't breed,
 wear only Crystal Horse Armor (saddle and armor are as see-through as the ghost), fit in the Ghost Amulet, and never leave another ghost.
 
-All of them can be saddled. Like in Mo' Creatures, only the Zonkey, the Pegasi (Pegasus, Dark Pegasus and their undead,
-skeleton and ghost forms) and the Fairy Horse carry a chest (shears take it off again); a horse that turns into a kind
+All of them can be saddled. As in Mo' Creatures, only the Zonkey, the Pegasi (Pegasus, Dark Pegasus and their undead and
+skeleton forms; here the Ghost Pegasus too) and the Fairy Horse carry a chest (shears take it off again); a horse that turns into a kind
 without one drops it. The Zorse wears the
-normal horse armor, the winged and horned kinds (undead and skeletons included) and the ghosts only Crystal Horse
-Armor (as strong as netherite; crafted from netherite horse armor, diamonds and glass). Zebras, Zonkeys and Nightmares wear none.
+normal horse armor. Crystal Horse Armor (as strong as netherite; crafted from netherite horse armor, diamonds and glass)
+is, as in Mo' Creatures, only for the Bat Horse, Unicorn, Pegasus, Dark Pegasus, Fairy Horse and the ghosts, which wear
+nothing else (entity type tag `mohorses:can_wear_crystal_horse_armor`). Zebras, Zonkeys, Nightmares, Undead and Skeleton
+Unicorns and Pegasi wear no armor; a horse that turns into a kind that can't wear its armor drops it.
 
 New horses get the stats of their vanilla counterpart: the horse-like kinds roll health, speed and jump like a
 horse, the Zonkey is a donkey, the Undead Unicorn and Pegasus a zombie horse, the skeletons a skeleton horse. Foals

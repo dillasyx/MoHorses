@@ -6,15 +6,21 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.component.CustomModelData;
 import net.minecraft.world.item.component.TypedEntityData;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SpawnEggItem;
+import net.minecraft.world.item.equipment.Equippable;
 import one.syx.mohorses.ModConstants;
 import one.syx.mohorses.entity.HorseKind;
 import one.syx.mohorses.item.HorseAmuletItem;
@@ -78,9 +84,21 @@ public final class ItemRegistry {
             .jukeboxPlayable(SoundRegistry.SHUFFLING_SONG_KEY));
 
     // HORSE ARMOR ITEMS
+    /// The entity types that wear Crystal Horse Armor: the kinds with [HorseKind.ArmorRule#CRYSTAL]
+    public static final TagKey<EntityType<?>> CAN_WEAR_CRYSTAL_HORSE_ARMOR = TagKey.create(Registries.ENTITY_TYPE, ModConstants.id("can_wear_crystal_horse_armor"));
+
     public static final Supplier<Item> CRYSTAL_HORSE_ARMOR = register("crystal_horse_armor", Item::new, properties -> properties
             .stacksTo(1)
-            .horseArmor(ArmorMaterialRegistry.CRYSTAL));
+            .horseArmor(ArmorMaterialRegistry.CRYSTAL)
+            // Vanilla would let every horse wear it; this one is for the magical horses only
+            .component(DataComponents.EQUIPPABLE, Equippable.builder(EquipmentSlot.BODY)
+                    .setEquipSound(SoundEvents.HORSE_ARMOR)
+                    .setAsset(ArmorMaterialRegistry.CRYSTAL_KEY)
+                    .setAllowedEntities(BuiltInRegistries.acquireBootstrapRegistrationLookup(BuiltInRegistries.ENTITY_TYPE).getOrThrow(CAN_WEAR_CRYSTAL_HORSE_ARMOR))
+                    .setDamageOnHurt(false)
+                    .setCanBeSheared(true)
+                    .setShearingSound(SoundEvents.HORSE_ARMOR_UNEQUIP)
+                    .build()));
 
     // MATERIAL ITEMS
     public static final Supplier<Item> UNICORN_HORN = register("unicorn_horn", Item::new);

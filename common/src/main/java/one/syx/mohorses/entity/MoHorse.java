@@ -383,6 +383,15 @@ public class MoHorse extends AbstractChestedHorse {
         return InteractionResult.PASS;
     }
 
+    private void dropUnwearableArmor(ServerLevel level) {
+        ItemStack armor = getBodyArmorItem();
+
+        if (!armor.isEmpty() && !kind().canWear(armor)) {
+            setItemSlot(EquipmentSlot.BODY, ItemStack.EMPTY);
+            spawnAtLocation(level, armor);
+        }
+    }
+
     private void removeChest(ServerLevel level) {
         for (int i = 0; i < this.inventory.getContainerSize(); i++) {
             ItemStack stack = this.inventory.getItem(i);
@@ -573,12 +582,7 @@ public class MoHorse extends AbstractChestedHorse {
             }
 
             // Armor the new kind can't wear is handed back
-            ItemStack armor = next.getBodyArmorItem();
-
-            if (!armor.isEmpty() && !target.canWear(armor)) {
-                next.setItemSlot(EquipmentSlot.BODY, ItemStack.EMPTY);
-                next.spawnAtLocation(level, armor);
-            }
+            next.dropUnwearableArmor(level);
         });
 
         if (transformed != null) {
@@ -1236,6 +1240,10 @@ public class MoHorse extends AbstractChestedHorse {
         // Horses that got a chest before only some kinds could carry one (or came out of an amulet) drop it
         if (hasChest() && !kind().carriesChest() && level() instanceof ServerLevel serverLevel)
             removeChest(serverLevel);
+
+        // The same for armor: the undead used to wear crystal armor, and without a slot it could not be taken off
+        if (level() instanceof ServerLevel serverLevel)
+            dropUnwearableArmor(serverLevel);
 
         if (level().isClientSide()) {
             tickWings();

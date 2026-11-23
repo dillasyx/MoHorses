@@ -44,6 +44,7 @@ public final class MoHorsesTagProviders {
         protected void addTags(HolderLookup.Provider registries) {
             addKinds(EntityTypeTags.CAN_EQUIP_SADDLE, kind -> true);
             addKinds(EntityTypeTags.CAN_WEAR_HORSE_ARMOR, kind -> kind.armorRule() != HorseKind.ArmorRule.NONE);
+            addKinds(ItemRegistry.CAN_WEAR_CRYSTAL_HORSE_ARMOR, kind -> kind.armorRule() == HorseKind.ArmorRule.CRYSTAL);
             addKinds(EntityTypeTags.UNDEAD, HorseKind::isUndead);
             addKinds(EntityTypeTags.INVERTED_HEALING_AND_HARM, HorseKind::isUndead);
             // Only the undead with flesh on them burn in daylight, not the skeletons

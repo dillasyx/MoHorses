@@ -26,15 +26,16 @@ public enum HorseKind {
     DARK_PEGASUS("dark_pegasus", Shape.WINGED,  ArmorRule.CRYSTAL,  true,  true,  false, false, "dark_pegasus"),
     FAIRY_HORSE("fairy_horse",   Shape.FAIRY,   ArmorRule.CRYSTAL,  true,  false, false, false, "fairy_horse/white"),
     // The undead rot away into skeletons, like vanilla zombie horses (see ZombieHorseDecay)
-    UNDEAD_UNICORN("undead_unicorn",     Shape.UNICORN, ArmorRule.CRYSTAL, false, false, false, false, "undead_unicorn/base"),
-    UNDEAD_PEGASUS("undead_pegasus",     Shape.WINGED,  ArmorRule.CRYSTAL, true,  false, false, false, "undead_pegasus/base"),
-    SKELETON_UNICORN("skeleton_unicorn", Shape.UNICORN, ArmorRule.CRYSTAL, false, false, false, false, "skeleton_unicorn/skeleton"),
-    SKELETON_PEGASUS("skeleton_pegasus", Shape.WINGED,  ArmorRule.CRYSTAL, true,  false, false, false, "skeleton_pegasus/skeleton"),
+    UNDEAD_UNICORN("undead_unicorn",     Shape.UNICORN, ArmorRule.NONE,    false, false, false, false, "undead_unicorn/base"),
+    UNDEAD_PEGASUS("undead_pegasus",     Shape.WINGED,  ArmorRule.NONE,    true,  false, false, false, "undead_pegasus/base"),
+    SKELETON_UNICORN("skeleton_unicorn", Shape.UNICORN, ArmorRule.NONE,    false, false, false, false, "skeleton_unicorn/skeleton"),
+    SKELETON_PEGASUS("skeleton_pegasus", Shape.WINGED,  ArmorRule.NONE,    true,  false, false, false, "skeleton_pegasus/skeleton"),
     // What may be left of a tamed horse when it dies (see GhostHorses). Translucent, and they flicker.
     GHOST_HORSE("ghost_horse",           Shape.HORSE,   ArmorRule.CRYSTAL, false, false, false, false, "ghost_horse/ghost"),
     GHOST_PEGASUS("ghost_pegasus",       Shape.WINGED,  ArmorRule.CRYSTAL, true,  false, false, false, "ghost_pegasus/ghost");
 
-    /// Which horse armor a kind can wear: normal horses only the vanilla ones, the special horses only crystal armor
+    /// Which horse armor a kind can wear, as in Mo' Creatures (isArmored, isMagicHorse): the Zorse the vanilla ones, the
+    /// magical horses (Bat Horse, Unicorn, living Pegasi, Fairy Horse) and the ghosts only crystal armor, the others none
     public enum ArmorRule { NORMAL, CRYSTAL, NONE }
 
     /// Which body the kind is drawn with. All shapes are the vanilla horse model; the extra parts and the

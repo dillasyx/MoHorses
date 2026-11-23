@@ -1,3 +1,8 @@
+## 1.0.6 (unreleased)
+
+- Crystal Horse Armor as in Mo' Creatures: only the Bat Horse, Unicorn, Pegasus, Dark Pegasus, Fairy Horse and the ghosts wear it. Vanilla horses and zombie horses can't put it on any more, and Undead and Skeleton Unicorns and Pegasi wear no armor at all (they drop the one they have on)
+- A Zombie Horse that rots into a Skeleton Horse drops its armor instead of keeping it out of reach (skeleton horses have no armor slot). Armor that is already stuck on one comes off with shears
+
 ## 1.0.5
 
 - With [Modonomicon](https://modrinth.com/mod/modonomicon) installed (optional), an in-game guide book explains taming, breeding, essences, the undead and the items in five chapters, with the horses shown in 3D. Craft it from a book and a sugar lump

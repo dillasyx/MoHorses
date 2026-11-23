@@ -5,9 +5,11 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.ConversionParams;
 import net.minecraft.world.entity.EntityTypes;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.equine.SkeletonHorse;
 import net.minecraft.world.entity.animal.equine.ZombieHorse;
+import net.minecraft.world.item.ItemStack;
 import one.syx.mohorses.advancement.HorseEvents;
 import one.syx.mohorses.registry.ParticleRegistry;
 
@@ -82,11 +84,21 @@ public final class ZombieHorseDecay {
         turnToSkeleton(horse, level);
     }
 
-    /// The last of the flesh falls off: the zombie horse becomes a skeleton horse, keeping its owner, saddle and name
+    /// The last of the flesh falls off: the zombie horse becomes a skeleton horse, keeping its owner, saddle and name.
+    /// Skeleton horses have no armor slot (entity tag minecraft:can_wear_horse_armor), so armor drops to the ground.
     private static void turnToSkeleton(ZombieHorse horse, ServerLevel level) {
         MoHorse.spawnMaggots(level, horse, 1);
 
-        SkeletonHorse skeleton = horse.convertTo(EntityTypes.SKELETON_HORSE, ConversionParams.single(horse, true, false), next -> HorseTransfer.copy(horse, next, false));
+        SkeletonHorse skeleton = horse.convertTo(EntityTypes.SKELETON_HORSE, ConversionParams.single(horse, true, false), next -> {
+            HorseTransfer.copy(horse, next, false);
+
+            ItemStack armor = next.getBodyArmorItem();
+
+            if (!armor.isEmpty() && !next.isEquippableInSlot(armor, EquipmentSlot.BODY)) {
+                next.setItemSlot(EquipmentSlot.BODY, ItemStack.EMPTY);
+                next.spawnAtLocation(level, armor);
+            }
+        });
 
         if (skeleton != null) {
             HorseEvents.awardOwner(skeleton, HorseEvents.SKELETON_HORSE);
