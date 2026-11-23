@@ -16,8 +16,10 @@ public class MoHorseRenderState extends DonkeyRenderState {
     public int decayStage;
     /// How opaque a ghost is drawn (1 for every other kind)
     public float ghostOpacity = 1.0F;
-    /// Drawn hovering with the legs swept back (ghosts)
+    /// Drawn hovering (ghosts)
     public boolean floating;
+    /// How far the legs are swept back, 0 (normal) to 1 (ghosts always, winged horses in flight)
+    public float legSweep;
     /// Flickering to the look of a vanilla zombie horse (Essence of Undead on a plain kind)
     public boolean showsZombieHorse;
     /// A whipped unicorn charging, head down

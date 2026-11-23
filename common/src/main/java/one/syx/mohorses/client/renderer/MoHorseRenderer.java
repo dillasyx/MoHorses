@@ -150,6 +150,7 @@ public class MoHorseRenderer extends MobRenderer<MoHorse, MoHorseRenderState, En
         state.decayStage = horse.getDecayStage();
         state.ghostOpacity = horse.kind().isGhost() ? horse.getGhostOpacity(partialTicks) : 1.0F;
         state.floating = horse.kind().isGhost();
+        state.legSweep = state.floating ? 1.0F : horse.getLegSweep(partialTicks);
         state.charging = horse.isCharging();
         state.shuffling = horse.isShuffling();
         state.hasChest = horse.hasChest();

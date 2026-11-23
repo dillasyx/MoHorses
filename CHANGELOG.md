@@ -2,6 +2,8 @@
 
 - Crystal Horse Armor as in Mo' Creatures: only the Bat Horse, Unicorn, Pegasus, Dark Pegasus, Fairy Horse and the ghosts wear it. Vanilla horses and zombie horses can't put it on any more, and Undead and Skeleton Unicorns and Pegasi wear no armor at all (they drop the one they have on)
 - A Zombie Horse that rots into a Skeleton Horse drops its armor instead of keeping it out of reach (skeleton horses have no armor slot). Armor that is already stuck on one comes off with shears
+- The feathered wings no longer clap together over the back while a winged horse climbs
+- Winged horses sweep their legs back in flight (not when they just jump)
 
 ## 1.0.5
 

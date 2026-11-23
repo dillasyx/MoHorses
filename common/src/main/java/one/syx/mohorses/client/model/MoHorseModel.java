@@ -125,10 +125,12 @@ public class MoHorseModel extends AbstractEquineModel<MoHorseRenderState> {
         float beat = state.wingBeat;
         // A fixed beat rate: scaling ageInTicks by a changing factor would make the wings jump
         float phase = state.ageInTicks * 0.3F;
-        float amplitude = Mth.lerp(beat, 0.55F, 1.1F) * spread;
+        float amplitude = Mth.lerp(beat, 0.55F, 1.0F) * spread;
 
-        // Positive Z rotation lowers a left wing; the slight negative bias keeps the beat centred a bit above level
-        float innerFlap = Mth.cos(phase) * amplitude - 0.15F * spread;
+        // Positive Z rotation lowers a left wing. Gliding, the beat is centred a bit above level; the wide beat of a climb
+        // a bit below, so the wings swing up almost upright without clapping together over the back.
+        float center = Mth.lerp(beat, -0.15F, 0.05F) * spread;
+        float innerFlap = Mth.cos(phase) * amplitude + center;
         float middleFlap = Mth.cos(phase - 0.7F) * amplitude * 0.45F;
         float outerFlap = Mth.cos(phase - 1.4F) * amplitude * 0.35F;
 

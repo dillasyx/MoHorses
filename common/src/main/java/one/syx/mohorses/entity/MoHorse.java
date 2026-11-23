@@ -120,6 +120,15 @@ public class MoHorse extends AbstractChestedHorse {
     private float wingSpreadO;
     private float wingBeat;
     private float wingBeatO;
+    /// How far the legs are swept back in flight, 0 (normal) to 1 (like a ghost's)
+    private float legSweep;
+    private float legSweepO;
+    private boolean inFlight;
+
+    /// No plain jump still rises after this many ticks in the air (the strongest horses take about 12 to the top)
+    private static final int LONGEST_JUMP_RISE = 14;
+    /// Whoever is in the air this long is gliding, not coming down from a jump
+    private static final int LONGEST_JUMP = 50;
     // Client-side ghost flicker: the opacity drifts towards a new random value every few seconds
     private float ghostOpacity = 0.5F;
     private float ghostOpacityO = 0.5F;
@@ -1262,6 +1271,8 @@ public class MoHorse extends AbstractChestedHorse {
             // A unicorn jumping or gliding leaves a trail of stars (not when it just steps up a block)
             this.airTicks = onGround() || isInWater() || isPassenger() ? 0 : this.airTicks + 1;
 
+            tickLegs();
+
             if (kind() == HorseKind.UNICORN && this.airTicks > 4) {
                 for (int i = 0; i < 2; i++)
                     level().addParticle(ParticleRegistry.UNICORN_STAR.get(), getRandomX(0.8), getY() + this.random.nextDouble() * getBbHeight() * 0.7, getRandomZ(0.8), 0.0, 0.0, 0.0);
@@ -1300,6 +1311,20 @@ public class MoHorse extends AbstractChestedHorse {
         this.wingBeat = approach(this.wingBeat, climbing ? 1.0F : 0.0F, 0.1F);
     }
 
+    /// Client-side only: in real flight the legs sweep back, but not during a jump. A jump only rises for the first few
+    /// ticks, so a horse that gains height later than that is beating its wings (told from its position, which works
+    /// for other players' horses as well), and one that stays up long enough is gliding.
+    private void tickLegs() {
+        this.legSweepO = this.legSweep;
+
+        if (!isFlying())
+            this.inFlight = false;
+        else if (this.airTicks > LONGEST_JUMP || this.airTicks > LONGEST_JUMP_RISE && getY() - this.yo > 0.03)
+            this.inFlight = true;
+
+        this.legSweep = approach(this.legSweep, this.inFlight ? 1.0F : 0.0F, this.inFlight ? 0.07F : 0.2F);
+    }
+
     private static float approach(float value, float target, float step) {
         return value < target ? Math.min(target, value + step) : Math.max(target, value - step);
     }
@@ -1307,6 +1332,11 @@ public class MoHorse extends AbstractChestedHorse {
     /// How far the wings are spread, from 0 (folded on the flanks) to 1 (fully out)
     public float getWingSpread(float partialTick) {
         return Mth.lerp(partialTick, this.wingSpreadO, this.wingSpread);
+    }
+
+    /// How far the legs are swept back, from 0 (standing, jumping) to 1 (in flight)
+    public float getLegSweep(float partialTick) {
+        return Mth.lerp(partialTick, this.legSweepO, this.legSweep);
     }
 
     /// How hard the wings beat, from 0 (gliding) to 1 (climbing)
