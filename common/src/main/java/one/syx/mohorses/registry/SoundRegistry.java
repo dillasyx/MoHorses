@@ -6,7 +6,11 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.JukeboxSong;
 import one.syx.mohorses.ModConstants;
+import one.syx.mohorses.entity.HorseKind;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.EnumMap;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public final class SoundRegistry {
@@ -16,17 +20,32 @@ public final class SoundRegistry {
     public static final Supplier<SoundEvent> FEEDING_SUGAR_LUMP = registerSound("feeding_sugar_lump");
     public static final Supplier<SoundEvent> WHIP = registerSound("item.whip.crack");
 
-    // Zebras (the Mo' Creatures zebra sounds)
-    public static final Supplier<SoundEvent> ZEBRA_AMBIENT = registerSound("entity.zebra.ambient");
-    public static final Supplier<SoundEvent> ZEBRA_HURT = registerSound("entity.zebra.hurt");
-    public static final Supplier<SoundEvent> ZEBRA_DEATH = registerSound("entity.zebra.death");
-    public static final Supplier<SoundEvent> ZEBRA_ANGRY = registerSound("entity.zebra.angry");
+    /// The voice of one kind
+    public record HorseVoice(Supplier<SoundEvent> ambient, Supplier<SoundEvent> hurt, Supplier<SoundEvent> death, Supplier<SoundEvent> angry) {}
 
-    // Ghost horses (the Mo' Creatures ghost horse sounds)
-    public static final Supplier<SoundEvent> GHOST_HORSE_AMBIENT = registerSound("entity.ghost_horse.ambient");
-    public static final Supplier<SoundEvent> GHOST_HORSE_HURT = registerSound("entity.ghost_horse.hurt");
-    public static final Supplier<SoundEvent> GHOST_HORSE_DEATH = registerSound("entity.ghost_horse.death");
-    public static final Supplier<SoundEvent> GHOST_HORSE_ANGRY = registerSound("entity.ghost_horse.angry");
+    /// Every kind has a voice of its own, made from the Mo' Creatures horse, donkey and zebra sounds, except the undead:
+    /// they sound like vanilla zombie and skeleton horses
+    private static final Map<HorseKind, HorseVoice> HORSE_VOICES = new EnumMap<>(HorseKind.class);
+
+    static {
+        for (HorseKind kind : HorseKind.values()) {
+            if (kind.isUndead())
+                continue;
+
+            String id = "entity." + kind.id() + ".";
+
+            HORSE_VOICES.put(kind, new HorseVoice(registerSound(id + "ambient"), registerSound(id + "hurt"), registerSound(id + "death"), registerSound(id + "angry")));
+        }
+    }
+
+    /// The kind's own voice, or null for the undead
+    public static @Nullable HorseVoice voice(HorseKind kind) {
+        return HORSE_VOICES.get(kind);
+    }
+
+    // Maggots (vanilla slime sounds, higher and quieter)
+    public static final Supplier<SoundEvent> MAGGOT_HURT = registerSound("entity.maggot.hurt");
+    public static final Supplier<SoundEvent> MAGGOT_DEATH = registerSound("entity.maggot.death");
 
     // MUSIC DISC
     public static final Identifier SHUFFLING_ID = ModConstants.id("shuffling");

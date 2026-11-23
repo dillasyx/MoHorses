@@ -1356,50 +1356,26 @@ public class MoHorse extends AbstractChestedHorse {
             playSound(SoundEvents.HORSE_BREATHE, soundType.getVolume() * 0.6F, soundType.getPitch());
     }
 
-    /// Which voice a kind has: zebras and ghosts their Mo' Creatures sounds, the undead the vanilla zombie and
-    /// skeleton horse sounds, and all the others the vanilla horse or donkey
-    private enum Voice { HORSE, DONKEY, ZEBRA, ZOMBIE, SKELETON, GHOST }
-
-    private Voice voice() {
-        HorseKind kind = kind();
-
-        if (kind.isGhost())
-            return Voice.GHOST;
-
-        if (kind.decaysInto() != null)
-            return Voice.ZOMBIE;
-
-        if (kind.isUndead())
-            return Voice.SKELETON;
-
-        if (kind == HorseKind.ZEBRA)
-            return Voice.ZEBRA;
-
-        return kind.donkeyLike() ? Voice.DONKEY : Voice.HORSE;
-    }
+    // Every kind has its own voice (see SoundRegistry), only the undead sound like vanilla zombie and skeleton horses
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return switch (voice()) {
-            case DONKEY -> SoundEvents.DONKEY_AMBIENT;
-            case ZEBRA -> SoundRegistry.ZEBRA_AMBIENT.get();
-            case ZOMBIE -> SoundEvents.ZOMBIE_HORSE_AMBIENT;
-            case SKELETON -> SoundEvents.SKELETON_HORSE_AMBIENT;
-            case GHOST -> SoundRegistry.GHOST_HORSE_AMBIENT.get();
-            default -> SoundEvents.HORSE_AMBIENT;
-        };
+        SoundRegistry.HorseVoice voice = SoundRegistry.voice(kind());
+
+        if (voice != null)
+            return voice.ambient().get();
+
+        return kind().decaysInto() != null ? SoundEvents.ZOMBIE_HORSE_AMBIENT : SoundEvents.SKELETON_HORSE_AMBIENT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return switch (voice()) {
-            case DONKEY -> SoundEvents.DONKEY_DEATH;
-            case ZEBRA -> SoundRegistry.ZEBRA_DEATH.get();
-            case ZOMBIE -> SoundEvents.ZOMBIE_HORSE_DEATH;
-            case SKELETON -> SoundEvents.SKELETON_HORSE_DEATH;
-            case GHOST -> SoundRegistry.GHOST_HORSE_DEATH.get();
-            default -> SoundEvents.HORSE_DEATH;
-        };
+        SoundRegistry.HorseVoice voice = SoundRegistry.voice(kind());
+
+        if (voice != null)
+            return voice.death().get();
+
+        return kind().decaysInto() != null ? SoundEvents.ZOMBIE_HORSE_DEATH : SoundEvents.SKELETON_HORSE_DEATH;
     }
 
     @Override
@@ -1409,24 +1385,21 @@ public class MoHorse extends AbstractChestedHorse {
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSource) {
-        return switch (voice()) {
-            case DONKEY -> SoundEvents.DONKEY_HURT;
-            case ZEBRA -> SoundRegistry.ZEBRA_HURT.get();
-            case ZOMBIE -> SoundEvents.ZOMBIE_HORSE_HURT;
-            case SKELETON -> SoundEvents.SKELETON_HORSE_HURT;
-            case GHOST -> SoundRegistry.GHOST_HORSE_HURT.get();
-            default -> SoundEvents.HORSE_HURT;
-        };
+        SoundRegistry.HorseVoice voice = SoundRegistry.voice(kind());
+
+        if (voice != null)
+            return voice.hurt().get();
+
+        return kind().decaysInto() != null ? SoundEvents.ZOMBIE_HORSE_HURT : SoundEvents.SKELETON_HORSE_HURT;
     }
 
     @Override
     protected SoundEvent getAngrySound() {
-        return switch (voice()) {
-            case DONKEY -> SoundEvents.DONKEY_ANGRY;
-            case ZEBRA -> SoundRegistry.ZEBRA_ANGRY.get();
-            case ZOMBIE -> SoundEvents.ZOMBIE_HORSE_ANGRY;
-            case GHOST -> SoundRegistry.GHOST_HORSE_ANGRY.get();
-            default -> SoundEvents.HORSE_ANGRY;
-        };
+        SoundRegistry.HorseVoice voice = SoundRegistry.voice(kind());
+
+        if (voice != null)
+            return voice.angry().get();
+
+        return kind().decaysInto() != null ? SoundEvents.ZOMBIE_HORSE_ANGRY : SoundEvents.HORSE_ANGRY;
     }
 }

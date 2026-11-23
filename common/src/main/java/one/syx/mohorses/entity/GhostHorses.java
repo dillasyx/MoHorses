@@ -41,7 +41,7 @@ public final class GhostHorses {
         level.addFreshEntity(ghost);
         level.sendParticles(ParticleTypes.SOUL, ghost.getX(), ghost.getY() + 0.8, ghost.getZ(), 20, 0.5, 0.6, 0.5, 0.02);
         level.sendParticles(ParticleTypes.WHITE_SMOKE, ghost.getX(), ghost.getY() + 0.8, ghost.getZ(), 15, 0.5, 0.5, 0.5, 0.01);
-        ghost.playSound(SoundRegistry.GHOST_HORSE_AMBIENT.get(), 1.0F, 1.0F);
+        ghost.playSound(SoundRegistry.voice(ghostKind).ambient().get(), 1.0F, 1.0F);
     }
 
     private static @Nullable HorseKind ghostOf(AbstractHorse horse) {

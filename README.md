@@ -114,5 +114,5 @@ by DrZhark (models and textures also by BlockDaddy, code by Bloodshot), kept ali
 team (ACGaming, IcarussOne, xJon) and the Nostalgia Edition team (multision, TheidenHD). It is not affiliated with or
 endorsed by them.
 
-The horse textures are based on the Mo' Creatures originals, and the Shuffling music disc plays the Mo' Creatures
-song. Mo' Creatures is licensed under the GNU GPLv3, and so is Mo' Horses: see [LICENSE](LICENSE).
+The horse textures are based on the Mo' Creatures originals, the voices of the horses (all but the undead) are
+made from the Mo' Creatures sounds, and the Shuffling music disc plays the Mo' Creatures song. Mo' Creatures is licensed under the GNU GPLv3, and so is Mo' Horses: see [LICENSE](LICENSE).

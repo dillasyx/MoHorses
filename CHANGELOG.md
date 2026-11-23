@@ -1,9 +1,12 @@
-## 1.0.6 (unreleased)
+## 1.0.6
 
+- Every horse of the mod has a voice of its own, made from the Mo' Creatures horse, donkey and zebra sounds and cut and levelled like the vanilla ones. Only the Undead and Skeleton Unicorns and Pegasi still sound like vanilla zombie and skeleton horses
+- Maggots squish when hurt or killed, instead of sounding like a hurt player, and crawl without a sound
+- Winged horses sweep their legs back and paddle with them in flight (not when they just jump)
+- The feathered wings no longer clap together over the back while a winged horse climbs
 - Crystal Horse Armor as in Mo' Creatures: only the Bat Horse, Unicorn, Pegasus, Dark Pegasus, Fairy Horse and the ghosts wear it. Vanilla horses and zombie horses can't put it on any more, and Undead and Skeleton Unicorns and Pegasi wear no armor at all (they drop the one they have on)
 - A Zombie Horse that rots into a Skeleton Horse drops its armor instead of keeping it out of reach (skeleton horses have no armor slot). Armor that is already stuck on one comes off with shears
-- The feathered wings no longer clap together over the back while a winged horse climbs
-- Winged horses sweep their legs back in flight (not when they just jump)
+- The Shuffling music disc plays again: its sound file was damaged in every release so far
 
 ## 1.0.5
 

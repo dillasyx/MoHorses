@@ -7,6 +7,9 @@ import com.geckolib.animation.AnimationController;
 import com.geckolib.animation.RawAnimation;
 import com.geckolib.animation.object.PlayState;
 import com.geckolib.util.GeckoLibUtil;
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LeapAtTargetGoal;
@@ -16,6 +19,8 @@ import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import one.syx.mohorses.registry.SoundRegistry;
 
 public class MaggotEntity extends Monster implements GeoEntity {
     private static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.maggot.idle");
@@ -57,6 +62,21 @@ public class MaggotEntity extends Monster implements GeoEntity {
             this.wiggleTicks = 40;
         }
     }
+
+    /// Monsters sound like a hurt player by default; a maggot only squishes
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return SoundRegistry.MAGGOT_HURT.get();
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundRegistry.MAGGOT_DEATH.get();
+    }
+
+    /// Crawling makes no sound
+    @Override
+    protected void playStepSound(BlockPos pos, BlockState state) {}
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
