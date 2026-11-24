@@ -15,6 +15,7 @@ import one.syx.mohorses.entity.HorseKind;
 import one.syx.mohorses.entity.MaggotEntity;
 import one.syx.mohorses.entity.MoHorse;
 import one.syx.mohorses.entity.WildNightmare;
+import one.syx.mohorses.entity.WildUnicorn;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -34,6 +35,13 @@ public final class EntityRegistry {
             .clientTrackingRange(10)
             .fireImmune()
             .notInPeaceful());
+
+    /// Rare unicorns in the wild. They use the unicorn look, but can't be tamed, and fight back when attacked.
+    public static final Supplier<EntityType<WildUnicorn>> WILD_UNICORN = register("wild_unicorn", () -> EntityType.Builder.of(WildUnicorn::new, MobCategory.CREATURE)
+            .sized(1.3964844F, 1.6F)
+            .eyeHeight(1.52F)
+            .passengerAttachments(1.44375F)
+            .clientTrackingRange(10));
 
     private static final Map<HorseKind, Supplier<EntityType<MoHorse>>> HORSES = new EnumMap<>(HorseKind.class);
 
@@ -68,6 +76,7 @@ public final class EntityRegistry {
                 .build());
 
         registrar.accept(WILD_NIGHTMARE.get(), WildNightmare.createAttributes().build());
+        registrar.accept(WILD_UNICORN.get(), WildUnicorn.createAttributes().build());
 
         for (HorseKind kind : HorseKind.values()) {
             AttributeSupplier.Builder attributes = AbstractChestedHorse.createBaseChestedHorseAttributes();

@@ -53,6 +53,9 @@ public class MoHorseRenderer extends MobRenderer<MoHorse, MoHorseRenderState, En
                 ? new BabyDonkeyModel(context.bakeLayer(ModelLayers.DONKEY_BABY))
                 : new MoHorseModel(context.bakeLayer(MoHorseModel.layer(kind.shape(), true)), true);
 
+        addLayer(new HorseGlowLayer(this));
+        addLayer(new HorseEyesLayer(this));
+
         boolean donkey = kind.shape() == HorseKind.Shape.DONKEY;
 
         if (kind.armorRule() != HorseKind.ArmorRule.NONE) {
@@ -78,6 +81,7 @@ public class MoHorseRenderer extends MobRenderer<MoHorse, MoHorseRenderState, En
             poseStack.translate(0.0F, (MoHorse.GHOST_HOVER + Mth.sin(state.ageInTicks * 0.08F) * 0.04F) * state.scale, 0.0F);
 
         super.submit(state, poseStack, submitNodeCollector, camera);
+        HorseAura.submit(state, poseStack, submitNodeCollector, camera);
         poseStack.popPose();
     }
 
@@ -150,8 +154,12 @@ public class MoHorseRenderer extends MobRenderer<MoHorse, MoHorseRenderState, En
         state.decayStage = horse.getDecayStage();
         state.ghostOpacity = horse.kind().isGhost() ? horse.getGhostOpacity(partialTicks) : 1.0F;
         state.floating = horse.kind().isGhost();
+        state.darkness = horse.getDarkness(partialTicks);
+        state.groundY = horse.getGroundY(partialTicks);
         state.legSweep = state.floating ? 1.0F : horse.getLegSweep(partialTicks);
         state.charging = horse.isCharging();
+        state.ablaze = horse.isAblaze();
+        state.sparkleOffset = horse.getId() * 37 % 1000;
         state.shuffling = horse.isShuffling();
         state.hasChest = horse.hasChest();
         state.flying = horse.isFlying();

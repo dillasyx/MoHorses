@@ -21,6 +21,7 @@ import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import one.syx.mohorses.entity.HorseKind;
 import one.syx.mohorses.entity.MoHorse;
 import one.syx.mohorses.entity.WildNightmare;
+import one.syx.mohorses.entity.WildUnicorn;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.bus.BusGroup;
 import net.minecraftforge.fml.common.Mod;
@@ -68,6 +69,8 @@ public final class ModMain {
                     MoHorse::checkZebraSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
             event.register(EntityRegistry.WILD_NIGHTMARE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                     WildNightmare::checkSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
+            event.register(EntityRegistry.WILD_UNICORN.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                    WildUnicorn::checkSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
         });
         LootTableLoadEvent.BUS.addListener(ModMain::addExtraDrops);
         PlayerInteractEvent.RightClickBlock.BUS.addListener((Consumer<PlayerInteractEvent.RightClickBlock>)event ->

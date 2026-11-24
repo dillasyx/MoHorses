@@ -18,6 +18,7 @@ on top of the vanilla horse look. Heavily inspired by Mo' Creatures, licensed un
 | Nightmare | Essence of Fire on a Zorse | Fire immune, no armor. Breeds like a horse, heals with Essence of Fire. Feed it redstone: for a minute it is faster and leaves a trail of fire when ridden (only particles without mob griefing) |
 | Wild Nightmare | Spawns rarely and alone in the Nether Wastes, Soul Sand Valleys and Basalt Deltas (biome tag `mohorses:spawns_wild_nightmares`) | Hostile, can't be tamed. One in twenty comes with a Piglin Brute riding it, golden spear in hand. Drops leather, and with a 15 % chance a Heart of Fire when a player kills it |
 | Unicorn | Essence of Light on a Nightmare | Crack the whip while riding and it charges, head down: only then does its horn hurt. Glides down slowly, leaving a trail of stars when it jumps or glides, no fall damage. Drops its horn when it dies. Breeds and heals with Essence of Light |
+| Wild Unicorn | Spawns very rarely and alone in Flower Forests, Meadows, Lush Caves, Cherry Groves, Old Growth Birch Forests and Groves (biome tags `mohorses:spawns_wild_unicorns/weight_5` to `weight_1`, how common it is there compared to the others), never within 96 blocks of another unicorn | Peaceful until attacked, then it fights back, horn down, and calms down after 20 seconds without another hit. Can't be tamed. Drops its horn and leather |
 | Pegasus | Essence of Light on a Bat Horse standing on the ground above the clouds | Flies. Breeds and heals with Essence of Light |
 | Dark Pegasus | Essence of Darkness on a Pegasus standing on the ground above the clouds | Flies, fire immune. Breeds and heals with Essence of Darkness |
 | Fairy Horse | Unicorn + Pegasus (white) or Unicorn + Dark Pegasus (black), each fed its essence; or two Fairy Horses | Flies. The parents are used up: the Unicorn is gone (its gear drops), the Pegasus comes back in a Sky Amulet. Each one can be dyed once, in any colour (white dye makes it white) |
@@ -34,8 +35,9 @@ essences it takes four seconds of flickering, with rotten flesh falling off; two
 the other while it lasts, and so does every undead horse with flesh left on it that dies (zombie horses included, skeletons not). The undead are hurt by
 healing and healed by harming, and fit in the Bone Amulet. Essence of Undead heals the undead and the ghosts.
 
-Undead Unicorns and Undead Pegasi burn in daylight like zombies and wear no armor;
-the skeletons and ghosts don't. While you ride an undead horse (zombie or skeleton, vanilla or not), monsters leave you
+Undead Unicorns and Undead Pegasi burn in daylight like zombies and wear no armor. Like vanilla zombie horses without
+armor they look for shade by day and stay in it. The skeletons and ghosts do neither. While you ride an undead horse
+(zombie or skeleton, vanilla or not), monsters leave you
 alone, unless you attack them first.
 
 Ghosts rise from the dead horse, fading in over three seconds, with the same owner, name and stats. They can't breed,
@@ -54,6 +56,11 @@ horse, the Zonkey is a donkey, the Undead Unicorn and Pegasus a zombie horse, th
 get the average of their parents, transformations and ghosts keep the stats of the horse.
 Essences only work on tamed, grown horses. A transformation takes four seconds: the horse stands still and flickers
 between its old and new look, faster and faster, before it turns.
+
+Unicorns, Fairy Horses and Nightmares glow in the dark: the horn and the gold, the wings in their colour, and the
+embers. The eyes of Unicorns, Fairy Horses, Dark Pegasi (red) and ghosts sparkle in their colour. Ghosts shimmer faintly
+at night. In the dark, a soft aura surrounds the Dark Pegasus and the ghosts, and faintly the Unicorn; it looks like
+light but doesn't make anything around it lighter.
 
 Flying: while riding a winged horse, hold the jump key in mid-air to climb. Releasing it gives an extra flap; a longer
 charge gives a stronger one.

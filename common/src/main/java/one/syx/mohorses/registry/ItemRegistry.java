@@ -40,6 +40,7 @@ public final class ItemRegistry {
 
     // SPAWN EGGS
     public static final Supplier<SpawnEggItem> WILD_NIGHTMARE_SPAWN_EGG = register("wild_nightmare_spawn_egg", SpawnEggItem::new, properties -> properties.spawnEgg(EntityRegistry.WILD_NIGHTMARE.get()));
+    public static final Supplier<SpawnEggItem> WILD_UNICORN_SPAWN_EGG = register("wild_unicorn_spawn_egg", SpawnEggItem::new, properties -> properties.spawnEgg(EntityRegistry.WILD_UNICORN.get()));
     public static final Supplier<SpawnEggItem> MAGGOT_SPAWN_EGG = register("maggot_spawn_egg", SpawnEggItem::new, properties -> properties.spawnEgg(EntityRegistry.MAGGOT.get()));
 
     private static final Map<HorseKind, Supplier<SpawnEggItem>> HORSE_SPAWN_EGGS = new EnumMap<>(HorseKind.class);
@@ -170,6 +171,7 @@ public final class ItemRegistry {
                 }
 
                 entries.accept(WILD_NIGHTMARE_SPAWN_EGG.get());
+                entries.accept(WILD_UNICORN_SPAWN_EGG.get());
                 entries.accept(MAGGOT_SPAWN_EGG.get());
             })
             .build());

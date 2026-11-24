@@ -25,11 +25,11 @@ public final class EggNuzzle {
         void mohorses$setNuzzleStart(int start);
     }
 
-    /// Grown horses, donkeys, mules and the horses of this mod; not llamas or camels (other models) and not the wild,
-    /// hostile Nightmares
+    /// Grown horses, donkeys, mules and the horses of this mod; not llamas or camels (other models) and not the wild
+    /// Nightmares and unicorns
     public static boolean canNuzzle(Entity entity) {
         return entity instanceof AbstractHorse horse && !(horse instanceof Llama) && !(horse instanceof Camel)
-                && !(horse instanceof WildNightmare) && !horse.isBaby();
+                && !(horse instanceof WildNightmare) && !(horse instanceof WildUnicorn) && !horse.isBaby();
     }
 
     /// Feeding an egg: uses it up and starts the nuzzling. Returns whether the egg was taken.

@@ -23,6 +23,7 @@
     "client.EquineRenderStateMixin",
     "client.HorseMarkingLayerMixin",
     "client.HorseRendererMixin",
+    "client.RenderTypesAccessor",
     "client.UndeadHorseRendererMixin"
   ]
 }

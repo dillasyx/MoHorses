@@ -16,6 +16,10 @@ public class MoHorseRenderState extends DonkeyRenderState {
     public int decayStage;
     /// How opaque a ghost is drawn (1 for every other kind)
     public float ghostOpacity = 1.0F;
+    /// How dark it is around it, from 0 (daylight, or light blocks) to 1
+    public float darkness;
+    /// Where the ground below it is
+    public double groundY;
     /// Drawn hovering (ghosts)
     public boolean floating;
     /// How far the legs are swept back, 0 (normal) to 1 (ghosts always, winged horses in flight)
@@ -24,6 +28,10 @@ public class MoHorseRenderState extends DonkeyRenderState {
     public boolean showsZombieHorse;
     /// A whipped unicorn charging, head down
     public boolean charging;
+    /// A Nightmare fed with redstone
+    public boolean ablaze;
+    /// So that the eyes of several horses don't sparkle in step
+    public float sparkleOffset;
     /// A zebra dancing to the Shuffling song
     public boolean shuffling;
     /// In the air with wings out

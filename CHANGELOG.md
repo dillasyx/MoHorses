@@ -1,3 +1,11 @@
+## 1.0.7
+
+- Wild Unicorns: very rarely and always alone, in Flower Forests, Meadows, Lush Caves, Cherry Groves, Old Growth Birch Forests and Groves, never near another unicorn. They are peaceful until attacked, then they fight back; they can't be tamed, and drop their horn and leather
+- Zombie Horses, Undead Unicorns and Undead Pegasi keep out of the sun: by day they look for shade nearby and stay in it (not with armor on, and not while ridden or on a lead)
+- Unicorns, Fairy Horses and Nightmares glow in the dark: the horn and the gold, the wings in their colour, and the embers (brighter during a charge, or after redstone). The red in a Dark Pegasus's coat and feathers smoulders. The eyes of the Unicorns, Fairy Horses, Dark Pegasi (red) and ghosts sparkle in their colour. Ghosts shimmer faintly at night
+- In the dark a soft aura surrounds the Dark Pegasi and ghosts, and faintly the Unicorns. They and the Fairy Horses (in their colour) give off a few particles, Nightmares small flames
+- Winged horses lower their legs again when they come close to the ground, ready to land. Dust puffs up under their hooves when they take off and touch down, Pegasi and Dark Pegasi lose a feather now and then, and tiny bats flutter off from Bat Horses
+
 ## 1.0.6
 
 - Every horse of the mod has a voice of its own, made from the Mo' Creatures horse, donkey and zebra sounds and cut and levelled like the vanilla ones. Only the Undead and Skeleton Unicorns and Pegasi still sound like vanilla zombie and skeleton horses

@@ -11,6 +11,8 @@ import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.entity.EntityTypes;
 import one.syx.mohorses.client.model.MoHorseModel;
+import one.syx.mohorses.client.particle.FeatherParticle;
+import one.syx.mohorses.client.particle.TinyBatParticle;
 import one.syx.mohorses.client.particle.UndeadFleshParticle;
 import one.syx.mohorses.client.particle.UnicornStarParticle;
 import one.syx.mohorses.client.renderer.DecayingZombieHorseRenderer;
@@ -38,6 +40,10 @@ public final class ClientRegistration {
 
         entityRenderers.accept(EntityRegistry.WILD_NIGHTMARE.get(), wildNightmare);
 
+        EntityRendererProvider<MoHorse> wildUnicorn = context -> new MoHorseRenderer(context, HorseKind.UNICORN);
+
+        entityRenderers.accept(EntityRegistry.WILD_UNICORN.get(), wildUnicorn);
+
         for (HorseKind kind : HorseKind.values()) {
             EntityRendererProvider<MoHorse> renderer = context -> new MoHorseRenderer(context, kind);
 
@@ -49,6 +55,9 @@ public final class ClientRegistration {
     public static void registerParticles(BiConsumer<ParticleType<SimpleParticleType>, Function<SpriteSet, ParticleProvider<SimpleParticleType>>> registrar) {
         registrar.accept(ParticleRegistry.UNDEAD_FLESH.get(), UndeadFleshParticle.Provider::new);
         registrar.accept(ParticleRegistry.UNICORN_STAR.get(), UnicornStarParticle.Provider::new);
+        registrar.accept(ParticleRegistry.FEATHER.get(), FeatherParticle.Provider::new);
+        registrar.accept(ParticleRegistry.DARK_FEATHER.get(), FeatherParticle.Provider::new);
+        registrar.accept(ParticleRegistry.TINY_BAT.get(), TinyBatParticle.Provider::new);
     }
 
     /// Register the model layers of the horse shapes

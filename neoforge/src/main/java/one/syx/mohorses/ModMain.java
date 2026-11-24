@@ -24,6 +24,7 @@ import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import one.syx.mohorses.entity.HorseKind;
 import one.syx.mohorses.entity.MoHorse;
 import one.syx.mohorses.entity.WildNightmare;
+import one.syx.mohorses.entity.WildUnicorn;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import one.syx.mohorses.event.ComposterListener;
@@ -65,6 +66,8 @@ public final class ModMain {
                     MoHorse::checkZebraSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
             event.register(EntityRegistry.WILD_NIGHTMARE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                     WildNightmare::checkSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+            event.register(EntityRegistry.WILD_UNICORN.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                    WildUnicorn::checkSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
         });
         NeoForge.EVENT_BUS.addListener(LootTableLoadEvent.class, ModMain::addExtraDrops);
         NeoForge.EVENT_BUS.addListener(PlayerInteractEvent.RightClickBlock.class, event ->

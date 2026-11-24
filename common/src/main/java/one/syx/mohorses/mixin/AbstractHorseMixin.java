@@ -17,6 +17,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
+import one.syx.mohorses.entity.AvoidSunGoal;
 import one.syx.mohorses.entity.EggNuzzle;
 import one.syx.mohorses.entity.HorseTransfer;
 import one.syx.mohorses.entity.VanillaHorseEssences;
@@ -34,6 +35,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 /// mods changing horses keep working):
 ///
 /// - essences work on vanilla horses (see [VanillaHorseEssences]); only while the player holds an essence
+/// - horses that burn in daylight look for shade (see [AvoidSunGoal])
 /// - zombie horses rot (see [ZombieHorseDecay], the state lives in ZombieHorseMixin)
 /// - the owner can be handed on to the horse that replaces this one (see [HorseTransfer])
 @Mixin(AbstractHorse.class)
@@ -84,6 +86,12 @@ public abstract class AbstractHorseMixin extends Animal implements HorseTransfer
 
         if (result != null)
             cir.setReturnValue(result);
+    }
+
+    /// Horses that burn in daylight look for shade (see [AvoidSunGoal])
+    @Inject(method = "registerGoals", at = @At("TAIL"))
+    private void mohorses$avoidSun(CallbackInfo ci) {
+        AvoidSunGoal.addTo((AbstractHorse)(Object)this, this.goalSelector);
     }
 
     @Inject(method = "tick", at = @At("TAIL"))

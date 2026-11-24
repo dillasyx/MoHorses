@@ -61,5 +61,6 @@ public class MoHorsesModelProvider extends FabricModelProvider {
         generators.itemModelOutput.accept(fairyEgg, ItemModelUtils.tintedModel(fairyModel, ItemModelUtils.constantTint(-1), new CustomModelDataSource(0, 0xFFF2B8EC)));
 
         generators.generateFlatItem(ItemRegistry.WILD_NIGHTMARE_SPAWN_EGG.get(), ModelTemplates.FLAT_ITEM);
+        generators.generateFlatItem(ItemRegistry.WILD_UNICORN_SPAWN_EGG.get(), ModelTemplates.FLAT_ITEM);
     }
 }

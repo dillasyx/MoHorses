@@ -16,6 +16,7 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import one.syx.mohorses.entity.HorseKind;
 import one.syx.mohorses.entity.MoHorse;
 import one.syx.mohorses.entity.WildNightmare;
+import one.syx.mohorses.entity.WildUnicorn;
 import one.syx.mohorses.event.ComposterListener;
 import one.syx.mohorses.registry.EntityRegistry;
 
@@ -36,6 +37,12 @@ public final class ModMain implements ModInitializer {
         // rarely: the forests are left out, where so little else spawns that they would be most of the monsters
         SpawnPlacements.register(EntityRegistry.WILD_NIGHTMARE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, WildNightmare::checkSpawnRules);
         BiomeModifications.addSpawn(BiomeSelectors.tag(TagKey.create(Registries.BIOME, ModConstants.id("spawns_wild_nightmares"))), MobCategory.MONSTER, EntityRegistry.WILD_NIGHTMARE.get(), 1, 1, 1);
+
+        // Wild unicorns, very rarely: the tags say how common they are in a biome compared to the others (see WildUnicorn)
+        SpawnPlacements.register(EntityRegistry.WILD_UNICORN.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, WildUnicorn::checkSpawnRules);
+
+        for (int weight = 1; weight <= 5; weight++)
+            BiomeModifications.addSpawn(BiomeSelectors.tag(TagKey.create(Registries.BIOME, ModConstants.id("spawns_wild_unicorns/weight_" + weight))), MobCategory.CREATURE, EntityRegistry.WILD_UNICORN.get(), weight, 1, 1);
 
         UseBlockCallback.EVENT.register((player, level, hand, hitResult) -> {
             ComposterListener.onBlockUsed(level, hitResult.getBlockPos(), player.getItemInHand(hand));

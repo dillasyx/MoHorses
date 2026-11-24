@@ -6,11 +6,15 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.state.BlockState;
 import one.syx.mohorses.advancement.HorseEvents;
 import one.syx.mohorses.ModConstants;
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.TrailParticleOption;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -50,7 +54,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.JukeboxBlockEntity;
@@ -89,6 +95,8 @@ public class MoHorse extends AbstractChestedHorse {
     private static final EntityDataAccessor<Integer> DATA_TRANSFORM_TARGET = SynchedEntityData.defineId(MoHorse.class, EntityDataSerializers.INT);
     /// The entity a whipped unicorn charges at (its id), or -1 when it just charges ahead
     private static final EntityDataAccessor<Integer> DATA_CHARGE_TARGET = SynchedEntityData.defineId(MoHorse.class, EntityDataSerializers.INT);
+    /// A Nightmare fed with redstone
+    private static final EntityDataAccessor<Boolean> DATA_ABLAZE = SynchedEntityData.defineId(MoHorse.class, EntityDataSerializers.BOOLEAN);
     /// A zebra dancing to the Shuffling song
     private static final EntityDataAccessor<Boolean> DATA_SHUFFLING = SynchedEntityData.defineId(MoHorse.class, EntityDataSerializers.BOOLEAN);
     /// How close a jukebox playing the Shuffling song has to be for zebras to dance, in blocks
@@ -124,11 +132,23 @@ public class MoHorse extends AbstractChestedHorse {
     private float legSweep;
     private float legSweepO;
     private boolean inFlight;
+    private boolean tookOff;
+    /// How dark it is around it, 0 (daylight, or next to a torch) to 1: the glow and the aura show in the dark
+    private float darkness;
+    private float darknessO;
+    /// Where the ground below it is, for the aura and for landing
+    private double groundY = Double.NEGATIVE_INFINITY;
+    private double groundYO = Double.NEGATIVE_INFINITY;
+    /// How far down the ground is looked for
+    private static final double GROUND_RANGE = 8.0;
 
     /// No plain jump still rises after this many ticks in the air (the strongest horses take about 12 to the top)
     private static final int LONGEST_JUMP_RISE = 14;
     /// Whoever is in the air this long is gliding, not coming down from a jump
     private static final int LONGEST_JUMP = 50;
+    /// How high above the ground the legs are all the way down again, and up from where they are all the way back, in blocks
+    private static final float LEGS_DOWN = 1.0F;
+    private static final float LEGS_BACK = 3.0F;
     // Client-side ghost flicker: the opacity drifts towards a new random value every few seconds
     private float ghostOpacity = 0.5F;
     private float ghostOpacityO = 0.5F;
@@ -431,6 +451,7 @@ public class MoHorse extends AbstractChestedHorse {
         builder.define(DATA_CHARGE_TARGET, -1);
         builder.define(DATA_CHARGE_TICKS, 0);
         builder.define(DATA_SHUFFLING, false);
+        builder.define(DATA_ABLAZE, false);
     }
 
     /// The horse stands still for a few seconds while it flickers between its old and new look, then transforms.
@@ -977,6 +998,9 @@ public class MoHorse extends AbstractChestedHorse {
         if (kind() == HorseKind.UNICORN && this.ramCooldown == 0 && isCharging())
             ramWithHorn(serverLevel);
 
+        // Synced, so that its embers glow brighter meanwhile
+        this.entityData.set(DATA_ABLAZE, this.flameTicks > 0);
+
         if (this.flameTicks > 0) {
             this.flameTicks--;
 
@@ -988,6 +1012,11 @@ public class MoHorse extends AbstractChestedHorse {
     // ------------------------------------------------------------------------------------------------
     // Nightmare flame trail
     // ------------------------------------------------------------------------------------------------
+
+    /// Whether a Nightmare burns with the redstone it was fed
+    public boolean isAblaze() {
+        return this.entityData.get(DATA_ABLAZE);
+    }
 
     /// Redstone sets a Nightmare ablaze: for a while it is faster and leaves fire behind when ridden at speed
     private void ignite(ServerLevel level) {
@@ -1138,6 +1167,16 @@ public class MoHorse extends AbstractChestedHorse {
         return this.entityData.get(DATA_CHARGE_TICKS) > 0;
     }
 
+    /// Whether a charge goes on: only with somebody on its back
+    protected boolean keepsCharging() {
+        return getControllingPassenger() != null;
+    }
+
+    /// Head down, as in a charge, without a rider (for wild unicorns)
+    protected void lowerHorn() {
+        this.entityData.set(DATA_CHARGE_TICKS, CHARGE_DURATION);
+    }
+
     private void stopCharge() {
         this.entityData.set(DATA_CHARGE_TARGET, -1);
         this.entityData.set(DATA_CHARGE_TICKS, 0);
@@ -1151,7 +1190,7 @@ public class MoHorse extends AbstractChestedHorse {
         if (ticks <= 0)
             return;
 
-        if (ticks == 1 || getControllingPassenger() == null) {
+        if (ticks == 1 || !keepsCharging()) {
             stopCharge();
 
             return;
@@ -1269,9 +1308,14 @@ public class MoHorse extends AbstractChestedHorse {
                 level().addParticle(ParticleTypes.NOTE, getRandomX(0.6), getY() + getBbHeight() + 0.2, getRandomZ(0.6), this.random.nextInt(25) / 24.0, 0.0, 0.0);
 
             // A unicorn jumping or gliding leaves a trail of stars (not when it just steps up a block)
+            int airTicksBefore = this.airTicks;
             this.airTicks = onGround() || isInWater() || isPassenger() ? 0 : this.airTicks + 1;
 
             tickLegs();
+            tickAura();
+
+            if (kind().canFly() && !kind().isGhost())
+                tickFlightParticles(airTicksBefore);
 
             if (kind() == HorseKind.UNICORN && this.airTicks > 4) {
                 for (int i = 0; i < 2; i++)
@@ -1311,6 +1355,126 @@ public class MoHorse extends AbstractChestedHorse {
         this.wingBeat = approach(this.wingBeat, climbing ? 1.0F : 0.0F, 0.1F);
     }
 
+    /// Client-side only: how dark it is, eased so that the aura doesn't jump from block to block, and the particles in it
+    private void tickAura() {
+        BlockPos pos = BlockPos.containing(getEyePosition());
+        int light = Math.max(level().getBrightness(LightLayer.SKY, pos) - level().getSkyDarken(), level().getBrightness(LightLayer.BLOCK, pos));
+
+        this.darknessO = this.darkness;
+        this.darkness = approach(this.darkness, 1.0F - Mth.clamp(light / 12.0F, 0.0F, 1.0F), 0.04F);
+
+        tickGround();
+
+        if (this.darkness < 0.35F || isInvisible())
+            return;
+
+        switch (kind()) {
+            case UNICORN -> {
+                if (this.random.nextInt(45) == 0)
+                    level().addParticle(ParticleRegistry.UNICORN_STAR.get(), getRandomX(0.9), getY() + this.random.nextDouble() * 1.8, getRandomZ(0.9), 0.0, 0.0, 0.0);
+            }
+            case FAIRY_HORSE -> auraDust(14, getFairyColor() == null || getFairyColor() == DyeColor.WHITE ? 0xFFF2D8 : getFairyColor() == DyeColor.BLACK ? 0x8A52F0 : getFairyColor().getTextureDiffuseColor());
+            case NIGHTMARE -> {
+                if (this.random.nextInt(isAblaze() ? 4 : 18) == 0)
+                    level().addParticle(ParticleTypes.SMALL_FLAME, getRandomX(0.8), getY() + 0.3 + this.random.nextDouble() * 1.2, getRandomZ(0.8), 0.0, 0.025, 0.0);
+            }
+            case DARK_PEGASUS -> auraDust(20, 0xB42020);
+            case GHOST_HORSE -> auraDust(24, 0x5FE0CC);
+            case GHOST_PEGASUS -> auraDust(24, 0xD0E2FF);
+            default -> {}
+        }
+    }
+
+    /// Client-side only: dust under the hooves when it takes off and touches down, and now and then something that the
+    /// wings lose when they beat hard: feathers, or the little bats of a Bat Horse
+    private void tickFlightParticles(int airTicksBefore) {
+        // Another player's horse rises a few ticks later than it leaves the ground
+        boolean takesOff = !this.tookOff && this.airTicks >= 1 && this.airTicks <= 7 && getY() - this.yo > 0.1;
+        boolean touchesDown = this.airTicks == 0 && airTicksBefore > 14 && onGround();
+
+        this.tookOff = this.airTicks > 0 && (this.tookOff || takesOff);
+
+        if (touchesDown)
+            hoofDust(14, getY());
+        else if (takesOff && !Double.isInfinite(this.groundY) && getY() - this.groundY < 2.5)
+            hoofDust(9, this.groundY);
+
+        boolean climbing = isFlying() && this.wingBeat > 0.6F;
+
+        switch (kind()) {
+            case PEGASUS -> loseFeathers(ParticleRegistry.FEATHER.get(), climbing, touchesDown);
+            case DARK_PEGASUS -> loseFeathers(ParticleRegistry.DARK_FEATHER.get(), climbing, touchesDown);
+            case BAT_HORSE -> {
+                int bats = takesOff ? 2 + this.random.nextInt(2) : climbing && this.random.nextInt(30) == 0 ? 1 : 0;
+
+                for (int i = 0; i < bats; i++)
+                    level().addParticle(ParticleRegistry.TINY_BAT.get(), getRandomX(0.9), getY() + 0.8 + this.random.nextDouble() * 0.8, getRandomZ(0.9), 0.0, 0.0, 0.0);
+            }
+            default -> {}
+        }
+    }
+
+    private void loseFeathers(ParticleOptions feather, boolean climbing, boolean touchesDown) {
+        int feathers = touchesDown ? 1 + this.random.nextInt(2) : climbing && this.random.nextInt(16) == 0 ? 1 : 0;
+
+        for (int i = 0; i < feathers; i++) {
+            // Somewhere along one of the wings
+            double side = (this.random.nextBoolean() ? 1.0 : -1.0) * (0.7 + this.random.nextDouble() * 1.6);
+            Vec3 wing = Vec3.directionFromRotation(0.0F, this.yBodyRot + 90.0F).scale(side);
+
+            level().addParticle(feather, getX() + wing.x, getY() + 1.1 + this.random.nextDouble() * 0.5, getZ() + wing.z, wing.x * 0.02, 0.02, wing.z * 0.02);
+        }
+    }
+
+    /// A puff of what it stands on (or what it just left)
+    private void hoofDust(int count, double y) {
+        BlockPos below = BlockPos.containing(getX(), y - 0.2, getZ());
+        BlockState ground = level().getBlockState(below);
+
+        if (ground.getRenderShape() == RenderShape.INVISIBLE)
+            return;
+
+        for (int i = 0; i < count; i++) {
+            double x = getRandomX(0.8);
+            double z = getRandomZ(0.8);
+            double away = 0.12;
+
+            level().addParticle(new BlockParticleOption(ParticleTypes.BLOCK, ground), x, y + 0.1, z, (x - getX()) * away * 8.0, 0.1, (z - getZ()) * away * 8.0);
+
+            if (i % 3 == 0)
+                level().addParticle(ParticleTypes.POOF, x, y + 0.1, z, (x - getX()) * away, 0.02, (z - getZ()) * away);
+        }
+    }
+
+    /// Client-side only: where the ground below is. Up it goes at once, down it eases, as at the edge of a cliff.
+    private void tickGround() {
+        if (this.darkness <= 0.0F && !isFlying()) {
+            this.groundY = this.groundYO = Double.NEGATIVE_INFINITY;
+
+            return;
+        }
+
+        Vec3 from = position().add(0.0, 0.6, 0.0);
+        double ground = level().clip(new ClipContext(from, from.subtract(0.0, GROUND_RANGE, 0.0), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this)).getLocation().y;
+
+        this.groundYO = this.groundY;
+        this.groundY = ground >= this.groundY ? ground : Mth.lerp(0.4, this.groundY, ground);
+
+        if (Double.isInfinite(this.groundYO))
+            this.groundYO = this.groundY;
+    }
+
+    /// Now and then (once in so many ticks) a speck of glowing dust that drifts upwards
+    private void auraDust(int ticks, int color) {
+        if (this.random.nextInt(ticks) != 0)
+            return;
+
+        Vec3 from = new Vec3(getRandomX(0.9), getY() + 0.3 + this.random.nextDouble() * 1.5, getRandomZ(0.9));
+        Vec3 to = from.add((this.random.nextDouble() - 0.5) * 0.8, 0.5 + this.random.nextDouble() * 0.6, (this.random.nextDouble() - 0.5) * 0.8);
+
+        level().addParticle(new TrailParticleOption(to, color & 0xFFFFFF, 25 + this.random.nextInt(20)), from.x, from.y, from.z, 0.0, 0.0, 0.0);
+    }
+
     /// Client-side only: in real flight the legs sweep back, but not during a jump. A jump only rises for the first few
     /// ticks, so a horse that gains height later than that is beating its wings (told from its position, which works
     /// for other players' horses as well), and one that stays up long enough is gliding.
@@ -1322,7 +1486,10 @@ public class MoHorse extends AbstractChestedHorse {
         else if (this.airTicks > LONGEST_JUMP || this.airTicks > LONGEST_JUMP_RISE && getY() - this.yo > 0.03)
             this.inFlight = true;
 
-        this.legSweep = approach(this.legSweep, this.inFlight ? 1.0F : 0.0F, this.inFlight ? 0.07F : 0.2F);
+        // Close to the ground the legs come down again, ready to land
+        float target = this.inFlight ? Mth.clamp((float)(getY() - this.groundY - LEGS_DOWN) / (LEGS_BACK - LEGS_DOWN), 0.0F, 1.0F) : 0.0F;
+
+        this.legSweep = approach(this.legSweep, target, !this.inFlight ? 0.2F : target < this.legSweep ? 0.12F : 0.07F);
     }
 
     private static float approach(float value, float target, float step) {
@@ -1332,6 +1499,16 @@ public class MoHorse extends AbstractChestedHorse {
     /// How far the wings are spread, from 0 (folded on the flanks) to 1 (fully out)
     public float getWingSpread(float partialTick) {
         return Mth.lerp(partialTick, this.wingSpreadO, this.wingSpread);
+    }
+
+    /// Client-side only: where the ground below it is (or how far down it was looked for)
+    public double getGroundY(float partialTick) {
+        return Double.isInfinite(this.groundY) ? getY() - GROUND_RANGE : Math.max(this.groundY, Mth.lerp(partialTick, this.groundYO, this.groundY));
+    }
+
+    /// How dark it is around it, from 0 (daylight, or next to a torch) to 1
+    public float getDarkness(float partialTick) {
+        return Mth.lerp(partialTick, this.darknessO, this.darkness);
     }
 
     /// How far the legs are swept back, from 0 (standing, jumping) to 1 (in flight)
