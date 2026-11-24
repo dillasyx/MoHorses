@@ -67,6 +67,7 @@ public class HorseEyesLayer extends RenderLayer<MoHorseRenderState, EntityModel<
         return switch (state.displayedKind) {
             case UNICORN -> 0xFFB43C;
             case FAIRY_HORSE -> fairyColor(state.fairyColor);
+            case PEGASUS -> 0x6F9BFF;
             case DARK_PEGASUS -> 0xFF2A1C;
             case GHOST_HORSE -> 0x6FFFE6;
             case GHOST_PEGASUS -> 0x9FC8FF;

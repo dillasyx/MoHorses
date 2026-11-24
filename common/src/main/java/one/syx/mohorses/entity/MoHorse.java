@@ -133,6 +133,8 @@ public class MoHorse extends AbstractChestedHorse {
     private float legSweepO;
     private boolean inFlight;
     private boolean tookOff;
+    /// Client side: a winged horse has jumped and not landed since
+    private boolean leapt;
     /// How dark it is around it, 0 (daylight, or next to a torch) to 1: the glow and the aura show in the dark
     private float darkness;
     private float darknessO;
@@ -142,6 +144,8 @@ public class MoHorse extends AbstractChestedHorse {
     /// How far down the ground is looked for
     private static final double GROUND_RANGE = 8.0;
 
+    /// How fast a ridden winged horse climbs, in blocks per tick
+    private static final double CLIMB_SPEED = 0.42;
     /// No plain jump still rises after this many ticks in the air (the strongest horses take about 12 to the top)
     private static final int LONGEST_JUMP_RISE = 14;
     /// Whoever is in the air this long is gliding, not coming down from a jump
@@ -825,6 +829,13 @@ public class MoHorse extends AbstractChestedHorse {
     protected Vec3 getPassengerAttachmentPoint(Entity passenger, EntityDimensions dimensions, float scale) {
         Vec3 point = super.getPassengerAttachmentPoint(passenger, dimensions, scale);
 
+        // Vanilla moves the rider back while the horse rears. Where the rearing isn't shown (see MoHorseRenderer), it stays.
+        if (isFlying() || isCharging()) {
+            float rearing = getStandAnim(0.0F);
+
+            point = point.subtract(new Vec3(0.0, 0.15 * rearing * scale, -0.7 * rearing * scale).yRot(-getYRot() * Mth.DEG_TO_RAD));
+        }
+
         return kind().isGhost() ? point.add(0.0, GHOST_HOVER * scale, 0.0) : point;
     }
 
@@ -890,8 +901,8 @@ public class MoHorse extends AbstractChestedHorse {
     // Flying & special abilities
     // ------------------------------------------------------------------------------------------------
 
-    /// Winged kinds in the air climb while the rider holds the jump key, and flap hard when it is released
-    /// (the charge of the jump bar decides how strong that flap is).
+    /// Winged kinds in the air climb while the rider holds the jump key, always equally fast. Only from the ground do
+    /// they jump (see [#onPlayerJump]).
     @Override
     protected void tickRidden(Player player, Vec3 travelVector) {
         // A whipped unicorn charges: at the creature that was lashed, or straight ahead (the rider still steers).
@@ -909,22 +920,42 @@ public class MoHorse extends AbstractChestedHorse {
             }
         }
 
-        if (kind().canFly() && !onGround() && player.isJumping()) {
+        if (onItsWings()) {
             Vec3 movement = getDeltaMovement();
 
-            setDeltaMovement(movement.x, Math.min(movement.y + 0.12, 0.42), movement.z);
-        }
+            // A jump that rises faster is not slowed down
+            if (player.isJumping() && movement.y < CLIMB_SPEED)
+                setDeltaMovement(movement.x, Math.min(movement.y + 0.12, CLIMB_SPEED), movement.z);
 
-        if (kind().canFly() && !onGround() && this.playerJumpPendingScale > 0.0F) {
-            Vec3 movement = getDeltaMovement();
-            double lift = 0.4 + 0.5 * this.playerJumpPendingScale;
-
-            setDeltaMovement(movement.x, Math.max(movement.y, 0.0) * 0.5 + lift, movement.z);
+            // Not a jump later on, when it lands
             this.playerJumpPendingScale = 0.0F;
-            this.needsSync = true;
         }
 
         super.tickRidden(player, travelVector);
+    }
+
+    /// In the air, on the side that moves it: in a jump, or for more than a moment (a bump in the ground doesn't count)
+    public boolean onItsWings() {
+        return kind().canFly() && !onGround() && (this.airTicks > 3 || this.leapt || isInWater());
+    }
+
+    /// Up in the air the jump key only beats the wings
+    @Override
+    public void onPlayerJump(int jumpAmount) {
+        if (!onItsWings())
+            super.onPlayerJump(jumpAmount);
+    }
+
+    @Override
+    public void handleStartJump(int jumpScale) {
+        if (!kind().canFly() || onGround())
+            super.handleStartJump(jumpScale);
+    }
+
+    /// No jump bar in flight (in a plain jump it stays, or it would flicker)
+    @Override
+    public boolean canJump() {
+        return super.canJump() && !this.inFlight;
     }
 
     /// In the air, a ridden winged horse steers almost as well as on the ground
@@ -1272,10 +1303,10 @@ public class MoHorse extends AbstractChestedHorse {
         return EquipmentSlot.BODY;
     }
 
-    /// Winged horses don't rear up in mid-air when the rider starts charging a jump (that is a flap up there)
+    /// Winged horses don't rear up in mid-air, so they don't for a jump either
     @Override
     public void standIfPossible() {
-        if (kind().canFly() && !onGround())
+        if (kind().canFly() && (!onGround() || getControllingPassenger() != null))
             return;
 
         super.standIfPossible();
@@ -1310,6 +1341,8 @@ public class MoHorse extends AbstractChestedHorse {
             // A unicorn jumping or gliding leaves a trail of stars (not when it just steps up a block)
             int airTicksBefore = this.airTicks;
             this.airTicks = onGround() || isInWater() || isPassenger() ? 0 : this.airTicks + 1;
+
+            this.leapt = kind().canFly() && this.airTicks > 0 && (this.leapt || getDeltaMovement().y > 0.2);
 
             tickLegs();
             tickAura();

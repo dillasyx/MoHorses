@@ -195,7 +195,7 @@
   "book.mohorses.guide.entry.unicorn.description": "Nachtmahr + Essenz des Lichts",
   "book.mohorses.guide.bat_horse.entity": "Füttere einem gezähmten Zerd über den Wolken eine Essenz der Dunkelheit, während er auf dem Boden steht.",
   "book.mohorses.guide.bat_horse.title": "Erste Flügel",
-  "book.mohorses.guide.bat_horse.text": "Das erste Pferd, das **fliegt**: Spring zum Abheben und spring weiter, um zu steigen. Es wird mit Essenz der Dunkelheit paarungsbereit.",
+  "book.mohorses.guide.bat_horse.text": "Das erste Pferd, das **fliegt**: Spring zum Abheben und halte dann die Sprungtaste gedrückt, um zu steigen. Es wird mit Essenz der Dunkelheit paarungsbereit.",
   "book.mohorses.guide.entry.bat_horse.name": "Fledermauspferd",
   "book.mohorses.guide.entry.bat_horse.description": "Zerd + Essenz der Dunkelheit, über den Wolken",
   "book.mohorses.guide.pegasus.entity": "Füttere einem gezähmten Fledermauspferd über den Wolken eine Essenz des Lichts.",

@@ -1,3 +1,10 @@
+## 1.0.8
+
+- Zombie Horses that an Essence of Undead made of a tamed horse no longer despawn when nobody is near. This also holds for the ones already in your world
+- Winged horses no longer jump again when the jump key is released in mid-air, which added to the climb and shot them upwards. In the air the jump key only makes them climb, always equally fast, and there is no jump bar in flight. Nor do they take off from a bump in the ground while a jump is being charged
+- The rider no longer slides back on a winged horse when it jumps
+- The eyes of the Pegasus sparkle blue in the dark
+
 ## 1.0.7
 
 - Wild Unicorns: very rarely and always alone, in Flower Forests, Meadows, Lush Caves, Cherry Groves, Old Growth Birch Forests and Groves, never near another unicorn. They are peaceful until attacked, then they fight back; they can't be tamed, and drop their horn and leather

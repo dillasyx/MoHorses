@@ -144,6 +144,9 @@ public abstract class AbstractHorseMixin extends Animal implements HorseTransfer
         this.mohorses$maggotsLeft = input.getIntOr("MoHorsesMaggotsLeft", 0);
         this.mohorses$essenceVariant = input.getIntOr("MoHorsesEssenceVariant", 0);
 
+        // Zombie horses that were transformed by a version up to 1.0.7
+        HorseTransfer.keepTamed((AbstractHorse)(Object)this);
+
         if (this instanceof ZombieHorseDecay.Decaying decaying) {
             decaying.mohorses$setDecayStage(input.getIntOr("MoHorsesDecayStage", 0));
             decaying.mohorses$setDecayTicks(input.getIntOr("MoHorsesDecayTicks", 0));

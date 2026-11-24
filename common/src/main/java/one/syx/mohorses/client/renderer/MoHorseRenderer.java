@@ -167,7 +167,7 @@ public class MoHorseRenderer extends MobRenderer<MoHorse, MoHorseRenderState, En
         state.wingSpread = horse.getWingSpread(partialTicks);
         state.wingBeat = horse.getWingBeat(partialTicks);
 
-        // No rearing in mid-air (the rider's jump key flaps the wings up there), nor during a unicorn's charge
+        // No rearing in mid-air (the rider's jump key beats the wings up there), nor during a unicorn's charge
         // (rearing holds the hind legs still, the charge gallops on all four)
         if (state.flying || state.charging)
             state.standAnimation = 0.0F;

@@ -58,12 +58,11 @@ Essences only work on tamed, grown horses. A transformation takes four seconds: 
 between its old and new look, faster and faster, before it turns.
 
 Unicorns, Fairy Horses and Nightmares glow in the dark: the horn and the gold, the wings in their colour, and the
-embers. The eyes of Unicorns, Fairy Horses, Dark Pegasi (red) and ghosts sparkle in their colour. Ghosts shimmer faintly
-at night. In the dark, a soft aura surrounds the Dark Pegasus and the ghosts, and faintly the Unicorn; it looks like
+embers. The eyes of Unicorns, Pegasi (blue), Fairy Horses, Dark Pegasi (red) and ghosts sparkle in their colour. Ghosts
+shimmer faintly at night. In the dark, a soft aura surrounds the Dark Pegasus and the ghosts, and faintly the Unicorn; it looks like
 light but doesn't make anything around it lighter.
 
-Flying: while riding a winged horse, hold the jump key in mid-air to climb. Releasing it gives an extra flap; a longer
-charge gives a stronger one.
+Flying: jump to take off, then hold the jump key in mid-air to climb.
 
 Zombie horses, Undead Unicorns and Undead Pegasi rot away like the undead horses of Mo' Creatures: every 4 minutes another patch of flesh falls
 off and a maggot crawls out (bits of flesh drop to the ground all the time), and after 5 stages only a skeleton is left, keeping its owner

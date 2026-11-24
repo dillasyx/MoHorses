@@ -7,6 +7,7 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.equine.AbstractHorse;
+import net.minecraft.world.entity.animal.equine.ZombieHorse;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -22,11 +23,12 @@ public final class HorseTransfer {
         void mohorses$setOwnerReference(@Nullable EntityReference<LivingEntity> owner);
     }
 
-    /// Copies owner, tameness and stats. The new horse keeps the share of its health the old one had, or is fully
+    /// Copies owner, tameness and stats, and keeps a tamed horse from despawning (see [#keepTamed]). The new horse keeps the share of its health the old one had, or is fully
     /// healed (a ghost rising from a dead horse).
     public static void copy(AbstractHorse from, AbstractHorse to, boolean fullHealth) {
         to.setTamed(from.isTamed());
         ((OwnerAccess)to).mohorses$setOwnerReference(from.getOwnerReference());
+        keepTamed(to);
 
         for (Holder<Attribute> stat : STATS) {
             AttributeInstance instance = to.getAttribute(stat);
@@ -36,6 +38,13 @@ public final class HorseTransfer {
         }
 
         to.setHealth(fullHealth ? to.getMaxHealth() : to.getMaxHealth() * from.getHealth() / from.getMaxHealth());
+    }
+
+    /// Zombie horses are monsters and despawn unless a player has interacted with them, which nobody has yet with one that
+    /// used to be another horse
+    public static void keepTamed(AbstractHorse horse) {
+        if (horse instanceof ZombieHorse && horse.isTamed())
+            horse.setPersistenceRequired();
     }
 
     private HorseTransfer() {}

@@ -23,6 +23,7 @@
     "client.EquineRenderStateMixin",
     "client.HorseMarkingLayerMixin",
     "client.HorseRendererMixin",
+    "client.LocalPlayerMixin",
     "client.RenderTypesAccessor",
     "client.UndeadHorseRendererMixin"
   ]
