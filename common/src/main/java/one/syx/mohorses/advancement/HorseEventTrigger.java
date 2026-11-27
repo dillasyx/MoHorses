@@ -2,11 +2,11 @@ package one.syx.mohorses.advancement;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.advancements.triggers.Criterion;
-import net.minecraft.advancements.triggers.SimpleCriterionTrigger;
-import net.minecraft.core.Holder;
+import net.minecraft.advancements.Criterion;
+import net.minecraft.advancements.criterion.SimpleCriterionTrigger;
+import net.minecraft.advancements.criterion.ContextAwarePredicate;
+import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import one.syx.mohorses.registry.AdvancementRegistry;
 
 import java.util.Optional;
@@ -23,9 +23,9 @@ public class HorseEventTrigger extends SimpleCriterionTrigger<HorseEventTrigger.
         trigger(player, instance -> instance.event().equals(event));
     }
 
-    public record TriggerInstance(Optional<Holder<LootItemCondition>> player, String event) implements SimpleInstance {
+    public record TriggerInstance(Optional<ContextAwarePredicate> player, String event) implements SimpleInstance {
         public static final Codec<TriggerInstance> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-                LootItemCondition.CODEC.optionalFieldOf("player").forGetter(TriggerInstance::player),
+                EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(TriggerInstance::player),
                 Codec.STRING.fieldOf("event").forGetter(TriggerInstance::event)
         ).apply(instance, TriggerInstance::new));
 

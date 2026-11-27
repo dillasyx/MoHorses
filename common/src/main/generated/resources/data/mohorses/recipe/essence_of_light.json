@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "D": "mohorses:essence_of_darkness",
     "F": "mohorses:essence_of_fire",

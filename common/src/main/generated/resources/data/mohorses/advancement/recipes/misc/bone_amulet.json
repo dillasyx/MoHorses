@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipes": "mohorses:bone_amulet"
+        "recipe": "mohorses:bone_amulet"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

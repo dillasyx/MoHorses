@@ -3,13 +3,15 @@
   "criteria": {
     "zorse": {
       "conditions": {
-        "child": {
-          "type": "minecraft:entity_properties",
-          "entity": "this",
-          "predicate": {
-            "minecraft:entity_type": "mohorses:zorse"
+        "child": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "mohorses:zorse"
+            }
           }
-        }
+        ]
       },
       "trigger": "minecraft:bred_animals"
     }

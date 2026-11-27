@@ -1,7 +1,7 @@
 package one.syx.mohorses.platform;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.advancements.triggers.CriterionTrigger;
+import net.minecraft.advancements.CriterionTrigger;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;

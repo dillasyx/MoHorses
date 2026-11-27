@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipes": "mohorses:essence_of_undead"
+        "recipe": "mohorses:essence_of_undead"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

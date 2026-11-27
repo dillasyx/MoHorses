@@ -9,7 +9,6 @@ import net.minecraft.util.random.Weighted;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.attribute.EnvironmentAttributes;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -95,9 +94,9 @@ public class WildUnicorn extends MoHorse {
 
     /// The weights of all animals together that could spawn there
     private static int totalWeight(ServerLevelAccessor level, BlockPos pos) {
-        MobSpawnSettings spawns = level.environmentAttributes().getValue(EnvironmentAttributes.NATURAL_MOB_SPAWNS, pos);
+        MobSpawnSettings spawns = level.getBiome(pos).value().getMobSettings();
 
-        return spawns.getMobsToSpawn(MobCategory.CREATURE).unwrap().stream().mapToInt(Weighted::weight).sum();
+        return spawns.getMobs(MobCategory.CREATURE).unwrap().stream().mapToInt(Weighted::weight).sum();
     }
 
     private static boolean unicornNear(ServerLevel level, BlockPos pos, @Nullable MoHorse except) {

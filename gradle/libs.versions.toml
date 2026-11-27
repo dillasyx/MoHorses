@@ -3,31 +3,31 @@
     mod                             = "1.0.8"
 
 # Dependencies
-    geckolib                        = "5.5.7"
+    geckolib                        = "5.5.3"
 
 # Common
-    minecraft-range                 = "[26.3,)"
-    minecraft                       = "26.3"
-    neoform                         = "26.3-1"
+    minecraft-range                 = "[26.1.2,26.2)"
+    minecraft                       = "26.1.2"
+    neoform                         = "26.1.2-1"
     java                            = "25"
 
 # Fabric
     fabric                          = "0.19.5"
     fabric-range                    = "0.19"
-    fabric-api                      = "0.160.5+26.3"
-    fabric-api-range                = "0.160.5+26.3"
+    fabric-api                      = "0.155.3+26.1.2"
+    fabric-api-range                = "0.155.3+26.1.2"
 
 # Forge
-    forge                           = "66.0.9"
-    forge-mc                        = "26.3-66.0.9"
-    forge-fml-range                 = "[66,)"
-    forge-range                     = "[66.0.0,)"
+    forge                           = "64.1.6"
+    forge-mc                        = "26.1.2-64.1.6"
+    forge-fml-range                 = "[64,)"
+    forge-range                     = "[64.1.0,)"
     forge-eventbusvalidator         = "7.0.4"
 
 # Neoforge
     neoforge-loader-range           = "[5,)"
-    neoforge                        = "26.3.0.103"
-    neoforge-range                  = "[26.3.0.7-beta,)"
+    neoforge                        = "26.1.2.130"
+    neoforge-range                  = "[26.1.2.0,)"
 
 # Mixin
     mixin                           = "0.8.7"
@@ -49,10 +49,10 @@
 
 [libraries]
 # Dependencies
-    geckolib-common                = { group = "com.geckolib", name = "geckolib-common-26.3", version.ref = "geckolib" }
-    geckolib-neoforge              = { group = "com.geckolib", name = "geckolib-neoforge-26.3", version.ref = "geckolib" }
-    geckolib-fabric                = { group = "com.geckolib", name = "geckolib-fabric-26.3", version.ref = "geckolib" }
-    geckolib-forge                 = { group = "com.geckolib", name = "geckolib-forge-26.3", version.ref = "geckolib" }
+    geckolib-common                = { group = "com.geckolib", name = "geckolib-common-26.1.2", version.ref = "geckolib" }
+    geckolib-neoforge              = { group = "com.geckolib", name = "geckolib-neoforge-26.1.2", version.ref = "geckolib" }
+    geckolib-fabric                = { group = "com.geckolib", name = "geckolib-fabric-26.1.2", version.ref = "geckolib" }
+    geckolib-forge                 = { group = "com.geckolib", name = "geckolib-forge-26.1.2", version.ref = "geckolib" }
 
 # Mixin
     mixin                   = { group = "org.spongepowered",        name = "mixin",                 version.ref = "mixin" }

@@ -15,7 +15,6 @@ import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.Prediction;
 import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -117,7 +116,7 @@ public class HorseAmuletItem extends Item {
         }
         else {
             stack.shrink(1);
-            player.getInventory().placeItemBackInInventory(full, Prediction.SERVER_ONLY);
+            player.getInventory().placeItemBackInInventory(full);
         }
 
         return InteractionResult.SUCCESS;

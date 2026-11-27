@@ -34,7 +34,7 @@ public class HorseGlowLayer extends RenderLayer<MoHorseRenderState, EntityModel<
 
         submitNodeCollector.order(1).submitModel(getParentModel(), state, poseStack,
                 RenderTypesAccessor.mohorses$eyes().apply(this.renderer.getTextureLocation(state).withPath(path -> path.replace(".png", "_glow.png"))),
-                LightCoordsUtil.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, ARGB.white(Math.min(strength, 1.0F)), null, state.outlineColor);
+                LightCoordsUtil.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, ARGB.white(Math.min(strength, 1.0F)), null, state.outlineColor, null);
     }
 
     /// How bright it shines right now, from 0 (not at all) to 1

@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipes": "mohorses:fairy_amulet"
+        "recipe": "mohorses:fairy_amulet"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

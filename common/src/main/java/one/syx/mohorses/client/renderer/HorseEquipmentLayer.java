@@ -64,7 +64,7 @@ public class HorseEquipmentLayer extends RenderLayer<MoHorseRenderState, EntityM
 
             submitNodeCollector.submitModel(this.model, state, poseStack,
                     RenderTypes.entityTranslucent(layer.getTextureLocation(this.layerType)), lightCoords, OverlayTexture.NO_OVERLAY,
-                    ARGB.multiplyAlpha(color, state.ghostOpacity), null, state.outlineColor);
+                    ARGB.multiplyAlpha(color, state.ghostOpacity), null, state.outlineColor, null);
         }
     }
 

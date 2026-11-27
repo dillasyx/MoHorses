@@ -3,11 +3,8 @@
   "biomes": "#mohorses:spawns_zebras",
   "spawners": {
     "type": "mohorses:zebra",
-    "count": {
-      "type": "minecraft:uniform",
-      "max_inclusive": 5,
-      "min_inclusive": 2
-    },
-    "weight": 6
+    "weight": 6,
+    "minCount": 2,
+    "maxCount": 5
   }
 }

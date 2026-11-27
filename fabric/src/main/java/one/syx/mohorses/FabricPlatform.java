@@ -1,7 +1,7 @@
 package one.syx.mohorses;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.advancements.triggers.CriterionTrigger;
+import net.minecraft.advancements.CriterionTrigger;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.impl.creativetab.FabricCreativeModeTabBuilderImpl;
 import net.minecraft.core.Registry;

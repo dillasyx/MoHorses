@@ -5,7 +5,7 @@ import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.level.block.ComposterBlock;
 import one.syx.mohorses.entity.MaggotEntity;
 import one.syx.mohorses.registry.EntityRegistry;
 
@@ -18,7 +18,7 @@ public final class ComposterListener {
         if (level.isClientSide() || usedStack.isEmpty() || !level.getBlockState(pos).is(Blocks.COMPOSTER))
             return;
 
-        if (!usedStack.has(DataComponents.COMPOSTABLE) || level.getRandom().nextFloat() >= MAGGOT_SPAWN_CHANCE)
+        if (!ComposterBlock.COMPOSTABLES.containsKey(usedStack.getItem()) || level.getRandom().nextFloat() >= MAGGOT_SPAWN_CHANCE)
             return;
 
         MaggotEntity maggot = EntityRegistry.MAGGOT.get().create(level, EntitySpawnReason.TRIGGERED);

@@ -3,13 +3,15 @@
   "criteria": {
     "zebra": {
       "conditions": {
-        "entity": {
-          "type": "minecraft:entity_properties",
-          "entity": "this",
-          "predicate": {
-            "minecraft:entity_type": "mohorses:zebra"
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "mohorses:zebra"
+            }
           }
-        }
+        ]
       },
       "trigger": "minecraft:tame_animal"
     }

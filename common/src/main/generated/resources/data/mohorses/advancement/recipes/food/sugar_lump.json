@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipes": "mohorses:sugar_lump"
+        "recipe": "mohorses:sugar_lump"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

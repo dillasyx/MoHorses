@@ -3,13 +3,15 @@
   "criteria": {
     "fairy_horse": {
       "conditions": {
-        "child": {
-          "type": "minecraft:entity_properties",
-          "entity": "this",
-          "predicate": {
-            "minecraft:entity_type": "mohorses:fairy_horse"
+        "child": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "mohorses:fairy_horse"
+            }
           }
-        }
+        ]
       },
       "trigger": "minecraft:bred_animals"
     }

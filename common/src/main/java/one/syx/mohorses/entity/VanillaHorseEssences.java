@@ -7,7 +7,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.ConversionParams;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.animal.equine.AbstractHorse;
 import net.minecraft.world.entity.animal.equine.Donkey;
 import net.minecraft.world.entity.animal.equine.Horse;
@@ -168,14 +167,14 @@ public final class VanillaHorseEssences {
         if (undead) {
             state.mohorses$dropChest(level);
 
-            if (convert(horse, EntityTypes.ZOMBIE_HORSE) instanceof ZombieHorse zombie)
+            if (convert(horse, EntityType.ZOMBIE_HORSE) instanceof ZombieHorse zombie)
                 HorseEvents.awardOwner(zombie, HorseEvents.ZOMBIE_HORSE);
 
             level.sendParticles(ParticleRegistry.UNDEAD_FLESH.get(), horse.getX(), horse.getY() + 1.0, horse.getZ(), 30, 0.6, 0.5, 0.6, 0.0);
             horse.playSound(SoundEvents.ZOMBIE_VILLAGER_CONVERTED, 1.0F, 0.8F);
         }
         else {
-            Horse restored = convert(horse, EntityTypes.HORSE);
+            Horse restored = convert(horse, EntityType.HORSE);
 
             if (restored != null) {
                 ((HorseVariantAccess)restored).mohorses$setVariantAndMarkings(Variant.byId(state.mohorses$getEssenceVariant()), Markings.NONE);

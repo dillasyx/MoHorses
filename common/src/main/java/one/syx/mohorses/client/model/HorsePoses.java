@@ -19,7 +19,7 @@ public final class HorsePoses {
         // Ghosts don't walk: like in Mo' Creatures they hover a little above the ground with their legs swept back,
         // drifting gently. Walking only makes the legs sway a bit further back. Winged horses do the same in flight.
         if (state.legSweep > 0.0F) {
-            float sweep = Mth.smoothstep(state.legSweep);
+            float sweep = (float)Mth.smoothstep(state.legSweep);
             float walk = Math.min(state.walkAnimationSpeed, 1.0F) * 0.25F;
             float leftFront, rightFront, leftHind, rightHind;
 

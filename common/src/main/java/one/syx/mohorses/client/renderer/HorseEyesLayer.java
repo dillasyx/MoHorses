@@ -51,7 +51,7 @@ public class HorseEyesLayer extends RenderLayer<MoHorseRenderState, EntityModel<
         int tint = ARGB.color(Mth.clamp(strength, 0.0F, 1.0F), ARGB.srgbLerp(sparkle * 0.75F, ARGB.opaque(color), 0xFFFFFFFF));
 
         submitNodeCollector.order(2).submitModel(getParentModel(), state, poseStack, RenderTypesAccessor.mohorses$eyes().apply(texture),
-                LightCoordsUtil.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, tint, null, state.outlineColor);
+                LightCoordsUtil.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, tint, null, state.outlineColor, null);
     }
 
     /// Mostly 0, with a short peak of 1 each turn

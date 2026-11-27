@@ -3,7 +3,7 @@
 Horses, horse breeding and the special horses of DrZhark's Mo' Creatures, rebuilt for current Minecraft
 on top of the vanilla horse look. Heavily inspired by Mo' Creatures, licensed under the GPLv3.
 
-- Minecraft 26.3, Java 25
+- Minecraft 26.1.2, Java 25
 - Fabric, NeoForge and Forge from one code base (`common` + one module per loader)
 - Horses use the vanilla horse model and animations, with wings and horns added on top. The maggot uses [GeckoLib](https://github.com/bernie-g/geckolib) 5
 

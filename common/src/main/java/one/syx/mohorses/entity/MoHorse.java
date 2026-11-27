@@ -23,7 +23,6 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
-import net.minecraft.util.Prediction;
 import net.minecraft.world.attribute.EnvironmentAttributes;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -49,7 +48,6 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.equine.AbstractChestedHorse;
 import net.minecraft.world.entity.animal.equine.AbstractHorse;
 import net.minecraft.world.entity.animal.equine.ZombieHorse;
-import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
@@ -246,14 +244,6 @@ public class MoHorse extends AbstractChestedHorse {
     }
 
     @Override
-    public boolean isEquippableInSlot(ItemStack stack, EquipmentSlot slot) {
-        if (slot == EquipmentSlot.BODY && !kind().canWear(stack))
-            return false;
-
-        return super.isEquippableInSlot(stack, slot);
-    }
-
-    @Override
     public void hurtArmor(DamageSource damageSource, float damageAmount) {
         doHurtEquipment(damageSource, damageAmount, EquipmentSlot.BODY);
     }
@@ -295,7 +285,7 @@ public class MoHorse extends AbstractChestedHorse {
                     }
                     else {
                         stack.shrink(1);
-                        player.getInventory().placeItemBackInInventory(disc, Prediction.SERVER_ONLY);
+                        player.getInventory().placeItemBackInInventory(disc);
                     }
 
                     serverLevel.sendParticles(ParticleTypes.NOTE, getX(), getY() + getBbHeight() + 0.3, getZ(), 8, 0.5, 0.3, 0.5, 1.0);
@@ -778,7 +768,7 @@ public class MoHorse extends AbstractChestedHorse {
         if (hasChest())
             removeChest(level);
 
-        ZombieHorse zombie = convertTo(EntityTypes.ZOMBIE_HORSE, ConversionParams.single(this, true, false), next -> HorseTransfer.copy(this, next, false));
+        ZombieHorse zombie = convertTo(EntityType.ZOMBIE_HORSE, ConversionParams.single(this, true, false), next -> HorseTransfer.copy(this, next, false));
 
         if (zombie != null) {
             HorseEvents.awardOwner(zombie, HorseEvents.ZOMBIE_HORSE);

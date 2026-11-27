@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipes": "mohorses:whip"
+        "recipe": "mohorses:whip"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

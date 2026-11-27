@@ -3,14 +3,16 @@
   "criteria": {
     "black_fairy_horse": {
       "conditions": {
-        "child": {
-          "type": "minecraft:entity_properties",
-          "entity": "this",
-          "predicate": {
-            "minecraft:entity_type": "mohorses:fairy_horse",
-            "minecraft:nbt": "{FairyColor:\"black\"}"
+        "child": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "mohorses:fairy_horse",
+              "nbt": "{FairyColor:\"black\"}"
+            }
           }
-        }
+        ]
       },
       "trigger": "minecraft:bred_animals"
     }

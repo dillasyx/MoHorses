@@ -7,13 +7,13 @@ import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.AdvancementType;
-import net.minecraft.advancements.predicates.NbtPredicate;
-import net.minecraft.advancements.predicates.entity.EntityPredicate;
-import net.minecraft.advancements.triggers.BredAnimalsTrigger;
-import net.minecraft.advancements.triggers.Criterion;
-import net.minecraft.advancements.triggers.InventoryChangeTrigger;
-import net.minecraft.advancements.triggers.KilledTrigger;
-import net.minecraft.advancements.triggers.TameAnimalTrigger;
+import net.minecraft.advancements.criterion.NbtPredicate;
+import net.minecraft.advancements.criterion.EntityPredicate;
+import net.minecraft.advancements.criterion.BredAnimalsTrigger;
+import net.minecraft.advancements.Criterion;
+import net.minecraft.advancements.criterion.InventoryChangeTrigger;
+import net.minecraft.advancements.criterion.KilledTrigger;
+import net.minecraft.advancements.criterion.TameAnimalTrigger;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -21,7 +21,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import one.syx.mohorses.ModConstants;
@@ -53,12 +52,12 @@ public class MoHorsesAdvancementProvider extends FabricAdvancementProvider {
         this.output = output;
 
         AdvancementHolder root = Advancement.Builder.advancement()
-                .rootDisplay(ItemRegistry.SUGAR_LUMP.get(), title("root"), description("root"),
+                .display(ItemRegistry.SUGAR_LUMP.get(), title("root"), description("root"),
                         Identifier.withDefaultNamespace("gui/advancements/backgrounds/husbandry"), AdvancementType.TASK, false, false, false)
                 .requirements(AdvancementRequirements.Strategy.OR)
-                .addCriterion("horse", tamed(EntityTypes.HORSE))
-                .addCriterion("donkey", tamed(EntityTypes.DONKEY))
-                .addCriterion("mule", tamed(EntityTypes.MULE))
+                .addCriterion("horse", tamed(EntityType.HORSE))
+                .addCriterion("donkey", tamed(EntityType.DONKEY))
+                .addCriterion("mule", tamed(EntityType.MULE))
                 .addCriterion("zebra", tamed(zebra()))
                 .build(id("root"));
         output.accept(root);
@@ -86,9 +85,9 @@ public class MoHorsesAdvancementProvider extends FabricAdvancementProvider {
                 .addCriterion("fairy_horse", bred(EntityPredicate.Builder.entity().of(this.entityTypes, kind(HorseKind.FAIRY_HORSE)))));
         CompoundTag black = new CompoundTag();
         black.putString("FairyColor", "black");
-        save("black_fairy_horse", fairy, Items.DYE.black(), AdvancementType.GOAL, builder -> builder
+        save("black_fairy_horse", fairy, Items.BLACK_DYE, AdvancementType.GOAL, builder -> builder
                 .addCriterion("black_fairy_horse", bred(EntityPredicate.Builder.entity().of(this.entityTypes, kind(HorseKind.FAIRY_HORSE)).nbt(new NbtPredicate(black)))));
-        save("dye_fairy_horse", fairy, Items.DYE.pink(), AdvancementType.TASK, builder -> builder
+        save("dye_fairy_horse", fairy, Items.PINK_DYE, AdvancementType.TASK, builder -> builder
                 .addCriterion("dyed", HorseEventTrigger.TriggerInstance.of(HorseEvents.FAIRY_DYED)));
         save("unicorn_charge", unicorn, ItemRegistry.WHIP.get(), AdvancementType.TASK, builder -> builder
                 .addCriterion("charge", HorseEventTrigger.TriggerInstance.of(HorseEvents.UNICORN_CHARGE)));
@@ -122,7 +121,7 @@ public class MoHorsesAdvancementProvider extends FabricAdvancementProvider {
                 .addCriterion("heart_of_undead", InventoryChangeTrigger.TriggerInstance.hasItems(ItemRegistry.HEART_OF_UNDEAD.get())));
         save("brute_rider", root, Items.GOLDEN_SPEAR, AdvancementType.GOAL, builder -> builder
                 .addCriterion("brute", KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity()
-                        .of(this.entityTypes, EntityTypes.PIGLIN_BRUTE)
+                        .of(this.entityTypes, EntityType.PIGLIN_BRUTE)
                         .vehicle(EntityPredicate.Builder.entity().of(this.entityTypes, EntityRegistry.WILD_NIGHTMARE.get())))));
         save("shuffle", zebra, ItemRegistry.SHUFFLING_MUSIC_DISC.get(), AdvancementType.TASK, builder -> builder
                 .addCriterion("shuffle", HorseEventTrigger.TriggerInstance.of(HorseEvents.SHUFFLE)));
@@ -139,7 +138,7 @@ public class MoHorsesAdvancementProvider extends FabricAdvancementProvider {
     private AdvancementHolder save(String name, AdvancementHolder parent, Item icon, AdvancementType type, Consumer<Advancement.Builder> criteria) {
         Advancement.Builder builder = Advancement.Builder.advancement()
                 .parent(parent)
-                .display(icon, title(name), description(name), type, true, true, false);
+                .display(icon, title(name), description(name), null, type, true, true, false);
 
         criteria.accept(builder);
 

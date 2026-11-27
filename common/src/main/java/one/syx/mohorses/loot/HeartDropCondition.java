@@ -40,7 +40,7 @@ public record HeartDropCondition(float chance, float lootingBonus) implements Lo
 
         int looting = 0;
 
-        if (context.getOptional(LootContextParams.ATTACKING_ENTITY) instanceof LivingEntity attacker)
+        if (context.getOptionalParameter(LootContextParams.ATTACKING_ENTITY) instanceof LivingEntity attacker)
             looting = EnchantmentHelper.getEnchantmentLevel(
                     context.getLevel().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.LOOTING), attacker);
 

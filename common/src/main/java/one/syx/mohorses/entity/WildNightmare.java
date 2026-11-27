@@ -10,7 +10,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.SpawnGroupData;
@@ -92,7 +91,7 @@ public class WildNightmare extends MoHorse {
         SpawnGroupData data = super.finalizeSpawn(level, difficulty, reason, groupData);
 
         if (reason == EntitySpawnReason.NATURAL && this.random.nextFloat() < BRUTE_RIDER_CHANCE) {
-            PiglinBrute brute = EntityTypes.PIGLIN_BRUTE.create(level.getLevel(), EntitySpawnReason.JOCKEY);
+            PiglinBrute brute = EntityType.PIGLIN_BRUTE.create(level.getLevel(), EntitySpawnReason.JOCKEY);
 
             if (brute != null) {
                 brute.snapTo(getX(), getY(), getZ(), getYRot(), 0.0F);

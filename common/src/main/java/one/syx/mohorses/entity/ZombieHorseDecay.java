@@ -4,7 +4,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.ConversionParams;
-import net.minecraft.world.entity.EntityTypes;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.equine.SkeletonHorse;
@@ -89,7 +89,7 @@ public final class ZombieHorseDecay {
     private static void turnToSkeleton(ZombieHorse horse, ServerLevel level) {
         MoHorse.spawnMaggots(level, horse, 1);
 
-        SkeletonHorse skeleton = horse.convertTo(EntityTypes.SKELETON_HORSE, ConversionParams.single(horse, true, false), next -> {
+        SkeletonHorse skeleton = horse.convertTo(EntityType.SKELETON_HORSE, ConversionParams.single(horse, true, false), next -> {
             HorseTransfer.copy(horse, next, false);
 
             ItemStack armor = next.getBodyArmorItem();

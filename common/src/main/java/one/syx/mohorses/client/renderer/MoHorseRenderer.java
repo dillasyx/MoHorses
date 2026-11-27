@@ -91,7 +91,7 @@ public class MoHorseRenderer extends MobRenderer<MoHorse, MoHorseRenderState, En
     @Override
     protected @Nullable RenderType getRenderType(MoHorseRenderState state, boolean isBodyVisible, boolean forceTransparent, boolean appearGlowing) {
         if (isBodyVisible && !forceTransparent && (state.displayedKind.shape() == HorseKind.Shape.FAIRY || state.displayedKind.isGhost()))
-            return RenderTypes.entityTranslucentCull(getTextureLocation(state));
+            return RenderTypes.entityTranslucentCullItemTarget(getTextureLocation(state));
 
         return super.getRenderType(state, isBodyVisible, forceTransparent, appearGlowing);
     }
@@ -125,7 +125,7 @@ public class MoHorseRenderer extends MobRenderer<MoHorse, MoHorseRenderState, En
             float beat = state.ageInTicks * HorsePoses.SHUFFLE_TEMPO;
 
             poseStack.translate(0.0F, Math.abs(Mth.sin(beat)) * 0.08F * entityScale, 0.0F);
-            poseStack.rotateDegrees(Axis.ZP, Mth.sin(beat) * 5.0F);
+            poseStack.mulPose(Axis.ZP.rotationDegrees(Mth.sin(beat) * 5.0F));
         }
     }
 

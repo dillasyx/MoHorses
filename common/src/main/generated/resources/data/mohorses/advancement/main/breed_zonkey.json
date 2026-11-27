@@ -3,13 +3,15 @@
   "criteria": {
     "zonkey": {
       "conditions": {
-        "child": {
-          "type": "minecraft:entity_properties",
-          "entity": "this",
-          "predicate": {
-            "minecraft:entity_type": "mohorses:zonkey"
+        "child": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "mohorses:zonkey"
+            }
           }
-        }
+        ]
       },
       "trigger": "minecraft:bred_animals"
     }

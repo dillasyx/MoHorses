@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "G": "minecraft:glass_bottle",
     "H": "mohorses:heart_of_undead",

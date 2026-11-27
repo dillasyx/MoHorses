@@ -33,7 +33,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipes": "mohorses:essence_of_light"
+        "recipe": "mohorses:essence_of_light"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

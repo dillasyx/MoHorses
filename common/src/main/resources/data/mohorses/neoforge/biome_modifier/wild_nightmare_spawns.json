@@ -3,11 +3,8 @@
   "biomes": "#mohorses:spawns_wild_nightmares",
   "spawners": {
     "type": "mohorses:wild_nightmare",
-    "count": {
-      "type": "minecraft:uniform",
-      "max_inclusive": 1,
-      "min_inclusive": 1
-    },
-    "weight": 1
+    "weight": 1,
+    "minCount": 1,
+    "maxCount": 1
   }
 }

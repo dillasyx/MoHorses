@@ -3,16 +3,18 @@
   "criteria": {
     "brute": {
       "conditions": {
-        "entity": {
-          "type": "minecraft:entity_properties",
-          "entity": "this",
-          "predicate": {
-            "minecraft:entity_type": "minecraft:piglin_brute",
-            "minecraft:vehicle": {
-              "minecraft:entity_type": "mohorses:wild_nightmare"
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:piglin_brute",
+              "vehicle": {
+                "type": "mohorses:wild_nightmare"
+              }
             }
           }
-        }
+        ]
       },
       "trigger": "minecraft:player_killed_entity"
     }

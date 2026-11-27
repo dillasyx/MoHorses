@@ -3,11 +3,8 @@
   "biomes": "#mohorses:spawns_wild_unicorns/weight_5",
   "spawners": {
     "type": "mohorses:wild_unicorn",
-    "count": {
-      "type": "minecraft:uniform",
-      "max_inclusive": 1,
-      "min_inclusive": 1
-    },
-    "weight": 5
+    "weight": 5,
+    "minCount": 1,
+    "maxCount": 1
   }
 }

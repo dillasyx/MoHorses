@@ -2,10 +2,13 @@ package one.syx.mohorses.mixin;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.equine.AbstractHorse;
 import net.minecraft.world.entity.animal.equine.ZombieHorse;
+import net.minecraft.world.item.ItemStack;
 import one.syx.mohorses.entity.GhostHorses;
+import one.syx.mohorses.entity.HorseKind;
 import one.syx.mohorses.entity.MoHorse;
 import one.syx.mohorses.entity.UndeadMounts;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,6 +21,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /// - Monsters leave players on undead horses alone (see [UndeadMounts#hiddenFrom]). `canAttack` is what both finding a
 ///   new target and keeping the current one check, so a monster already chasing the player gives up once they mount.
+/// - Which horse armor a horse of this mod wears (see [HorseKind#canWear]). `isEquippableInSlot` can't be overridden
+///   in this version, and the armor slot, dispensers and right-clicking a horse all ask it.
 /// - When a horse dies: a tamed one may come back as a ghost, and maggots crawl out of a zombie horse.
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
@@ -32,6 +37,12 @@ public abstract class LivingEntityMixin {
     @Inject(method = "canAttack(Lnet/minecraft/world/entity/LivingEntity;)Z", at = @At("HEAD"), cancellable = true)
     private void mohorses$ignoreUndeadRiders(LivingEntity target, CallbackInfoReturnable<Boolean> cir) {
         if (UndeadMounts.hiddenFrom((LivingEntity)(Object)this, target))
+            cir.setReturnValue(false);
+    }
+
+    @Inject(method = "isEquippableInSlot", at = @At("HEAD"), cancellable = true)
+    private void mohorses$armorRules(ItemStack stack, EquipmentSlot slot, CallbackInfoReturnable<Boolean> cir) {
+        if (slot == EquipmentSlot.BODY && (Object)this instanceof MoHorse horse && !horse.kind().canWear(stack))
             cir.setReturnValue(false);
     }
 

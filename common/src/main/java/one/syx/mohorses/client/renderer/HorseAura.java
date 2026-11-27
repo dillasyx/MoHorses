@@ -70,7 +70,7 @@ public final class HorseAura {
         if (onFloor > 0.01F) {
             poseStack.pushPose();
             poseStack.translate(0.0F, ground + 0.01F, 0.0F);
-            poseStack.rotateDegrees(Axis.XP, -90.0F);
+            poseStack.mulPose(Axis.XP.rotationDegrees(-90.0F));
             submitNodeCollector.submitCustomGeometry(poseStack, RenderTypesAccessor.mohorses$eyes().apply(WHITE), (pose, buffer) -> floor(pose, buffer, color, onFloor, radius));
             poseStack.popPose();
         }

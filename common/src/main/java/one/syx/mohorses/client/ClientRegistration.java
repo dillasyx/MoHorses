@@ -9,7 +9,6 @@ import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.world.entity.EntityTypes;
 import one.syx.mohorses.client.model.MoHorseModel;
 import one.syx.mohorses.client.particle.FeatherParticle;
 import one.syx.mohorses.client.particle.TinyBatParticle;
@@ -34,7 +33,7 @@ public final class ClientRegistration {
     public static void registerRenderers(BiConsumer<EntityType<? extends Entity>, EntityRendererProvider> entityRenderers) {
         entityRenderers.accept(EntityRegistry.MAGGOT.get(), MaggotRenderer::new);
         // Replaces the vanilla zombie horse renderer, to show the rotting stages
-        entityRenderers.accept(EntityTypes.ZOMBIE_HORSE, DecayingZombieHorseRenderer::new);
+        entityRenderers.accept(EntityType.ZOMBIE_HORSE, DecayingZombieHorseRenderer::new);
 
         EntityRendererProvider<MoHorse> wildNightmare = context -> new MoHorseRenderer(context, HorseKind.NIGHTMARE);
 
